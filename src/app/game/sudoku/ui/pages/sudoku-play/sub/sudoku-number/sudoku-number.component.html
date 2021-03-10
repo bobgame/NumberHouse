@@ -1,0 +1,24 @@
+<div class="num"
+     [class.num-tip-bg]="sudoItem.isTip"
+     *ngIf="sudoItem && !sudoItem.isBlank"
+     (click)="checkSameNumbers(sudoItem.backupNum)">
+  {{sudoItem.backupNum}}
+</div>
+<div class="num num-empty"
+     [class.num-tip-bg]="sudoItem.isTip"
+     *ngIf="sudoItem && sudoItem.isBlank"
+     [ngClass]="{'active': sudokuShowData.playNumber == sudoItem.id, 'error': sudoItem.isError}"
+     (press)="numEmptyPress(sudoItem.id)"
+     (click)="setShowPlayNumber(sudoItem.id)">
+  <div *ngIf="!sudoItem.isEdit">
+    {{sudoItem.playNum}}
+  </div>
+  <div class="small-con"
+       *ngIf="sudoItem.isEdit">
+    <div class="small-number"
+         *ngFor="let n of numArr"
+         [ngClass]="{'small-r-l': n % 3 != 0, 'small-b-l': n <= 6}">
+      <span [ngClass]="{'active': sudoItem.editBoard[n]}">{{n}}</span>
+    </div>
+  </div>
+</div>

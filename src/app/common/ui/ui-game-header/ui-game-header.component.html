@@ -1,0 +1,7 @@
+<div class="mb-2 text-center header-con">
+  <h4><span *ngIf="preTitle" class="small">{{preTitle}} / </span>{{headerTitle}}</h4>
+  <div class="back-btn"
+       *ngIf="isBackShow"
+       innerHTML="< {{'common.back' | translate}}"
+       (click)="clickBackBtn($event)"></div>
+</div>

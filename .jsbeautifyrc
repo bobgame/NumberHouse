@@ -1,0 +1,14 @@
+{
+  "brace_style": "none,preserve-inline",
+  "indent_size": 2,
+  "indent_char": " ",
+  "jslint_happy": true,
+  "newline_between_rules": false,
+  "selector_separator_newline": false,
+  "unformatted": ["span", "i"],
+  "wrap_attributes": "preserve-aligned",
+  "css": {
+    "indent_size": 2
+  },
+  "wrap_line_length": 12000
+}

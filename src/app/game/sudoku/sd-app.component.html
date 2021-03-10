@@ -1,0 +1,9 @@
+<div class="pt-5 game-content"
+     [ngSwitch]="sudokuShowData.page">
+  <nw-sudoku-home *ngSwitchCase="SUDOKU_PAGE.HOME"></nw-sudoku-home>
+  <nw-sudoku-play *ngSwitchCase="SUDOKU_PAGE.PLAY"></nw-sudoku-play>
+  <nw-sudoku-help *ngSwitchCase="SUDOKU_PAGE.HELP"></nw-sudoku-help>
+  <nw-sudoku-settings *ngSwitchCase="SUDOKU_PAGE.SETTINGS"></nw-sudoku-settings>
+</div>
+<nw-sudoku-pop-gameover *ngIf="sudokuShowData.pop.gameover"></nw-sudoku-pop-gameover>
+<nw-sudoku-pop-hard-choose *ngIf="sudokuShowData.pop.hardchoose"></nw-sudoku-pop-hard-choose>

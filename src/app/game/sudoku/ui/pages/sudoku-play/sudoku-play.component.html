@@ -1,0 +1,67 @@
+<div class="sudoku-play text-center w-100">
+  <nw-ui-game-header [isBackShow]="true"
+                     (clickBack)="gotoPage(SUDOKU_PAGE.HOME)"
+                     headerTitle="{{'sudoku.name' | translate}}"></nw-ui-game-header>
+  <div class="sd-content">
+    <div class="game-header d-flex justify-content-space-between align-items-center">
+      <div class="hard-mode">{{sudokuData.nowHardModeName}}</div>
+      <div class="star-con fcc">
+        <i class="nwicon nwi-star-full star-item color-red"
+            *ngFor="let star of starArr"
+            [hidden]="star > sudokuData.star"></i>
+        <i class="nwicon nwi-star-empty star-item color-red"
+            *ngFor="let star of starArr"
+            [hidden]="star <= sudokuData.star"></i>
+      </div>
+      <div class="time" (click)="clickPlayOrPauseBtn()">
+        {{sudokuShowData.showTime}} <i class="nwicon nwi-pause pl-2"></i>
+      </div>
+
+    </div>
+
+    <div class="number-content">
+      <div *ngFor="let cell of cellArr; let i = index"
+           class="number-item"
+           [ngClass]="{
+             'line-b-s': cell.bottomSmall,
+             'line-b-m': cell.bottomMiddle,
+             'line-r-s': cell.rightSmall, 
+             'line-r-m': cell.rightMiddle
+            }">
+        <nw-sudoku-number [sudoItem]="sudokuData.sudo[i]"></nw-sudoku-number>
+      </div>
+    </div>
+
+    <div class="game-bottom">
+      <div class="tools-btns text-center"
+           *ngIf="toolsButtonShow == 1">
+        <button class="tool-btn"
+                (click)="clearPlayNumber()"
+                [disabled]="sudokuShowData.playNumber == null">
+          <i class="nwicon nwi-clear"></i>
+        </button>
+        <button class="tool-btn"
+                (click)="setThisEditBoardStatus()"
+                [disabled]="sudokuShowData.playNumber == null">
+          <i class="nwicon nwi-small-no"
+            *ngIf="!sudokuShowData.isEdit"></i>
+          <i class="nwicon nwi-small-yes"
+            *ngIf="sudokuShowData.isEdit"></i>
+        </button>
+        <button class="tool-btn"
+                (click)="newGame()">
+          <i class="nwicon nwi-new"></i>
+        </button>
+      </div>
+      <div class="number-btns">
+        <button class="num-btn"
+                *ngFor="let number of numArr"
+                (click)="clickPlayNumber(number)"
+                [disabled]="sudokuShowData.playNumber == null">
+          {{number}}
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+<nw-sudoku-pop-pause *ngIf="sudokuShowData.pop.pause"></nw-sudoku-pop-pause>

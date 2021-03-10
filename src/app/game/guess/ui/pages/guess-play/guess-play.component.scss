@@ -1,0 +1,131 @@
+.guess-play {
+
+  .gs-content {
+    padding: 0 5vw;
+    .game-header {
+      padding: 0 5vw;
+      width: 100%;
+      height: 5vh;
+      font-size: 2vh;
+      flex-grow: 1;
+
+      .hard-mode {
+        min-width: 25%;
+        text-align: left;
+      }
+      .time {
+        min-width: 25%;
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        height: 100%;
+      }
+
+      .star-item {
+        margin-right: 2px;
+        transition: all .5s;
+        font-size: 2vh;
+      }
+    }
+  }
+
+  .result-con {
+    width: 100%;
+    height: 21vh;
+    border-top-right-radius: 6px;
+    border-top-left-radius: 6px;
+    flex-wrap: wrap;
+    overflow: hidden;
+
+    .result-item {
+      width: 20%;
+      height: 50%;
+      flex-flow: column;
+      justify-content: center;
+
+      .result-item-con {
+        width: 100%;
+
+        ::ng-deep {
+          .result-value {
+            font-size: 0.8em;
+          }
+
+          .result-result {
+            font-size: 0.7em;
+            font-weight: normal;
+          }
+        }
+      }
+    }
+
+    .result-item-empty {
+      width: 20%;
+    }
+
+    &.result-num-8 {
+
+      .result-item,
+      .result-item-empty {
+        width: 25%;
+      }
+    }
+  }
+
+  .input-con {
+    width: 100%;
+    height: 8vh;
+    border-top: none;
+    border-bottom: none;
+
+    .value-box {
+      // flex-grow: 1;
+      width: 70%;
+      font-size: 1.5em;
+      border: none;
+
+      .value-item {
+        width: 8vw;
+      }
+    }
+
+    .value-tools-con {
+      width: 30%;
+
+      .tool-item {
+        width: 100%;
+        height: 100%;
+      }
+    }
+  }
+
+  .num-con {
+    width: 100%;
+    height: 18vh;
+    flex-wrap: wrap;
+    cursor: default;
+
+    .num-item {
+      width: 20%;
+      height: 50%;
+      font-size: 1.2em;
+    }
+  }
+
+  .tools-con {
+    width: 100%;
+    height: 8vh;
+    border-top: none;
+    border-bottom-right-radius: 6px;
+    border-bottom-left-radius: 6px;
+
+    .tool-item {
+      width: 40%;
+      height: 100%;
+
+      i {
+        font-size: 1.5em;
+      }
+    }
+  }
+}

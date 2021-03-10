@@ -1,0 +1,28 @@
+:host {
+  font-size: 0;
+  display: inline-block;
+}
+$height: 6vh;
+.btn {
+  width: 52vw;
+  height: $height;
+  line-height: 2.8vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  background: none;
+  border-radius: 500px;
+  text-transform: uppercase;
+  font-weight: bold;
+  letter-spacing: 1px;
+  .text {
+    flex: 1 1 100%;
+    height: calc(#{$height} - 2px);
+    overflow: hidden;
+  }
+  .right-icon {
+    flex: 0 0 12vw;
+    height: calc(#{$height} - 1.5vh);
+  }
+}

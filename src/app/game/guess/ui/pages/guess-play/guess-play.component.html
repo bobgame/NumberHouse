@@ -1,0 +1,58 @@
+<div class="guess-play text-center w-100">
+  <nw-ui-game-header [isBackShow]="true"
+                     (clickBack)="gotoPage('HOME')"
+                     [headerTitle]="'guess.name' | translate"></nw-ui-game-header>
+  <div class="gs-content">
+    <div class="game-header d-flex justify-content-space-between align-items-center">
+      <div class="hard-mode">Times: {{ guessData.guessTimes }}/{{ guessData.guessMaxTimes }}</div>
+      <div class="star-con fcc">
+        <i class="nwicon nwi-star-full star-item color-red"
+            *ngFor="let star of starArr"
+            [hidden]="star > guessData.star"></i>
+        <i class="nwicon nwi-star-empty star-item color-red"
+            *ngFor="let star of starArr"
+            [hidden]="star <= guessData.star"></i>
+      </div>
+      <div class="time" (click)="clickPlayOrPauseBtn()">
+        {{guessShowData.showTime}} <i class="nwicon nwi-pause pl-2"></i>
+      </div>
+
+    </div>
+    <div class="result-con d-flex"
+         [class.result-num-8]="guessData.guessMaxTimes === 8">
+      <div class="result-item fcc"
+           *ngFor="let rt of guessData.results">
+        <div class="result-item-con"
+             [innerHTML]="rt"></div>
+      </div>
+      <div class="result-item-empty"></div>
+      <div class="result-item-empty"></div>
+      <div class="result-item-empty"></div>
+      <div class="result-item-empty"></div>
+    </div>
+    <div class="input-con d-flex justify-content-space-between">
+      <div class="value-box text-center fcc h-100">
+        <div class="value-item fcc h-100"
+             *ngFor="let num of guessData.value">{{num}}</div>
+      </div>
+      <div class="value-tools-con d-flex justify-content-center align-items-center h-100">
+        <div class="tool-item fcc"
+             (click)="delNumber()"><i class="nwicon nwi-backspace"></i></div>
+      </div>
+    </div>
+    <div class="num-con d-flex justify-content-space-between">
+      <div class="num-item fcc"
+           *ngFor="let number of guessData.allNumbers"
+           (click)="clickNumber(number)">
+        {{number}}
+      </div>
+    </div>
+    <div class="tools-con d-flex justify-content-center align-items-center mb-12 h-100">
+      <div class="tool-item fcc"><i class="nwicon nwi-mark"></i></div>
+      <div class="tool-item fcc"
+           (click)="submitNumber()"><i class="nwicon nwi-yes"></i></div>
+    </div>
+
+  </div>
+</div>
+<nw-guess-pop-pause *ngIf="guessShowData.pop.pause"></nw-guess-pop-pause>

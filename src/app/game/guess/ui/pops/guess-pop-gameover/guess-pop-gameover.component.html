@@ -1,0 +1,9 @@
+<nw-con-pop title="Gameover"
+            (hidePop)="hidePop()"
+            (clickOk)="play()"
+            [btnOk]="{show: true, text: 'Play'}"
+            (clickClose)="menu()"
+            [btnClose]="{show: true, text: 'Menu'}">
+  <div class="text-center"
+       [innerHTML]="guessShowData.gameOverText"></div>
+</nw-con-pop>

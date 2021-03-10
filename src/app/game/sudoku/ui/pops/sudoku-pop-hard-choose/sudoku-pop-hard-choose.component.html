@@ -1,0 +1,31 @@
+<nw-con-pop title="New Game"
+            [isBlack]="sudokuShowData.isHomeToPlay"
+            (hidePop)="hidePop()">
+  <div class="text-center pt-2">
+    <nw-ui-btn class="mb-2" *ngFor="let hard of hardChooseShow"
+               (btnClick)="chooseHardMode(hard.hardMode)"
+               [isRightIcon]="true"
+               rightIconName="more"
+               (iconClick)="showLevelChoose(hard.hardMode)"
+               [btnText]="hard.hardName"></nw-ui-btn>
+    <nw-ui-btn class="mb-2" (btnClick)="gotoMenu()"
+               [btnText]="'Menu'"></nw-ui-btn>
+    <nw-ui-btn *ngIf="!sudokuShowData.isHomeToPlay" (btnClick)="hidePop()"
+               [btnText]="'Close'"></nw-ui-btn>
+  </div>
+  <div class="sd-level-star-con" *ngIf="isShowLevel">
+    <div class="mask" (click)="isShowLevel = false"></div>
+    <div class="level-list">
+      <div *ngFor="let lvStar of levelStars" class="level-star border-grayest" (click)="chooseHardModeLevel(lvStar)"
+           [class.is-disabled]="!lvStar.isActive" [class.is-hide-star]="lvStar.isHideStar">
+        <div class="text text-center">{{lvStar.lv}}</div>
+        <div class="star text-center" *ngIf="!lvStar.isHideStar">
+          <i class="nwicon nwi-star-full color-red" *ngFor="let i of starArr" [hidden]="i > lvStar.starNum"></i>
+          <i class="nwicon nwi-star-empty color-red" *ngFor="let i of starArr" [hidden]="i <= lvStar.starNum"></i>
+        </div>
+      </div>
+      <!-- text
+      star -->
+    </div>
+  </div>
+</nw-con-pop>

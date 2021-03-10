@@ -1,0 +1,20 @@
+{
+  "common": {
+    "title": "Number House",
+    "ok": "Ok",
+    "back": "Back",
+    "home": "Home",
+    "play": "Play",
+    "continue": "Continue",
+    "settings": "Settings",
+    "stars": "Stars",
+    "help": "Help",
+    "gameMenu": "Game Menu"
+  },
+  "sudoku": {
+    "name": "Sudoku"
+  },
+  "guess": {
+    "name": "Guess Number"
+  }
+}

@@ -1,0 +1,21 @@
+.header-con {
+  position: relative;
+  height: 5vh;
+  line-height: 5vh;
+  h4 {
+    letter-spacing: 0px;
+    .small {
+      font-weight: 300;
+    }
+  }
+  .back-btn {
+    cursor: pointer;
+    position: absolute;
+    left: 2vw;
+    top: 0;
+    height: 5vh;
+    line-height: 5vh;
+    font-size: 0.8em;
+    text-transform: uppercase;
+  }
+}

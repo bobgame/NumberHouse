@@ -1,0 +1,32 @@
+@import './color-content.scss';
+
+.color-default {
+  $light: #eeeeee;
+  $lighter: #f0f0f0;
+  $lightest: #ffffff;
+  $light-special-1: #f3f3f3;
+  $light-special-2: #f5f5f5;
+  $dark: #555555;
+  $darker: #333333;
+  $darkest: #000000;
+  $blue: #3880ff;
+  $red: #be1919;
+  $gray: #999999;
+  $grayer: #b8b8b8;
+  $grayest: #cccccc;
+
+  @include theme($light,
+    $lighter,
+    $lightest,
+    $light-special-1,
+    $light-special-2,
+    $dark,
+    $darker,
+    $darkest,
+    $blue,
+    $red,
+    $gray,
+    $grayer,
+    $grayest,
+  )
+}

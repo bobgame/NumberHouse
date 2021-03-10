@@ -1,0 +1,20 @@
+<nw-con-pop title="Pause"
+            [isBlack]="true"
+            popSize="lg"
+            (hidePop)="hidePop()">
+  <div class="text-center">
+    <div class="hard-star pt-4 d-flex justify-content-space-between align-items-center">
+      <div class="name">{{hardStar.modeName}}</div>
+      <div class="time">{{hardStar.totalTime}}</div>
+      <div class="star color-red">
+        <i class="nwicon nwi-star-full"></i>
+        {{hardStar.starNum}}
+      </div>
+    </div>
+    <nw-ui-btn class="pt-15 mb-10"
+               (btnClick)="hidePop()"
+               [btnText]="'Continue'"></nw-ui-btn>
+    <nw-ui-btn (btnClick)="gotoMenu()"
+               [btnText]="'Menu'"></nw-ui-btn>
+  </div>
+</nw-con-pop>

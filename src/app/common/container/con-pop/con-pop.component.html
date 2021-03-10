@@ -1,0 +1,25 @@
+<div class="pop fcc"
+     [class.pop-lg]="popSize === 'lg'"
+     [class.is-black]="isBlack">
+  <div class="mask"
+       *ngIf="maskCanClick"
+       (click)="hideThisPop($event)"></div>
+  <div class="pop-con bg-lighter">
+    <div class="pop-title mb-2"
+         [innerHTML]="title"></div>
+    <div class="pop-content mb-2">
+      <ng-content></ng-content>
+    </div>
+    <div class="pop-btns"
+         *ngIf="btnClose.show || btnOk.show">
+      <nw-ui-btn *ngIf="btnOk.show"
+                 class="mb-2"
+                 (btnClick)="clickOkBtn($event)"
+                 [btnText]="btnOk.text"></nw-ui-btn>
+      <nw-ui-btn *ngIf="btnClose.show"
+                 class="mb-2"
+                 (btnClick)="clickCloseBtn($event)"
+                 [btnText]="btnClose.text"></nw-ui-btn>
+    </div>
+  </div>
+</div>

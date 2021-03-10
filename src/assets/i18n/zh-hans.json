@@ -1,0 +1,14 @@
+{
+  "common": {
+    "title": "数字之家",
+    "ok": "Ok",
+    "back": "Back",
+    "home": "Home",
+    "play": "Play",
+    "settings": "Settings",
+    "help": "Help"
+  },
+  "guess": {
+
+  }
+}

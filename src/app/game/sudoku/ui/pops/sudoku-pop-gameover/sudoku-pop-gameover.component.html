@@ -1,0 +1,10 @@
+<nw-con-pop title="Gameover"
+            [maskCanClick]="false"
+            (hidePop)="hidePop()"
+            (clickOk)="clickOk()"
+            (clickClose)="clickClose()"
+            [btnOk]="{show: true, text: 'New Game'}"
+            [btnClose]="{show: true, text: 'Menu'}">
+  <div class="text-center mb-4 pt-2"
+       [innerHTML]="sudokuShowData.gameOverText"></div>
+</nw-con-pop>

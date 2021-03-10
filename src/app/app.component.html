@@ -1,3 +1,6 @@
-<ion-app>
-  <ion-router-outlet></ion-router-outlet>
+<ion-app [class.color-con]="true"
+         [class.color-default]="themeColor === THEME_COLOR.DEFAULT">
+  <div class="nw-con bg-lighter color-darker" *ngIf="'common.ok' | translate">
+    <router-outlet></router-outlet>
+  </div>
 </ion-app>

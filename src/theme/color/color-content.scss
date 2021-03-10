@@ -1,0 +1,148 @@
+@mixin theme ($light,
+  $lighter,
+  $lightest,
+  $light-special-1,
+  $light-special-2,
+  $dark,
+  $darker,
+  $darkest,
+  $blue,
+  $red,
+  $gray,
+  $grayer,
+  $grayest,
+) {
+  $colors: ('light': $light,
+      'lighter': $lighter,
+      'lightest': $lightest,
+      'light-special-1': $light-special-1,
+      'light-special-2': $light-special-2,
+      'dark': $dark,
+      'darker': $darker,
+      'darkest': $darkest,
+      'blue': $blue,
+      'red': $red,
+      'gray': $gray,
+      'grayer': $grayer,
+      'grayest': $grayest,
+    );
+
+  // Backgrounds
+  // bg-light
+  @each $colorName,
+  $color in $colors {
+    .bg-#{$colorName} {
+      background-color: $color;
+    }
+  }
+
+  // Colors
+  // color-red
+  @each $colorName,
+  $color in $colors {
+    .color-#{$colorName} {
+      color: $color;
+    }
+  }
+
+  // Borders
+  // border-dark-1
+
+  @each $colorName,
+  $color in $colors {
+    @for $i from 1 through 4 {
+      .border-#{$colorName}-#{$i} {
+        border: $i * 1px solid $color;
+      }
+      .border-top-#{$colorName}-#{$i} {
+        border-top: $i * 1px solid $color;
+      }
+      .border-right-#{$colorName}-#{$i} {
+        border-right: $i * 1px solid $color;
+      }
+      .border-bottom-#{$colorName}-#{$i} {
+        border-bottom: $i * 1px solid $color;
+      }
+      .border-left-#{$colorName}-#{$i} {
+        border-left: $i * 1px solid $color;
+      }
+    }
+    .border-#{$colorName} {
+      border-color: $color;
+    }
+    .border-top-#{$colorName} {
+      border-top-color: $color;
+    }
+    .border-right-#{$colorName} {
+      border-right-color: $color;
+    }
+    .border-bottom-#{$colorName} {
+      border-bottom-color: $color;
+    }
+    .border-left-#{$colorName} {
+      border-left-color: $color;
+    }
+  }
+
+  .guess-play {
+    .result-con {
+      border: 1px solid $grayer;
+      border-bottom-color: $grayest;
+
+      .result-item {
+        border: 1px solid $light;
+
+        .result-item-con {
+          .result-result {
+            color: $blue;
+
+            span {
+              color: $red;
+            }
+          }
+        }
+      }
+    }
+
+    .input-con {
+      border: 1px solid $grayer;
+
+      .value-box {
+        background: $light-special-2;
+      }
+
+      .value-tools-con {
+
+        .tool-item {
+          &:active {
+            background: $light-special-1;
+          }
+        }
+      }
+    }
+
+    .num-con {
+      border: 1px solid $grayer;
+      border-top-color: $grayest;
+      border-bottom-color: $grayest;
+
+      .num-item {
+        border: 1px solid $light;
+
+        &:active {
+          background: $light-special-1;
+        }
+      }
+    }
+
+    .tools-con {
+      border: 1px solid $grayer;
+
+      .tool-item {
+        &:active {
+          background: $light-special-1;
+        }
+      }
+    }
+  }
+}

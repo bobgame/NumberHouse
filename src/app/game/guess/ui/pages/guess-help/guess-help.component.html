@@ -1,0 +1,17 @@
+<div class="w-100">
+  <nw-ui-game-header [isBackShow]="true"
+                     (clickBack)="gotoPage('HOME')"
+                     [preTitle]="'guess.name' | translate"
+                     [headerTitle]="'common.help' | translate"></nw-ui-game-header>
+  <div class="content">
+    <div class="text">
+      <p>You need to guess 4 different numbers. </p>
+      <p>Game will random 4 numbers. </p>
+      <p>For example 5678.</p>
+      <p>If you guess 0128, you can get 1A0B</p>
+      <p>If you guess 5627, you can get 2A1B</p>
+      <p>Every game has 8 times to guess.</p>
+      <p>Less times guessed right, more stars got.</p>
+    </div>
+  </div>
+</div>
