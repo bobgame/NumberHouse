@@ -1,0 +1,7 @@
+{
+  "name": "HomeOfNumber",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "angular"
+}
