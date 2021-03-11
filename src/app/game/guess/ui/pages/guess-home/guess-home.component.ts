@@ -20,7 +20,7 @@ export class GuessHomeComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    // this.gotoPage('PLAY') // for test
+    // this.gotoPage('Play') // for test
     this.init()
   }
 

@@ -25,9 +25,11 @@
                 "output": "assets"
               }
             ],
-            "styles": [{
-              "input": "src/global.scss"
-            }],
+            "styles": [
+              {
+                "input": "src/global.scss"
+              }
+            ],
             "scripts": []
           },
           "configurations": {

@@ -5,11 +5,13 @@
     "back": "Back",
     "home": "Home",
     "play": "Play",
+    "menu": "Menu",
     "continue": "Continue",
     "settings": "Settings",
     "stars": "Stars",
     "help": "Help",
-    "gameMenu": "Game Menu"
+    "gameMenu": "Game menu",
+    "hardChoose": "Hard choose"
   },
   "sudoku": {
     "name": "Sudoku"

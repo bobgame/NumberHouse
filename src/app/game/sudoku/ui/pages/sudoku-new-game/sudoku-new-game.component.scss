@@ -23,15 +23,17 @@
     position: absolute;
     z-index: 2;
     right: 0;
-    top: 0;
-    width: 30vw;
-    height: 100%;
+    top: 10vh;
+    width: 40vw;
+    height: 80vh;
     overflow-y: auto;
     background: #fff;
     display: flex;
     flex-wrap: wrap;
     justify-content: flex-start;
     align-content: flex-start;
+    border-top-left-radius: 1vh;
+    border-bottom-left-radius: 1vh;
     animation: showHardStarCon .3s ease-out 1;
     .level-star {
       cursor: pointer;

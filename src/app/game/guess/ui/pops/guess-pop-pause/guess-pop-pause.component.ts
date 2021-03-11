@@ -42,7 +42,7 @@ export class GuessPopPauseComponent implements OnInit {
   }
 
   gotoMenu() {
-    this.d.guessShowData.page = GUESS_PAGE.HOME
+    this.d.guessShowData.page = GUESS_PAGE.Home
     this.d.guessShowData.pop.pause = false
   }
 }

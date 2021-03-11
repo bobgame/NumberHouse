@@ -1,5 +1,5 @@
 export class GuessShowData {
-  /** HOME PLAY HELP SETTINGS */
+  /** Home Play Help Settings */
   page: string
   gameOverText: string
   showTime: string

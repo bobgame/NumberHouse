@@ -3,7 +3,7 @@
             [popSize]="'lg'"
             (hidePop)="hidePop()">
   <div class="text-center">
-    <div class="hard-star pt-4 d-flex justify-content-space-between align-items-center" *ngFor="let hardStar of hardAndStars">
+    <div class="hard-star pt-4 d-flex justify-content-between align-items-center" *ngFor="let hardStar of hardAndStars">
       <div class="name">{{hardStar.modeName}}</div>
       <div class="time">{{hardStar.totalTime}}</div>
       <div class="star color-red">
@@ -13,8 +13,8 @@
     </div>
     <nw-ui-btn class="pt-15 mb-10"
                (btnClick)="hidePop()"
-               [btnText]="'Continue'"></nw-ui-btn>
+               [btnText]="'common.continue' | translate"></nw-ui-btn>
     <nw-ui-btn (btnClick)="gotoMenu()"
-               [btnText]="'Menu'"></nw-ui-btn>
+               btnText="< {{'common.menu' | translate}}"></nw-ui-btn>
   </div>
 </nw-con-pop>

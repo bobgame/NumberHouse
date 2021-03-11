@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core'
 import { SudokuDataService } from '../../../services/sudoku-data.service'
 import { Router } from '@angular/router'
 import { SudokuData } from '../../../data/sudoku-type'
-import { SUDOKU_PAGE } from 'src/app/game/sudoku/enum/sudoku-page.enum'
+import { SudoPageEnum } from 'src/app/game/sudoku/enum/sudoku-page.enum'
 
 @Component({
   selector: 'nw-sudoku-home',
@@ -11,7 +11,7 @@ import { SUDOKU_PAGE } from 'src/app/game/sudoku/enum/sudoku-page.enum'
 })
 export class SudokuHomeComponent implements OnInit {
 
-  SUDOKU_PAGE = SUDOKU_PAGE
+  SudoPageEnum = SudoPageEnum
   sudokuData: SudokuData
 
   constructor(
@@ -22,13 +22,13 @@ export class SudokuHomeComponent implements OnInit {
   ngOnInit() {
     this.d.loadData()
     this.sudokuData = this.d.sudokuData
-    // this.gotoPage('PLAY') // for test
+    // this.gotoPage(SudoPageEnum.NewGame) // for test
   }
 
   gotoPage(pageName: string, chooseMode?: boolean) {
     if (chooseMode) {
       this.d.sudokuShowData.isHomeToPlay = true
-      this.d.sudokuShowData.pop.hardchoose = true
+      this.d.sudokuShowData.page = SudoPageEnum.Play
     }
     this.d.sudokuShowData.page = pageName
   }

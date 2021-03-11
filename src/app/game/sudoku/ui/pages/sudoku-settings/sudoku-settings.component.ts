@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core'
 import { SudokuDataService } from '../../../services/sudoku-data.service'
-import { SUDOKU_PAGE } from 'src/app/game/sudoku/enum/sudoku-page.enum'
+import { SudoPageEnum } from 'src/app/game/sudoku/enum/sudoku-page.enum'
 
 @Component({
   selector: 'nw-sudoku-settings',
@@ -9,7 +9,7 @@ import { SUDOKU_PAGE } from 'src/app/game/sudoku/enum/sudoku-page.enum'
 })
 export class SudokuSettingsComponent implements OnInit {
 
-  SUDOKU_PAGE = SUDOKU_PAGE
+  SudoPageEnum = SudoPageEnum
   constructor(
     private d: SudokuDataService,
   ) { }

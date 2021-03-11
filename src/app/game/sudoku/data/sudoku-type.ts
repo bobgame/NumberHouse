@@ -4,7 +4,7 @@ export class SudokuShowData {
   gameOverText: string
   pop: {
     gameover: boolean
-    hardchoose: boolean
+    hardChoose: boolean
     pause: boolean
   }
   isHomeToPlay: boolean

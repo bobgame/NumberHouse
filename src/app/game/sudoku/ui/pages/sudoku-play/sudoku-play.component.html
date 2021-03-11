@@ -1,11 +1,11 @@
 <div class="sudoku-play text-center w-100">
   <nw-ui-game-header [isBackShow]="true"
-                     (clickBack)="gotoPage(SUDOKU_PAGE.HOME)"
+                     (clickBack)="gotoPage(SudoPageEnum.Home)"
                      headerTitle="{{'sudoku.name' | translate}}"></nw-ui-game-header>
   <div class="sd-content">
-    <div class="game-header d-flex justify-content-space-between align-items-center">
+    <div class="game-header d-flex justify-content-between align-items-center">
       <div class="hard-mode">{{sudokuData.nowHardModeName}}</div>
-      <div class="star-con fcc">
+      <div class="star-con flex-center">
         <i class="nwicon nwi-star-full star-item color-red"
             *ngFor="let star of starArr"
             [hidden]="star > sudokuData.star"></i>

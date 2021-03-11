@@ -1,0 +1,51 @@
+.mb-half {
+	margin-bottom: 0.5vh;
+}
+
+.mr-half {
+	margin-right: 0.5vw;
+}
+
+.mt-half {
+	margin-top: 0.5vh;
+}
+
+.ml-half {
+	margin-left: 0.5vw;
+}
+
+.ml-auto {
+	margin-left: auto;
+}
+
+.right {
+	margin-left: auto;
+}
+
+@for $i from 0 through 20 {
+	.mb-#{$i} {
+		margin-bottom: $i * 1vh;
+	}
+
+	.mr-#{$i} {
+		margin-right: $i * 1vw;
+	}
+
+	.mt-#{$i} {
+		margin-top: $i * 1vh;
+	}
+
+	.ml-#{$i} {
+		margin-left: $i * 1vw;
+	}
+
+	.my-#{$i} {
+		margin-top: $i * 1vh;
+		margin-bottom: $i * 1vh;
+	}
+
+	.mx-#{$i} {
+		margin-left: $i * 1vw;
+		margin-right: $i * 1vw;
+	}
+}

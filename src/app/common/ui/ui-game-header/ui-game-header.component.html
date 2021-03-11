@@ -1,5 +1,5 @@
 <div class="mb-2 text-center header-con">
-  <h4><span *ngIf="preTitle" class="small">{{preTitle}} / </span>{{headerTitle}}</h4>
+  <h4 class="flex-center w-100"><span *ngIf="preTitle"><span class="small">{{preTitle}}</span>/ </span><span> {{headerTitle}} </span></h4>
   <div class="back-btn"
        *ngIf="isBackShow"
        innerHTML="< {{'common.back' | translate}}"

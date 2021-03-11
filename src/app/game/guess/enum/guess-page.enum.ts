@@ -1,6 +1,6 @@
 export enum GUESS_PAGE {
-  HOME = 'HOME',
-  PLAY = 'PLAY',
-  SETTINGS = 'SETTINGS',
-  HELP = 'HELP',
+  Home = 'Home',
+  Play = 'Play',
+  Settings = 'Settings',
+  Help = 'Help',
 }

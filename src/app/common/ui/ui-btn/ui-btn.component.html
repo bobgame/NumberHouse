@@ -1,8 +1,8 @@
 <button class="btn btn-{{btnSize}} border-dark-1">
-  <div class="text fcc" [innerHTML]="btnText"
+  <div class="text flex-center" [innerHTML]="btnText"
        (click)="clickBtn($event)"></div>
-  <div class="right-icon fcc border-left-dark-1" *ngIf="isRightIcon" (click)="clickIcon($event)">
+  <div class="right-icon flex-center" *ngIf="isRightIcon" (click)="clickIcon($event)">
     <!-- <i class="nwicon nwi-more"></i> -->
-    <i class="nwicon nwi-{{rightIconName}}"></i>
+    <i class="nwicon nwi-{{rightIconName}} flex-center border-left-dark-1"></i>
   </div>
 </button>

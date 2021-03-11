@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core'
 import { SudokuDataService } from '../../../services/sudoku-data.service'
 import { SudokuShowData } from '../../../data/sudoku-type'
-import { SUDOKU_PAGE } from 'src/app/game/sudoku/enum/sudoku-page.enum'
+import { SudoPageEnum } from 'src/app/game/sudoku/enum/sudoku-page.enum'
 
 @Component({
   selector: 'nw-sudoku-pop-gameover',
@@ -10,7 +10,7 @@ import { SUDOKU_PAGE } from 'src/app/game/sudoku/enum/sudoku-page.enum'
 })
 export class SudokuPopGameoverComponent implements OnInit {
 
-  SUDOKU_PAGE = SUDOKU_PAGE
+  SudoPageEnum = SudoPageEnum
   sudokuShowData: SudokuShowData
 
   constructor(
@@ -27,13 +27,13 @@ export class SudokuPopGameoverComponent implements OnInit {
 
   clickOk() {
     this.d.sudokuShowData.isHomeToPlay = true
-    this.d.sudokuShowData.pop.hardchoose = true
+    this.d.sudokuShowData.page = SudoPageEnum.Play
     // this.d.resetValue(this.d.guessData.len)
     // this.d.createNumber(this.d.guessData.len, this.d.guessData.allNumbers)
     this.hidePop()
   }
   clickClose() {
-    this.d.sudokuShowData.page = SUDOKU_PAGE.HOME
+    this.d.sudokuShowData.page = SudoPageEnum.Home
     // this.d.resetValue(this.d.guessData.len)
     // this.d.createNumber(this.d.guessData.len, this.d.guessData.allNumbers)
     this.hidePop()

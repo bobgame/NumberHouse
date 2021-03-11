@@ -1,8 +1,8 @@
 <div class="pt-5 game-content"
      [ngSwitch]="guessShowData.page">
-  <nw-guess-home *ngSwitchCase="GUESS_PAGE.HOME"></nw-guess-home>
-  <nw-guess-play *ngSwitchCase="GUESS_PAGE.PLAY"></nw-guess-play>
-  <nw-guess-help *ngSwitchCase="GUESS_PAGE.HELP"></nw-guess-help>
-  <nw-guess-settings *ngSwitchCase="GUESS_PAGE.SETTINGS"></nw-guess-settings>
+  <nw-guess-home *ngSwitchCase="GUESS_PAGE.Home"></nw-guess-home>
+  <nw-guess-play *ngSwitchCase="GUESS_PAGE.Play"></nw-guess-play>
+  <nw-guess-help *ngSwitchCase="GUESS_PAGE.Help"></nw-guess-help>
+  <nw-guess-settings *ngSwitchCase="GUESS_PAGE.Settings"></nw-guess-settings>
 </div>
 <nw-guess-pop-gameover *ngIf="guessShowData.pop.gameover"></nw-guess-pop-gameover>

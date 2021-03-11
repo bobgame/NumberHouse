@@ -6,6 +6,7 @@ import { CelShowTime } from 'src/units/get-time'
 import { StorageService } from 'src/app/common/services/storage.service'
 import { SUDOKU_SAVE } from '../enum/sudoku-save.enum'
 import { AllService, StarData } from 'src/app/common/services/all.service'
+import { SudoPageEnum } from '../enum/sudoku-page.enum'
 
 @Injectable({
   providedIn: 'root'
@@ -61,6 +62,10 @@ export class SudokuDataService {
     ]
   }
   sudokuShowTimeInterval: any
+
+  gotoSudoHome() {
+    this.sudokuShowData.page = SudoPageEnum.Home
+  }
 
   getSudoItem(id: number) {
     return this.sudokuData.sudo.find(s => s.id === id)
@@ -141,8 +146,7 @@ export class SudokuDataService {
   }
 
   newGame() {
-    this.sudokuShowData.isHomeToPlay = false
-    this.sudokuShowData.pop.hardchoose = true
+    this.sudokuShowData.page = SudoPageEnum.NewGame
   }
 
   createBlankArr(level: number, hardMode: number) {
@@ -150,7 +154,7 @@ export class SudokuDataService {
     // level = 1
     let num = Math.floor(level / 30 * 10 + hardMode * 15 + 7)
     num = num < 65 ? num : 65
-    num = 1 // for test
+    // num = 1 // for test
     const arr = []
     let item: number
     for (let a = 0; a < num; a++) {

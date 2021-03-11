@@ -1,0 +1,44 @@
+.pb-half {
+	padding-bottom: 0.5vh;
+}
+
+.pr-half {
+	padding-right: 0.5vw;
+}
+
+.pt-half {
+	padding-top: 0.5vh;
+}
+
+.pl-half {
+	padding-left: 0.5vw;
+}
+
+
+@for $i from 0 through 20 {
+	.pb-#{$i} {
+		padding-bottom: $i * 1vh;
+	}
+
+	.pr-#{$i} {
+		padding-right: $i * 1vw;
+	}
+
+	.pt-#{$i} {
+		padding-top: $i * 1vh;
+	}
+
+	.pl-#{$i} {
+		padding-left: $i * 1vw;
+	}
+
+	.py-#{$i} {
+		padding-top: $i * 1vh;
+		padding-bottom: $i * 1vh;
+	}
+
+	.px-#{$i} {
+		padding-left: $i * 1vw;
+		padding-right: $i * 1vw;
+	}
+}

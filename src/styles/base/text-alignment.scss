@@ -1,0 +1,173 @@
+.text-center {
+  text-align: center;
+}
+
+.text-justify {
+  text-align: justify;
+}
+
+.text-start {
+  text-align: start;
+}
+
+.text-end {
+  text-align: end;
+}
+
+.text-left {
+  text-align: left;
+}
+
+.text-right {
+  text-align: right;
+}
+
+.text-nowrap {
+  white-space: nowrap;
+}
+
+.text-wrap {
+  white-space: normal;
+}
+
+.text-underline {
+  text-decoration: underline;
+}
+
+@media (min-width: 576px) {
+  .text-sm-center {
+    text-align: center;
+  }
+
+  .text-sm-justify {
+    text-align: justify;
+  }
+
+  .text-sm-start {
+    text-align: start;
+  }
+
+  .text-sm-end {
+    text-align: end;
+  }
+
+  .text-sm-left {
+    text-align: left;
+  }
+
+  .text-sm-right {
+    text-align: right;
+  }
+
+  .text-sm-nowrap {
+    white-space: nowrap;
+  }
+
+  .text-sm-wrap {
+    white-space: normal;
+  }
+}
+
+@media (min-width: 768px) {
+  .text-md-center {
+    text-align: center;
+  }
+
+  .text-md-justify {
+    text-align: justify;
+  }
+
+  .text-md-start {
+    text-align: start;
+  }
+
+  .text-md-end {
+    text-align: end;
+  }
+
+  .text-md-left {
+    text-align: left;
+  }
+
+  .text-md-right {
+    text-align: right;
+  }
+
+  .text-md-nowrap {
+    white-space: nowrap;
+  }
+
+  .text-md-wrap {
+    white-space: normal;
+  }
+}
+
+@media (min-width: 992px) {
+  .text-lg-center {
+    text-align: center;
+  }
+
+  .text-lg-justify {
+    text-align: justify;
+  }
+
+  .text-lg-start {
+    text-align: start;
+  }
+
+  .text-lg-end {
+    text-align: end;
+  }
+
+  .text-lg-left {
+    text-align: left;
+  }
+
+  .text-lg-right {
+    text-align: right;
+  }
+
+  .text-lg-nowrap {
+    white-space: nowrap;
+  }
+
+  .text-lg-wrap {
+    white-space: normal;
+  }
+}
+
+@media (min-width: 1200px) {
+  .text-xl-center {
+    text-align: center;
+  }
+
+  .text-xl-justify {
+    text-align: justify;
+  }
+
+  .text-xl-start {
+    text-align: start;
+  }
+
+  .text-xl-end {
+    text-align: end;
+  }
+
+  .text-xl-left {
+    text-align: left;
+  }
+
+  .text-xl-right {
+    text-align: right;
+  }
+
+  .text-xl-nowrap {
+    white-space: nowrap;
+  }
+
+  .text-xl-wrap {
+    white-space: normal;
+  }
+}
+
+/*# sourceMappingURL=text-alignment.css.map */

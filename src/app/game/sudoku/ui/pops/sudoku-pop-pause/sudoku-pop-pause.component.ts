@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core'
 import { SudokuDataService } from '../../../services/sudoku-data.service'
 import { SudokuShowData, SudokuData, HardAndStar } from '../../../data/sudoku-type'
 import { HARDMODE } from 'src/app/game/sudoku/enum/sudoku-hardmode.enum'
-import { SUDOKU_PAGE } from 'src/app/game/sudoku/enum/sudoku-page.enum'
+import { SudoPageEnum } from 'src/app/game/sudoku/enum/sudoku-page.enum'
 
 @Component({
   selector: 'nw-sudoku-pop-pause',
@@ -11,7 +11,7 @@ import { SUDOKU_PAGE } from 'src/app/game/sudoku/enum/sudoku-page.enum'
 })
 export class SudokuPopPauseComponent implements OnInit {
 
-  SUDOKU_PAGE = SUDOKU_PAGE
+  SudoPageEnum = SudoPageEnum
   sudokuShowData: SudokuShowData
   sudokuData: SudokuData
   HARDMODE = HARDMODE
@@ -46,8 +46,8 @@ export class SudokuPopPauseComponent implements OnInit {
   }
 
   gotoMenu() {
-    this.d.sudokuShowData.page = SUDOKU_PAGE.HOME
-    this.d.sudokuShowData.pop.hardchoose = false
+    this.d.sudokuShowData.pop.pause = false
+    this.d.sudokuShowData.page = SudoPageEnum.Home
   }
 
 }

@@ -1,12 +1,12 @@
 import { SudokuShowData } from './sudoku-type'
-import { SUDOKU_PAGE } from '../enum/sudoku-page.enum'
+import { SudoPageEnum } from '../enum/sudoku-page.enum'
 
 export const SUDOKU_SHOW_DATA: SudokuShowData = {
-  page: SUDOKU_PAGE.HOME,
+  page: SudoPageEnum.Home,
   gameOverText: '',
   pop: {
     gameover: false,
-    hardchoose: false,
+    hardChoose: false,
     pause: false,
   },
   isHomeToPlay: false,

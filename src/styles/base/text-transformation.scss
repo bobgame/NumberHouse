@@ -1,0 +1,81 @@
+.text-uppercase {
+  /* stylelint-disable-next-line declaratno-important */
+  text-transform: uppercase;
+}
+
+.text-lowercase {
+  /* stylelint-disable-next-line declaratno-important */
+  text-transform: lowercase;
+}
+
+.text-capitalize {
+  /* stylelint-disable-next-line declaratno-important */
+  text-transform: capitalize;
+}
+
+@media (min-width: 576px) {
+  .text-sm-uppercase {
+    /* stylelint-disable-next-line declaratno-important */
+    text-transform: uppercase;
+  }
+
+  .text-sm-lowercase {
+    /* stylelint-disable-next-line declaratno-important */
+    text-transform: lowercase;
+  }
+
+  .text-sm-capitalize {
+    /* stylelint-disable-next-line declaratno-important */
+    text-transform: capitalize;
+  }
+}
+@media (min-width: 768px) {
+  .text-md-uppercase {
+    /* stylelint-disable-next-line declaratno-important */
+    text-transform: uppercase;
+  }
+
+  .text-md-lowercase {
+    /* stylelint-disable-next-line declaratno-important */
+    text-transform: lowercase;
+  }
+
+  .text-md-capitalize {
+    /* stylelint-disable-next-line declaratno-important */
+    text-transform: capitalize;
+  }
+}
+@media (min-width: 992px) {
+  .text-lg-uppercase {
+    /* stylelint-disable-next-line declaratno-important */
+    text-transform: uppercase;
+  }
+
+  .text-lg-lowercase {
+    /* stylelint-disable-next-line declaratno-important */
+    text-transform: lowercase;
+  }
+
+  .text-lg-capitalize {
+    /* stylelint-disable-next-line declaratno-important */
+    text-transform: capitalize;
+  }
+}
+@media (min-width: 1200px) {
+  .text-xl-uppercase {
+    /* stylelint-disable-next-line declaratno-important */
+    text-transform: uppercase;
+  }
+
+  .text-xl-lowercase {
+    /* stylelint-disable-next-line declaratno-important */
+    text-transform: lowercase;
+  }
+
+  .text-xl-capitalize {
+    /* stylelint-disable-next-line declaratno-important */
+    text-transform: capitalize;
+  }
+}
+
+/*# sourceMappingURL=text-transformation.css.map */

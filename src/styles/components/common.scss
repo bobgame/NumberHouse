@@ -1,0 +1,30 @@
+.detail-card {
+  display: block;
+  position: relative;
+  width: 100%;
+  background: #f7f7f7;
+  border: 1px solid #aaa;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.25);
+  overflow: hidden;
+  border-top-left-radius: 2vh;
+  border-bottom-right-radius: 2vh;
+  border-top-right-radius: 1vh;
+  border-bottom-left-radius: 1vh;
+  .btn-con {
+    position: absolute;
+    top: -1px;
+    right: -1px;
+    padding: 0;
+    &.con-left {
+      right: 50%;
+    }
+    .btn {
+      margin-left: -1px;
+      height: 5vh;
+      padding: 0 5vw;
+      &:first-child {
+        border-bottom-left-radius: 1vh;
+      }
+    }
+  }
+}

@@ -33,7 +33,7 @@ export class GuessPopGameoverComponent implements OnInit {
     this.hidePop()
   }
   menu() {
-    this.d.guessShowData.page = GUESS_PAGE.HOME
+    this.d.guessShowData.page = GUESS_PAGE.Home
     this.hidePop()
   }
 

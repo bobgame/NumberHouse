@@ -2,7 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core'
 import { SudokuDataService } from '../../../services/sudoku-data.service'
 import { Subscription } from 'rxjs'
 import { SudokuData, SudokuShowData, SudoCell } from '../../../data/sudoku-type'
-import { SUDOKU_PAGE } from 'src/app/game/sudoku/enum/sudoku-page.enum'
+import { SudoPageEnum } from 'src/app/game/sudoku/enum/sudoku-page.enum'
 
 @Component({
   selector: 'nw-sudoku-play',
@@ -11,7 +11,7 @@ import { SUDOKU_PAGE } from 'src/app/game/sudoku/enum/sudoku-page.enum'
 })
 export class SudokuPlayComponent implements OnInit, OnDestroy {
 
-  SUDOKU_PAGE = SUDOKU_PAGE
+  SudoPageEnum = SudoPageEnum
   endSubscription: Subscription
   numArr: number[] = [1, 2, 3, 4, 5, 6, 7, 8, 9]
   cellArr: SudoCell[] = []
