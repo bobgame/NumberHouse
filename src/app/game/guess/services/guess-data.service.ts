@@ -6,6 +6,7 @@ import { objCopy } from 'src/units/ObjCopy'
 import { CelShowTime } from 'src/units/get-time'
 import { StorageService } from 'src/app/common/services/storage.service'
 import { AllService } from 'src/app/common/services/all.service'
+import { GUESS_PAGE } from '../enum/guess-page.enum'
 
 @Injectable({
   providedIn: 'root'
@@ -65,6 +66,10 @@ export class GuessDataService {
       this.guessShowData.pauseTime = false
       this.saveData()
     }, 1000)
+  }
+
+  gotoGuessHome() {
+    this.guessShowData.page = GUESS_PAGE.HOME
   }
 
   celTime(time: number): string {

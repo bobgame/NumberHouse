@@ -14,7 +14,7 @@ export class GuessPlayComponent implements OnInit, OnDestroy {
   starArr: Array<number> = []
 
   constructor(
-    private d: GuessDataService,
+    public d: GuessDataService,
   ) { }
 
   ngOnInit() {
@@ -89,10 +89,6 @@ export class GuessPlayComponent implements OnInit, OnDestroy {
       }
       this.d.saveData()
     }
-  }
-
-  gotoPage(pageName: string) {
-    this.d.guessShowData.page = pageName
   }
 
 }

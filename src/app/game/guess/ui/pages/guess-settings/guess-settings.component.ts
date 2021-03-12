@@ -9,14 +9,9 @@ import { GuessDataService } from '../../../services/guess-data.service'
 export class GuessSettingsComponent implements OnInit {
 
   constructor(
-    private d: GuessDataService,
+    public d: GuessDataService,
   ) { }
 
   ngOnInit() { }
-
-  gotoPage(pageName: string) {
-    this.d.guessShowData.page = pageName
-  }
-
 
 }
