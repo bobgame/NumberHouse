@@ -1,0 +1,58 @@
+<div class="slide-play text-center w-100">
+  <nw-ui-game-header [isBackShow]="true"
+                     (clickBack)="d.gotoSlideHome()"
+                     [headerTitle]="'slide.name' | translate"></nw-ui-game-header>
+  <div class="gs-content">
+    <div class="game-header d-flex justify-content-between align-items-center">
+      <div class="hard-mode">Times: {{ slideData.slideTimes }}/{{ slideData.slideMaxTimes }}</div>
+      <div class="star-con flex-center">
+        <i class="nwicon nwi-star-full star-item color-red"
+            *ngFor="let star of starArr"
+            [hidden]="star > slideData.star"></i>
+        <i class="nwicon nwi-star-empty star-item color-red"
+            *ngFor="let star of starArr"
+            [hidden]="star <= slideData.star"></i>
+      </div>
+      <div class="time" (click)="clickPlayOrPauseBtn()">
+        {{slideShowData.showTime}} <i class="nwicon nwi-pause pl-2"></i>
+      </div>
+
+    </div>
+    <div class="result-con d-flex"
+         [class.result-num-8]="slideData.slideMaxTimes === 8">
+      <div class="result-item flex-center"
+           *ngFor="let rt of slideData.results">
+        <div class="result-item-con"
+             [innerHTML]="rt"></div>
+      </div>
+      <div class="result-item-empty"></div>
+      <div class="result-item-empty"></div>
+      <div class="result-item-empty"></div>
+      <div class="result-item-empty"></div>
+    </div>
+    <div class="input-con d-flex justify-content-between">
+      <div class="value-box text-center flex-center h-100">
+        <div class="value-item flex-center h-100"
+             *ngFor="let num of slideData.value">{{num}}</div>
+      </div>
+      <div class="value-tools-con d-flex justify-content-center align-items-center h-100">
+        <div class="tool-item flex-center"
+             (click)="delNumber()"><i class="nwicon nwi-backspace"></i></div>
+      </div>
+    </div>
+    <div class="num-con d-flex justify-content-between">
+      <div class="num-item flex-center"
+           *ngFor="let number of slideData.allNumbers"
+           (click)="clickNumber(number)">
+        {{number}}
+      </div>
+    </div>
+    <div class="tools-con d-flex justify-content-center align-items-center mb-12 h-100">
+      <div class="tool-item flex-center"><i class="nwicon nwi-mark"></i></div>
+      <div class="tool-item flex-center"
+           (click)="submitNumber()"><i class="nwicon nwi-yes"></i></div>
+    </div>
+
+  </div>
+</div>
+<nw-slide-pop-pause *ngIf="slideShowData.pop.pause"></nw-slide-pop-pause>

@@ -6,6 +6,7 @@ const routes: Routes = [
   { path: 'home', loadChildren: () => import('./home/home.module').then(m => m.HomeComponentModule) },
   { path: 'sudo', loadChildren: () => import('./game/sudoku/sd-app.module').then(m => m.SdAppComponentModule) },
   { path: 'guess', loadChildren: () => import('./game/guess/gs-app.module').then(m => m.GsAppComponentModule) },
+  { path: 'slide', loadChildren: () => import('./game/slide/slide-app.module').then(m => m.SlideAppComponentModule) },
 ]
 
 @NgModule({

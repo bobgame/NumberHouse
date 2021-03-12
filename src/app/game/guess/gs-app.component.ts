@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core'
 import { GuessDataService } from './services/guess-data.service'
 import { GuessShowData } from './data/guess-type'
 import { LanguageService } from 'src/app/common/services/language.service'
-import { GUESS_PAGE } from './enum/guess-page.enum'
+import { GuessPageEnum } from './enum/guess-page.enum'
 
 @Component({
   selector: 'nw-gs-app',
@@ -11,7 +11,7 @@ import { GUESS_PAGE } from './enum/guess-page.enum'
 })
 export class GsAppComponent implements OnInit {
 
-  GUESS_PAGE = GUESS_PAGE
+  GuessPageEnum = GuessPageEnum
 
   guessShowData: GuessShowData
 

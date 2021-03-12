@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core'
 import { GuessDataService } from '../../../services/guess-data.service'
 import { GuessShowData } from '../../../data/guess-type'
-import { GUESS_PAGE } from '../../../enum/guess-page.enum'
+import { GuessPageEnum } from '../../../enum/guess-page.enum'
 
 @Component({
   selector: 'nw-guess-pop-gameover',
@@ -33,7 +33,7 @@ export class GuessPopGameoverComponent implements OnInit {
     this.hidePop()
   }
   menu() {
-    this.d.guessShowData.page = GUESS_PAGE.Home
+    this.d.guessShowData.page = GuessPageEnum.Home
     this.hidePop()
   }
 

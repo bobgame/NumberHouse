@@ -1,4 +1,4 @@
-export enum GuessPageEnum {
+export enum SlidePageEnum {
   Home = 'Home',
   Play = 'Play',
   Settings = 'Settings',

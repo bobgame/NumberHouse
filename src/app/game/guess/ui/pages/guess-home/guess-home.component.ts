@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core'
 import { GuessDataService } from '../../../services/guess-data.service'
 import { Router } from '@angular/router'
-import { GUESS_PAGE } from '../../../enum/guess-page.enum'
+import { GuessPageEnum } from '../../../enum/guess-page.enum'
 import { GuessData } from '../../../data/guess-type'
 
 @Component({
@@ -11,7 +11,7 @@ import { GuessData } from '../../../data/guess-type'
 })
 export class GuessHomeComponent implements OnInit {
 
-  GUESS_PAGE = GUESS_PAGE
+  GuessPageEnum = GuessPageEnum
   guessData: GuessData
 
   constructor(

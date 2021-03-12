@@ -1,30 +1,30 @@
 import { Injectable } from '@angular/core'
-import { GuessShowData, GuessData } from '../data/guess-type'
-import { GUESS_SHOW_DATA } from '../data/guess-data'
-import { GUESS_SAVE } from '../enum/guess-save.enum'
+import { SlideShowData, SlideData } from '../data/slide-type'
+import { GUESS_SHOW_DATA } from '../data/slide-data'
+import { GUESS_SAVE } from '../enum/slide-save.enum'
 import { objCopy } from 'src/units/ObjCopy'
 import { CelShowTime } from 'src/units/get-time'
 import { StorageService } from 'src/app/common/services/storage.service'
 import { AllService } from 'src/app/common/services/all.service'
-import { GuessPageEnum } from '../enum/guess-page.enum'
+import { SlidePageEnum } from '../enum/slide-page.enum'
 
 @Injectable({
   providedIn: 'root'
 })
-export class GuessDataService {
+export class SlideDataService {
 
-  guessShowData: GuessShowData = objCopy(GUESS_SHOW_DATA)
+  slideShowData: SlideShowData = objCopy(GUESS_SHOW_DATA)
 
   starArr = [1, 2]
   STAR_MAX = this.starArr.length
-  guessShowTimeInterval: any
-  guessData: GuessData = {
+  slideShowTimeInterval: any
+  slideData: SlideData = {
     continue: false,
     len: 4,
     star: 2,
     time: 0,
-    guessTimes: 0,
-    guessMaxTimes: 8,
+    slideTimes: 0,
+    slideMaxTimes: 8,
     allNumbers: ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'],
     useTime: 0,
     value: [],
@@ -57,19 +57,19 @@ export class GuessDataService {
   ) { }
 
   startShowTime() {
-    // console.log('Start Show Time: ' + this.guessShowData.showTime)
-    clearInterval(this.guessShowTimeInterval)
-    this.guessShowData.showTime = this.celTime(this.guessData.time)
-    this.guessShowTimeInterval = setInterval(() => {
-      this.guessData.time++
-      this.guessShowData.showTime = this.celTime(this.guessData.time)
-      this.guessShowData.pauseTime = false
+    // console.log('Start Show Time: ' + this.slideShowData.showTime)
+    clearInterval(this.slideShowTimeInterval)
+    this.slideShowData.showTime = this.celTime(this.slideData.time)
+    this.slideShowTimeInterval = setInterval(() => {
+      this.slideData.time++
+      this.slideShowData.showTime = this.celTime(this.slideData.time)
+      this.slideShowData.pauseTime = false
       this.saveData()
     }, 1000)
   }
 
-  gotoGuessHome() {
-    this.guessShowData.page = GuessPageEnum.Home
+  gotoSlideHome() {
+    this.slideShowData.page = SlidePageEnum.Home
   }
 
   celTime(time: number): string {
@@ -77,37 +77,37 @@ export class GuessDataService {
   }
 
   pauseShowTime() {
-    // console.log('Pause Show Time: ' + this.guessShowData.showTime)
-    this.guessShowData.pauseTime = true
-    clearInterval(this.guessShowTimeInterval)
+    // console.log('Pause Show Time: ' + this.slideShowData.showTime)
+    this.slideShowData.pauseTime = true
+    clearInterval(this.slideShowTimeInterval)
   }
 
   gameWin() {
     this.pauseShowTime()
-    const addStar = this.guessData.star
-    this.guessShowData.gameOverText = `
+    const addStar = this.slideData.star
+    this.slideShowData.gameOverText = `
     <p class="mb-2">Win! Win!</p>
     <p class="d-flex align-items-center justify-content-center">Got<span class="color-red pl-1"> <i class="nwicon nwi-star-full color-red"></i> x ${addStar}</span></p>
     `
-    const nowAllStar = this.guessData.allStars.find(a => a.mode === this.guessData.nowMode)
+    const nowAllStar = this.slideData.allStars.find(a => a.mode === this.slideData.nowMode)
     nowAllStar.starNum += addStar
-    nowAllStar.totalTime += this.guessData.time
+    nowAllStar.totalTime += this.slideData.time
     this.all.starData.star += addStar
     this.all.save()
     this.saveData()
-    this.guessShowData.pop.gameover = true
-    this.guessData.continue = false
+    this.slideShowData.pop.gameover = true
+    this.slideData.continue = false
   }
   gameFail() {
     this.pauseShowTime()
-    this.guessShowData.gameOverText = `<div>Game Over!</div>`
-    this.guessShowData.pop.gameover = true
-    this.guessData.continue = false
+    this.slideShowData.gameOverText = `<div>Game Over!</div>`
+    this.slideShowData.pop.gameover = true
+    this.slideData.continue = false
   }
 
   createNumber(len: number, allNums: string[]) {
-    this.guessData.time = 0
-    this.guessData.star = this.STAR_MAX
+    this.slideData.time = 0
+    this.slideData.star = this.STAR_MAX
     const tempNums = []
     for (let i = 0; i < 99999; i++) {
       const num = allNums[Math.floor(Math.random() * allNums.length)].toString()
@@ -117,31 +117,31 @@ export class GuessDataService {
       }
     }
     console.log(tempNums)
-    this.guessData.number = tempNums
+    this.slideData.number = tempNums
     this.startShowTime()
   }
 
   resetValue(len: number) {
-    this.guessData.value = []
+    this.slideData.value = []
     for (let j = 0; j < len; j++) {
-      this.guessData.value.push('-')
+      this.slideData.value.push('-')
     }
   }
 
   resetResult() {
-    this.guessData.guessTimes = 0
-    this.guessData.results = []
+    this.slideData.slideTimes = 0
+    this.slideData.results = []
   }
 
   // 存档
   saveData(): void {
-    this.storage.save(GUESS_SAVE.NORMAL_STORAGE, this.guessData)
+    this.storage.save(GUESS_SAVE.NORMAL_STORAGE, this.slideData)
   }
 
   loadData() {
     const loadData: any = this.storage.load(GUESS_SAVE.NORMAL_STORAGE)
     if (loadData) {
-      this.guessData = loadData
+      this.slideData = loadData
     }
   }
 }

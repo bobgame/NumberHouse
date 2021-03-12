@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core'
-import { GUESS_PAGE } from 'src/app/game/guess/enum/guess-page.enum'
+import { GuessPageEnum } from 'src/app/game/guess/enum/guess-page.enum'
 import { GuessShowData, GuessData } from '../../../data/guess-type'
 import { GuessDataService } from '../../../services/guess-data.service'
 import { HardAndStar } from 'src/app/game/sudoku/data/sudoku-type'
@@ -11,7 +11,7 @@ import { HardAndStar } from 'src/app/game/sudoku/data/sudoku-type'
 })
 export class GuessPopPauseComponent implements OnInit {
 
-  GUESS_PAGE = GUESS_PAGE
+  GuessPageEnum = GuessPageEnum
   guessShowData: GuessShowData
   guessData: GuessData
   hardStar: HardAndStar
@@ -42,7 +42,7 @@ export class GuessPopPauseComponent implements OnInit {
   }
 
   gotoMenu() {
-    this.d.guessShowData.page = GUESS_PAGE.Home
+    this.d.guessShowData.page = GuessPageEnum.Home
     this.d.guessShowData.pop.pause = false
   }
 }

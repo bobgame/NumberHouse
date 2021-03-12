@@ -18,5 +18,8 @@
   },
   "guess": {
     "name": "Guess Number"
+  },
+  "slide": {
+    "name": "Slide"
   }
 }
