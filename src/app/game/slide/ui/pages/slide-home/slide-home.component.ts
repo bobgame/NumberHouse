@@ -30,7 +30,7 @@ export class SlideHomeComponent implements OnInit {
   }
 
   initGame() {
-    this.d.initSlideItems()
+    this.d.initSlideGame()
   }
 
   gotoPage(pageName: string, isNewGame?: boolean) {

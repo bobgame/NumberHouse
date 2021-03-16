@@ -1,0 +1,36 @@
+{
+  "cSpell.words": [
+    "nwicon",
+    "swipedown",
+    "swipeleft",
+    "swiperight",
+    "swipeup"
+  ],
+  "editor.formatOnSave": true,
+  // "files.autoSave": "off",
+  // "tslint.autoFixOnSave": true
+  "editor.codeActionsOnSave": {
+    "source.fixAll.tslint": true
+  },
+  "beautify.config": {
+    "indent-with-tabs": false,
+    "indent_size": 2,
+    "wrap_attributes": "force"
+  }
+  // //"tslint.autoFixOnSave": [
+  // //     "comment-format"
+  // // ],
+  // // "editor.codeActionsOnSave": {
+  // //     "source.organizeImports": true
+  // // },
+  // //"tslint.run": "onSave",
+  // //"tslint.packageManager": "yarn",
+  // // "tslint.autoFixOnSave": false,
+  // //"tslint.nodePath": "tmp",
+  // "tslint.jsEnable": true
+  // //"tslint.rulesDirectory": ["tmp1", "tmp2"],
+  // //"tslint.enable": true
+  // //"tslint.configFile": "tslint.json",
+  // //"tslint.trace.server": "verbose"
+  // // "tslint.alwaysShowRuleFailuresAsWarnings": false
+}

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core'
-import { SlideShowData, SlideData, SlideItem } from '../data/slide-type'
+import { SlideShowData, SlideData, SlideItem, SlidePos } from '../data/slide-type'
 import { SLIDE_SHOW_DATA } from '../data/slide-data'
 import { SLIDE_SAVE } from '../enum/slide-save.enum'
 import { objCopy } from 'src/units/ObjCopy'
@@ -26,6 +26,7 @@ export class SlideDataService {
     nextId: 1,
     slideTimes: 0,
     time: 0,
+    inPoses: [],
     items: [],
     nowMode: 0,
   }
@@ -84,6 +85,20 @@ export class SlideDataService {
     this.slideData.continue = false
   }
 
+  initSlideGame() {
+    this.initPoses()
+    this.initSlideItems()
+  }
+
+  initPoses() {
+    this.slideData.inPoses = []
+    for (let x = 5; x <= 8; x++) {
+      for (let y = 5; y <= 8; y++) {
+        this.slideData.inPoses.push({ x, y })
+      }
+    }
+  }
+
   initSlideItems() {
     this.slideData.items = []
     for (let x = 1; x <= 12; x++) {
@@ -104,12 +119,120 @@ export class SlideDataService {
     }
   }
 
-  isInContent(pos: { x: number, y: number }) {
+  isInContent(pos: SlidePos) {
     const { x, y } = pos
     if (x >= 5 && x <= 8 && y >= 5 && y <= 8) {
       return true
     }
     return false
+  }
+
+  getItemByPos(pos: SlidePos): SlideItem {
+    const { x, y } = pos
+    return this.slideData.items.find(i => i.pos.x === x && i.pos.y === y)
+  }
+  getItemById(id: number): SlideItem {
+    return this.slideData.items.find(i => i.id === id)
+  }
+
+  getNearInItems(pos: SlidePos) {
+    const arr: SlideItem[] = []
+    const posArr = [
+      { x: pos.x - 1, y: pos.y },
+      { x: pos.x + 1, y: pos.y },
+      { x: pos.x, y: pos.y - 1 },
+      { x: pos.x, y: pos.y + 1 },
+    ]
+    posArr.forEach(p => {
+      const inPos = this.slideData.inPoses.find(i => i.x === p.x && i.y === p.y)
+      if (inPos) {
+        const tempItem = this.getItemByPos(p)
+        if (tempItem) {
+          arr.push(tempItem)
+        }
+      }
+    })
+    return arr
+  }
+
+  checkSameItems() {
+    this.slideData.items.forEach(item => {
+      item.isInContent = this.isInContent(item.pos)
+    })
+    const sameItemIds: number[][] = []
+    for (let x = 5; x <= 8; x++) {
+      for (let y = 5; y <= 8; y++) {
+        const p = { x, y }
+        const thisItem = this.getItemByPos(p)
+        if (thisItem) {
+          const nearItems = this.getNearInItems(p)
+          nearItems.forEach(nearItem => {
+            if (thisItem.number === nearItem.number) {
+              let inSame = false
+              sameItemIds.forEach(s => {
+                if (s.includes(nearItem.id) || s.includes(thisItem.id)) {
+                  inSame = true
+                  if (s.includes(nearItem.id) && !s.includes(thisItem.id)) {
+                    s.push(thisItem.id)
+                  } else if (!s.includes(nearItem.id) && s.includes(thisItem.id)) {
+                    s.push(nearItem.id)
+                  }
+                }
+              })
+              if (!inSame) {
+                sameItemIds.push([thisItem.id, nearItem.id])
+              }
+            }
+          })
+        }
+      }
+    }
+    let needRMItemIds: number[] = []
+    sameItemIds.forEach(s => {
+      if (s.length > 2) {
+        needRMItemIds = needRMItemIds.concat(s)
+      }
+    })
+    needRMItemIds.sort((a, b) => b - a)
+    console.log(needRMItemIds)
+    this.slideData.items.forEach(item => {
+      if (needRMItemIds.includes(item.id) && item.isInContent) {
+        item.isDestroying = true
+      } else {
+        item.isDestroying = false
+      }
+    })
+    setTimeout(() => {
+      needRMItemIds.forEach(n => {
+        const nIndex = this.slideData.items.findIndex(i => i.id === n)
+        if (nIndex > -1) { this.slideData.items.splice(nIndex, 1) }
+      })
+    }, 1000)
+  }
+
+  swipeLeft() {
+    this.slideData.items.forEach(item => {
+      item.pos.x--
+    })
+    this.checkSameItems()
+  }
+  swipeRight() {
+    this.slideData.items.forEach(item => {
+      item.pos.x++
+    })
+    this.checkSameItems()
+  }
+  swipeUp() {
+    this.slideData.items.forEach(item => {
+      item.pos.y--
+    })
+    this.checkSameItems()
+  }
+  swipeDown() {
+    this.slideData.items.forEach(item => {
+      item.pos.y++
+    })
+    this.checkSameItems()
   }
 
 

@@ -22,6 +22,7 @@
         <div class="item-content d-flex flex-wrap">
           <div class="slide-item s-x-{{item.pos.x}} s-y-{{item.pos.y}}"
                [class.in-not-content]="!item.isInContent"
+               [class.is-destroying]="item.isDestroying"
                *ngFor="let item of slideData.items">
             <div class="slide-item-box flex-center slide-item-{{item.number}}">
               <span>{{item.name}}</span>

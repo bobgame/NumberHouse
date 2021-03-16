@@ -10,15 +10,17 @@ export class SlideShowData {
   }
 }
 
+export class SlidePos {
+  x: number
+  y: number
+}
 export class SlideItem {
   id: number
   number: number
   name: string
   isInContent: boolean
-  pos: {
-    x: number
-    y: number
-  }
+  isDestroying?: boolean
+  pos: SlidePos
 }
 export class SlideData {
   continue: boolean
@@ -27,6 +29,7 @@ export class SlideData {
   nextId: number
   slideTimes: number
   time: number
+  inPoses: SlidePos[]
   items: SlideItem[]
   nowMode: number
 }
