@@ -3,8 +3,7 @@
                      (clickBack)="d.gotoSlideHome()"
                      [headerTitle]="'slide.name' | translate"></nw-ui-game-header>
   <div class="gs-content">
-    <div class="game-header d-flex justify-content-between align-items-center">
-      <div class="hard-mode">Times: {{ slideData.slideTimes }}/{{ slideData.slideMaxTimes }}</div>
+    <div class="game-header d-flex justify-content-between align-items-center mb-5">
       <div class="star-con flex-center">
         <i class="nwicon nwi-star-full star-item color-red"
             *ngFor="let star of starArr"
@@ -18,39 +17,27 @@
       </div>
 
     </div>
-    <div class="result-con d-flex"
-         [class.result-num-8]="slideData.slideMaxTimes === 8">
-      <div class="result-item flex-center"
-           *ngFor="let rt of slideData.results">
-        <div class="result-item-con"
-             [innerHTML]="rt"></div>
+    <div class="shift-content">
+      <div class="num-content">
+        <div class="item-content d-flex flex-wrap">
+          <div class="slide-item s-x-{{item.pos.x}} s-y-{{item.pos.y}}"
+               [class.in-not-content]="!item.isInContent"
+               *ngFor="let item of slideData.items">
+            <div class="slide-item-box flex-center slide-item-{{item.number}}">
+              <span>{{item.name}}</span>
+            </div>
+          </div>
+          <div class="mask-item mask-item-1"></div>
+          <div class="mask-item mask-item-2"></div>
+          <div class="mask-item mask-item-3"></div>
+          <div class="mask-item mask-item-4"></div>
+        </div>
       </div>
-      <div class="result-item-empty"></div>
-      <div class="result-item-empty"></div>
-      <div class="result-item-empty"></div>
-      <div class="result-item-empty"></div>
-    </div>
-    <div class="input-con d-flex justify-content-between">
-      <div class="value-box text-center flex-center h-100">
-        <div class="value-item flex-center h-100"
-             *ngFor="let num of slideData.value">{{num}}</div>
-      </div>
-      <div class="value-tools-con d-flex justify-content-center align-items-center h-100">
-        <div class="tool-item flex-center"
-             (click)="delNumber()"><i class="nwicon nwi-backspace"></i></div>
-      </div>
-    </div>
-    <div class="num-con d-flex justify-content-between">
-      <div class="num-item flex-center"
-           *ngFor="let number of slideData.allNumbers"
-           (click)="clickNumber(number)">
-        {{number}}
-      </div>
-    </div>
-    <div class="tools-con d-flex justify-content-center align-items-center mb-12 h-100">
-      <div class="tool-item flex-center"><i class="nwicon nwi-mark"></i></div>
-      <div class="tool-item flex-center"
-           (click)="submitNumber()"><i class="nwicon nwi-yes"></i></div>
+      <div class="border-content"
+           (swipeleft)="swipeLeft()"
+           (swiperight)="swipeRight()"
+           (swipeup)="swipeUp()"
+           (swipedown)="swipeDown()"></div>
     </div>
 
   </div>

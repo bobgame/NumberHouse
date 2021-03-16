@@ -25,9 +25,6 @@ export class SlidePopGameoverComponent implements OnInit {
   }
 
   play() {
-    this.d.resetResult()
-    this.d.resetValue(this.d.slideData.len)
-    this.d.createNumber(this.d.slideData.len, this.d.slideData.allNumbers)
     this.d.slideData.continue = true
     this.d.saveData()
     this.hidePop()

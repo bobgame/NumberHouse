@@ -1,3 +1,3 @@
-export enum GUESS_SAVE {
+export enum SLIDE_SAVE {
   NORMAL_STORAGE = 'simplenwllslidestorage',
 }

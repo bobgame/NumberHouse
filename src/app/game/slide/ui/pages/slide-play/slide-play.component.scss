@@ -28,104 +28,95 @@
       }
     }
   }
+  .shift-content {
+    $shiftWidth: 90vw;
+    $itemWidth: 18vw;
+    border: 1px solid #ddd;
 
-  .result-con {
-    width: 100%;
-    height: 21vh;
-    border-top-right-radius: 6px;
-    border-top-left-radius: 6px;
-    flex-wrap: wrap;
+    position: relative;
+    width: $shiftWidth;
+    height: $shiftWidth;
     overflow: hidden;
+    .num-content {
+      position: absolute;
+      left: calc((#{$shiftWidth} - #{$itemWidth} * 4) / 2);
+      top: calc((#{$shiftWidth} - #{$itemWidth} * 4) / 2);
+      width: $itemWidth * 4;
+      height: $itemWidth * 4;
+      .item-content {
+        position: absolute;
+        left: $itemWidth * -4;
+        top: $itemWidth * -4;
+        width: $itemWidth * 12;
+        height: $itemWidth * 12;
 
-    .result-item {
-      width: 20%;
-      height: 50%;
-      flex-flow: column;
-      justify-content: center;
-
-      .result-item-con {
-        width: 100%;
-
-        ::ng-deep {
-          .result-value {
-            font-size: 0.8em;
+        .slide-item {
+          width: $itemWidth;
+          height: $itemWidth;
+          padding: 1vw;
+          display: block;
+          position: absolute;
+          transition: all .3s;
+          &.in-not-content {
+            .slide-item-box {
+              border: 1px solid #999;
+              span {
+                opacity: 0.5;
+              }
+            }
+          }
+          .slide-item-box {
+            width: 100%;
+            height: 100%;
+            border: 1px solid #666;
+            border-radius: 1vw;
+            font-size: $itemWidth / 2.5;
           }
 
-          .result-result {
-            font-size: 0.7em;
-            font-weight: normal;
+          @for $i from 1 through 20 {
+            &.s-x-#{$i} {
+              left: ($i - 1) * $itemWidth;
+            }
+          }
+          @for $i from 1 through 20 {
+            &.s-y-#{$i} {
+              top: ($i - 1) * $itemWidth;
+            }
+          }
+        }
+        .mask-item {
+          position: absolute;
+          width: $itemWidth;
+          height: $itemWidth;
+          background: #eee;
+          &.mask-item-1 {
+            left: calc(#{$itemWidth} * 3);
+            top: calc(#{$itemWidth} * 3);
+          }
+          &.mask-item-2 {
+            left: calc(#{$itemWidth} * 8);
+            top: calc(#{$itemWidth} * 3);
+          }
+          &.mask-item-3 {
+            left: calc(#{$itemWidth} * 3);
+            top: calc(#{$itemWidth} * 8);
+          }
+          &.mask-item-4 {
+            left: calc(#{$itemWidth} * 8);
+            top: calc(#{$itemWidth} * 8);
           }
         }
       }
     }
-
-    .result-item-empty {
-      width: 20%;
-    }
-
-    &.result-num-8 {
-
-      .result-item,
-      .result-item-empty {
-        width: 25%;
-      }
-    }
-  }
-
-  .input-con {
-    width: 100%;
-    height: 8vh;
-    border-top: none;
-    border-bottom: none;
-
-    .value-box {
-      // flex-grow: 1;
-      width: 70%;
-      font-size: 1.5em;
-      border: none;
-
-      .value-item {
-        width: 8vw;
-      }
-    }
-
-    .value-tools-con {
-      width: 30%;
-
-      .tool-item {
-        width: 100%;
-        height: 100%;
-      }
-    }
-  }
-
-  .num-con {
-    width: 100%;
-    height: 18vh;
-    flex-wrap: wrap;
-    cursor: default;
-
-    .num-item {
-      width: 20%;
-      height: 50%;
-      font-size: 1.2em;
-    }
-  }
-
-  .tools-con {
-    width: 100%;
-    height: 8vh;
-    border-top: none;
-    border-bottom-right-radius: 6px;
-    border-bottom-left-radius: 6px;
-
-    .tool-item {
-      width: 40%;
-      height: 100%;
-
-      i {
-        font-size: 1.5em;
-      }
+    .border-content {
+      position: absolute;
+      left: calc((#{$shiftWidth} - #{$itemWidth} * 4) / 2 - 1px);
+      top: calc((#{$shiftWidth} - #{$itemWidth} * 4) / 2 - 1px);
+      width: calc(#{$itemWidth} * 4 + 2px);
+      height: calc(#{$itemWidth} * 4 + 2px);
+      border: 2px solid #ccc;
+      border-radius: 1vw;
+      user-select: none;
     }
   }
 }

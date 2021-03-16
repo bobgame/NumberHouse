@@ -9,21 +9,26 @@ export class SlideShowData {
     pause: boolean
   }
 }
+
+export class SlideItem {
+  id: number
+  number: number
+  name: string
+  isInContent: boolean
+  pos: {
+    x: number
+    y: number
+  }
+}
 export class SlideData {
   continue: boolean
-  len: number
   star: number
-  time: number
+  lv: number
+  nextId: number
   slideTimes: number
-  slideMaxTimes: number
-  allNumbers: string[]
-  useTime: number
-  value: string[]
-  number: string[]
-  results: string[]
-  marks: string[]
+  time: number
+  items: SlideItem[]
   nowMode: number
-  allStars: SlideStar[]
 }
 
 export class SlideStar {

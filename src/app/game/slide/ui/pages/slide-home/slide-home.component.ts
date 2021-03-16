@@ -30,9 +30,7 @@ export class SlideHomeComponent implements OnInit {
   }
 
   initGame() {
-    this.d.resetResult()
-    this.d.resetValue(this.d.slideData.len)
-    this.d.createNumber(this.d.slideData.len, this.d.slideData.allNumbers)
+    this.d.initSlideItems()
   }
 
   gotoPage(pageName: string, isNewGame?: boolean) {

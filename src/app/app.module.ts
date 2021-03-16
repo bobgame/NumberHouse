@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core'
+import { Injectable, NgModule } from '@angular/core'
 import { BrowserModule } from '@angular/platform-browser'
 import { RouteReuseStrategy } from '@angular/router'
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core'
@@ -7,12 +7,23 @@ import { IonicModule, IonicRouteStrategy } from '@ionic/angular'
 import { SplashScreen } from '@ionic-native/splash-screen/ngx'
 import { StatusBar } from '@ionic-native/status-bar/ngx'
 
-import 'hammerjs'
+
+import * as Hammer from 'hammerjs';
+import {
+  HammerModule, HammerGestureConfig, HAMMER_GESTURE_CONFIG
+} from '@angular/platform-browser';
 
 import { AppComponent } from './app.component'
 import { AppRoutingModule } from './app-routing.module'
 import { HttpLoaderFactory } from './modules/translation.module'
 import { HttpClient, HttpClientModule } from '@angular/common/http'
+
+@Injectable()
+export class MyHammerConfig extends HammerGestureConfig {
+  overrides = {
+    swipe: { direction: Hammer.DIRECTION_ALL },
+  } as any
+}
 
 @NgModule({
   declarations: [AppComponent],
@@ -20,6 +31,7 @@ import { HttpClient, HttpClientModule } from '@angular/common/http'
   imports: [
     BrowserModule,
     HttpClientModule,
+    HammerModule,
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,
@@ -33,7 +45,11 @@ import { HttpClient, HttpClientModule } from '@angular/common/http'
   providers: [
     StatusBar,
     SplashScreen,
-    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
+    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
+    {
+      provide: HAMMER_GESTURE_CONFIG,
+      useClass: MyHammerConfig,
+    },
   ],
   bootstrap: [AppComponent]
 })

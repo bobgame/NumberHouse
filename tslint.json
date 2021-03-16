@@ -26,12 +26,14 @@
       true,
       "attribute",
       "app",
+      "nw",
       "camelCase"
     ],
     "component-selector": [
       true,
       "element",
       "app",
+      "nw",
       "kebab-case"
     ],
     "eofline": true,

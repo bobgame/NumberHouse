@@ -1,54 +1,33 @@
 import { Injectable } from '@angular/core'
-import { SlideShowData, SlideData } from '../data/slide-type'
-import { GUESS_SHOW_DATA } from '../data/slide-data'
-import { GUESS_SAVE } from '../enum/slide-save.enum'
+import { SlideShowData, SlideData, SlideItem } from '../data/slide-type'
+import { SLIDE_SHOW_DATA } from '../data/slide-data'
+import { SLIDE_SAVE } from '../enum/slide-save.enum'
 import { objCopy } from 'src/units/ObjCopy'
 import { CelShowTime } from 'src/units/get-time'
 import { StorageService } from 'src/app/common/services/storage.service'
 import { AllService } from 'src/app/common/services/all.service'
 import { SlidePageEnum } from '../enum/slide-page.enum'
+import { randInArr } from 'src/units/base'
 
 @Injectable({
   providedIn: 'root'
 })
 export class SlideDataService {
 
-  slideShowData: SlideShowData = objCopy(GUESS_SHOW_DATA)
+  slideShowData: SlideShowData = objCopy(SLIDE_SHOW_DATA)
 
   starArr = [1, 2]
   STAR_MAX = this.starArr.length
   slideShowTimeInterval: any
   slideData: SlideData = {
     continue: false,
-    len: 4,
-    star: 2,
-    time: 0,
+    star: 0,
+    lv: 1,
+    nextId: 1,
     slideTimes: 0,
-    slideMaxTimes: 8,
-    allNumbers: ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'],
-    useTime: 0,
-    value: [],
-    number: [],
-    results: [],
-    marks: [],
+    time: 0,
+    items: [],
     nowMode: 0,
-    allStars: [
-      {
-        mode: 0,
-        starNum: 0,
-        totalTime: 0,
-      },
-      {
-        mode: 1,
-        starNum: 0,
-        totalTime: 0,
-      },
-      {
-        mode: 2,
-        starNum: 0,
-        totalTime: 0,
-      }
-    ]
   }
 
   constructor(
@@ -89,9 +68,9 @@ export class SlideDataService {
     <p class="mb-2">Win! Win!</p>
     <p class="d-flex align-items-center justify-content-center">Got<span class="color-red pl-1"> <i class="nwicon nwi-star-full color-red"></i> x ${addStar}</span></p>
     `
-    const nowAllStar = this.slideData.allStars.find(a => a.mode === this.slideData.nowMode)
-    nowAllStar.starNum += addStar
-    nowAllStar.totalTime += this.slideData.time
+    // const nowAllStar = this.slideData.allStars.find(a => a.mode === this.slideData.nowMode)
+    // nowAllStar.starNum += addStar
+    // nowAllStar.totalTime += this.slideData.time
     this.all.starData.star += addStar
     this.all.save()
     this.saveData()
@@ -105,41 +84,42 @@ export class SlideDataService {
     this.slideData.continue = false
   }
 
-  createNumber(len: number, allNums: string[]) {
-    this.slideData.time = 0
-    this.slideData.star = this.STAR_MAX
-    const tempNums = []
-    for (let i = 0; i < 99999; i++) {
-      const num = allNums[Math.floor(Math.random() * allNums.length)].toString()
-      if (!tempNums.includes(num)) {
-        tempNums.push(num)
-        if (tempNums.length >= len) { break }
+  initSlideItems() {
+    this.slideData.items = []
+    for (let x = 1; x <= 12; x++) {
+      for (let y = 1; y <= 12; y++) {
+        const nowNumbers = [1, 2, 3, 4]
+        const num = randInArr(nowNumbers)
+        const thisItem: SlideItem = {
+          id: this.slideData.nextId,
+          number: num,
+          name: num.toString(),
+          isInContent: this.isInContent({ x, y }),
+          pos: { x, y },
+        }
+        this.slideData.items.push(thisItem)
+        this.slideData.nextId++
+
       }
     }
-    console.log(tempNums)
-    this.slideData.number = tempNums
-    this.startShowTime()
   }
 
-  resetValue(len: number) {
-    this.slideData.value = []
-    for (let j = 0; j < len; j++) {
-      this.slideData.value.push('-')
+  isInContent(pos: { x: number, y: number }) {
+    const { x, y } = pos
+    if (x >= 5 && x <= 8 && y >= 5 && y <= 8) {
+      return true
     }
+    return false
   }
 
-  resetResult() {
-    this.slideData.slideTimes = 0
-    this.slideData.results = []
-  }
 
   // 存档
   saveData(): void {
-    this.storage.save(GUESS_SAVE.NORMAL_STORAGE, this.slideData)
+    this.storage.save(SLIDE_SAVE.NORMAL_STORAGE, this.slideData)
   }
 
   loadData() {
-    const loadData: any = this.storage.load(GUESS_SAVE.NORMAL_STORAGE)
+    const loadData: any = this.storage.load(SLIDE_SAVE.NORMAL_STORAGE)
     if (loadData) {
       this.slideData = loadData
     }

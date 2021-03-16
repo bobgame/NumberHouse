@@ -28,12 +28,12 @@ export class SlidePopPauseComponent implements OnInit {
   }
 
   init() {
-    const thisStar = this.slideData.allStars[0]
-    this.hardStar = {
-      modeName: 'Classics',
-      starNum: thisStar.starNum,
-      totalTime: this.d.celTime(thisStar.totalTime),
-    }
+    // const thisStar = this.slideData.allStars[0]
+    // this.hardStar = {
+    //   modeName: 'Classics',
+    //   starNum: thisStar.starNum,
+    //   totalTime: this.d.celTime(thisStar.totalTime),
+    // }
   }
 
   hidePop() {
