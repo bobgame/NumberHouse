@@ -3,16 +3,11 @@
   .gs-content {
     padding: 0 5vw;
     .game-header {
-      padding: 0 5vw;
       width: 100%;
       height: 5vh;
       font-size: 2vh;
       flex-grow: 1;
 
-      .hard-mode {
-        min-width: 25%;
-        text-align: left;
-      }
       .time {
         min-width: 25%;
         display: flex;
@@ -45,10 +40,10 @@
       height: $itemWidth * 4;
       .item-content {
         position: absolute;
-        left: $itemWidth * -4;
-        top: $itemWidth * -4;
-        width: $itemWidth * 12;
-        height: $itemWidth * 12;
+        left: $itemWidth * -5;
+        top: $itemWidth * -5;
+        width: $itemWidth * 14;
+        height: $itemWidth * 14;
 
         .slide-item {
           width: $itemWidth;
@@ -70,6 +65,7 @@
             transform: scale(0);
             animation: destroyItem 0.8s linear 1;
             .slide-item-box {
+              color: rgb(255, 39, 39);
               border: 1px solid rgb(255, 39, 39);
             }
           }
@@ -98,20 +94,20 @@
           height: $itemWidth;
           background: #eee;
           &.mask-item-1 {
-            left: calc(#{$itemWidth} * 3);
-            top: calc(#{$itemWidth} * 3);
+            left: calc(#{$itemWidth} * 4);
+            top: calc(#{$itemWidth} * 4);
           }
           &.mask-item-2 {
-            left: calc(#{$itemWidth} * 8);
-            top: calc(#{$itemWidth} * 3);
+            left: calc(#{$itemWidth} * 9);
+            top: calc(#{$itemWidth} * 4);
           }
           &.mask-item-3 {
-            left: calc(#{$itemWidth} * 3);
-            top: calc(#{$itemWidth} * 8);
+            left: calc(#{$itemWidth} * 4);
+            top: calc(#{$itemWidth} * 9);
           }
           &.mask-item-4 {
-            left: calc(#{$itemWidth} * 8);
-            top: calc(#{$itemWidth} * 8);
+            left: calc(#{$itemWidth} * 9);
+            top: calc(#{$itemWidth} * 9);
           }
         }
       }

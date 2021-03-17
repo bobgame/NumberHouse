@@ -28,6 +28,7 @@ export class SlideData {
   lv: number
   nextId: number
   slideTimes: number
+  slideScore: number
   time: number
   inPoses: SlidePos[]
   items: SlideItem[]

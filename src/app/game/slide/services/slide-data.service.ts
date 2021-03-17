@@ -8,6 +8,7 @@ import { StorageService } from 'src/app/common/services/storage.service'
 import { AllService } from 'src/app/common/services/all.service'
 import { SlidePageEnum } from '../enum/slide-page.enum'
 import { randInArr } from 'src/units/base'
+import { DirectiveEnum } from 'src/app/common/enum/directive.enum'
 
 @Injectable({
   providedIn: 'root'
@@ -24,12 +25,16 @@ export class SlideDataService {
     star: 0,
     lv: 1,
     nextId: 1,
-    slideTimes: 0,
+    slideTimes: 10,
+    slideScore: 0,
     time: 0,
     inPoses: [],
     items: [],
     nowMode: 0,
   }
+
+  isSwiping = false
+  needRMItemIds: number[] = []
 
   constructor(
     private storage: StorageService,
@@ -92,17 +97,18 @@ export class SlideDataService {
 
   initPoses() {
     this.slideData.inPoses = []
-    for (let x = 5; x <= 8; x++) {
-      for (let y = 5; y <= 8; y++) {
+    for (let x = 6; x <= 9; x++) {
+      for (let y = 6; y <= 9; y++) {
         this.slideData.inPoses.push({ x, y })
       }
     }
   }
 
   initSlideItems() {
+    this.slideData.slideScore = 0
     this.slideData.items = []
-    for (let x = 1; x <= 12; x++) {
-      for (let y = 1; y <= 12; y++) {
+    for (let x = 1; x <= 14; x++) {
+      for (let y = 1; y <= 14; y++) {
         const nowNumbers = [1, 2, 3, 4]
         const num = randInArr(nowNumbers)
         const thisItem: SlideItem = {
@@ -121,7 +127,7 @@ export class SlideDataService {
 
   isInContent(pos: SlidePos) {
     const { x, y } = pos
-    if (x >= 5 && x <= 8 && y >= 5 && y <= 8) {
+    if (x >= 6 && x <= 9 && y >= 6 && y <= 9) {
       return true
     }
     return false
@@ -156,12 +162,17 @@ export class SlideDataService {
   }
 
   checkSameItems() {
+    this.slideData.slideTimes--
+    if (this.slideData.slideTimes <= 0) {
+      this.slideData.slideTimes = 0
+      this.gameWin()
+    }
     this.slideData.items.forEach(item => {
       item.isInContent = this.isInContent(item.pos)
     })
     const sameItemIds: number[][] = []
-    for (let x = 5; x <= 8; x++) {
-      for (let y = 5; y <= 8; y++) {
+    for (let x = 6; x <= 9; x++) {
+      for (let y = 6; y <= 9; y++) {
         const p = { x, y }
         const thisItem = this.getItemByPos(p)
         if (thisItem) {
@@ -187,52 +198,161 @@ export class SlideDataService {
         }
       }
     }
-    let needRMItemIds: number[] = []
+    this.needRMItemIds = []
     sameItemIds.forEach(s => {
       if (s.length > 2) {
-        needRMItemIds = needRMItemIds.concat(s)
+        this.needRMItemIds = this.needRMItemIds.concat(s)
       }
     })
-    needRMItemIds.sort((a, b) => b - a)
-    console.log(needRMItemIds)
+    this.needRMItemIds.sort((a, b) => b - a)
+    // console.log(this.needRMItemIds)
     this.slideData.items.forEach(item => {
-      if (needRMItemIds.includes(item.id) && item.isInContent) {
+      if (this.needRMItemIds.includes(item.id) && item.isInContent) {
         item.isDestroying = true
       } else {
         item.isDestroying = false
       }
     })
+  }
+
+  removeAndCreateItems(directive: DirectiveEnum) {
     setTimeout(() => {
-      needRMItemIds.forEach(n => {
+      let emptyPoses: SlidePos[] = []
+      this.needRMItemIds.forEach(n => {
         const nIndex = this.slideData.items.findIndex(i => i.id === n)
-        if (nIndex > -1) { this.slideData.items.splice(nIndex, 1) }
+        if (nIndex > -1) {
+          emptyPoses.push(this.slideData.items[nIndex].pos)
+          this.slideData.items.splice(nIndex, 1)
+        }
       })
-    }, 1000)
+      switch (directive) {
+        case DirectiveEnum.Left:
+          emptyPoses = emptyPoses.sort((a, b) => a.x - b.x)
+          this.fillEmptyPoses(emptyPoses, { x: 1, y: 0 })
+          break
+        case DirectiveEnum.Right:
+          emptyPoses = emptyPoses.sort((a, b) => b.x - a.x)
+          this.fillEmptyPoses(emptyPoses, { x: -1, y: 0 })
+          break
+        case DirectiveEnum.Up:
+          emptyPoses = emptyPoses.sort((a, b) => a.y - b.y)
+          this.fillEmptyPoses(emptyPoses, { x: 0, y: 1 })
+          break
+        case DirectiveEnum.Down:
+          emptyPoses = emptyPoses.sort((a, b) => b.y - a.y)
+          this.fillEmptyPoses(emptyPoses, { x: 0, y: -1 })
+          break
+        default:
+          break
+      }
+      // Remove other no need items
+      const otherNeedRmIds = []
+      this.slideData.items.forEach(item => {
+        if (item.pos.x > 14 || item.pos.y > 14 || item.pos.x < 0 || item.pos.y < 0) {
+          otherNeedRmIds.push(item.id)
+        }
+      })
+      otherNeedRmIds.sort((a, b) => b - a)
+      otherNeedRmIds.forEach(n => {
+        const nIndex = this.slideData.items.findIndex(i => i.id === n)
+        if (nIndex > -1) {
+          this.slideData.items.splice(nIndex, 1)
+        }
+      })
+      // create new items
+      for (let x = 1; x <= 14; x++) {
+        for (let y = 1; y <= 14; y++) {
+          const nowNumbers = [1, 2, 3, 4]
+          const num = randInArr(nowNumbers)
+          const isInItem = this.slideData.items.find(i => i.pos.x === x && i.pos.y === y)
+          if (!isInItem) {
+            const thisItem: SlideItem = {
+              id: this.slideData.nextId,
+              number: num,
+              name: num.toString(),
+              isInContent: this.isInContent({ x, y }),
+              pos: { x, y },
+            }
+            this.slideData.items.push(thisItem)
+            this.slideData.nextId++
+          }
+        }
+      }
+      this.slideData.items.forEach(item => {
+        item.isInContent = this.isInContent(item.pos)
+      })
+
+      this.isSwiping = false
+    }, 800)
+  }
+
+  fillEmptyPoses(emptyPoses: SlidePos[], plusPos: SlidePos) {
+    console.log(emptyPoses)
+    const newEmptyPoses: SlidePos[] = []
+    emptyPoses.forEach(ePos => {
+      const nextItemId = this.getNextItem(ePos, plusPos)
+      if (nextItemId > 0) {
+        const nextItem = this.getItemById(nextItemId)
+        const inNewIndex = newEmptyPoses.findIndex(np => np.x === nextItem.pos.x && np.y === nextItem.pos.y)
+        if (inNewIndex === -1) {
+          newEmptyPoses.push({ x: nextItem.pos.x, y: nextItem.pos.y })
+        }
+        nextItem.pos.x = ePos.x
+        nextItem.pos.y = ePos.y
+      }
+    })
+    if (newEmptyPoses.length > 0) {
+      this.fillEmptyPoses(newEmptyPoses, plusPos)
+    }
+  }
+
+  getNextItem(pos: SlidePos, plusPos: SlidePos) {
+    if (pos.x > 14 || pos.y > 14 || pos.x < 0 || pos.y < 0) {
+      return false
+    }
+    const nextItem = this.slideData.items.find(i => i.pos.x === pos.x + plusPos.x && i.pos.y === pos.y + plusPos.y)
+    if (nextItem) {
+      return nextItem.id
+    } else {
+      return this.getNextItem({ x: pos.x + plusPos.x, y: pos.y + plusPos.y }, plusPos)
+    }
   }
 
   swipeLeft() {
+    if (this.isSwiping) { return false }
+    this.isSwiping = true
     this.slideData.items.forEach(item => {
       item.pos.x--
     })
     this.checkSameItems()
+    this.removeAndCreateItems(DirectiveEnum.Left)
   }
   swipeRight() {
+    if (this.isSwiping) { return false }
+    this.isSwiping = true
     this.slideData.items.forEach(item => {
       item.pos.x++
     })
     this.checkSameItems()
+    this.removeAndCreateItems(DirectiveEnum.Right)
   }
   swipeUp() {
+    if (this.isSwiping) { return false }
+    this.isSwiping = true
     this.slideData.items.forEach(item => {
       item.pos.y--
     })
     this.checkSameItems()
+    this.removeAndCreateItems(DirectiveEnum.Up)
   }
   swipeDown() {
+    if (this.isSwiping) { return false }
+    this.isSwiping = true
     this.slideData.items.forEach(item => {
       item.pos.y++
     })
     this.checkSameItems()
+    this.removeAndCreateItems(DirectiveEnum.Down)
   }
 
 
@@ -244,7 +364,7 @@ export class SlideDataService {
   loadData() {
     const loadData: any = this.storage.load(SLIDE_SAVE.NORMAL_STORAGE)
     if (loadData) {
-      this.slideData = loadData
+      // this.slideData = loadData
     }
   }
 }

@@ -4,13 +4,14 @@
                      [headerTitle]="'slide.name' | translate"></nw-ui-game-header>
   <div class="gs-content">
     <div class="game-header d-flex justify-content-between align-items-center mb-5">
+      <div class="slide-score">
+        Score: {{slideData.slideScore}}
+      </div>
+      <div class="times">
+        Times: {{slideData.slideTimes}}
+      </div>
       <div class="star-con flex-center">
-        <i class="nwicon nwi-star-full star-item color-red"
-            *ngFor="let star of starArr"
-            [hidden]="star > slideData.star"></i>
-        <i class="nwicon nwi-star-empty star-item color-red"
-            *ngFor="let star of starArr"
-            [hidden]="star <= slideData.star"></i>
+        <i class="nwicon nwi-star-full star-item color-red"></i>x{{slideData.star}}
       </div>
       <div class="time" (click)="clickPlayOrPauseBtn()">
         {{slideShowData.showTime}} <i class="nwicon nwi-pause pl-2"></i>
