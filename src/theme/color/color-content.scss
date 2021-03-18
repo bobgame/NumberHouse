@@ -11,6 +11,15 @@
   $gray,
   $grayer,
   $grayest,
+  $item-1,
+  $item-2,
+  $item-3,
+  $item-4,
+  $item-5,
+  $item-6,
+  $item-7,
+  $item-8,
+  $item-9,
 ) {
   $colors: ('light': $light,
       'lighter': $lighter,
@@ -142,6 +151,85 @@
         &:active {
           background: $light-special-1;
         }
+      }
+    }
+  }
+
+  .slide-play {
+    .shift-content {
+      border: 1px solid $grayer;
+      .num-content {
+        .item-content {
+          .slide-item {
+            &.in-not-content {
+              .slide-item-box {
+                border: 1px solid $gray;
+              }
+            }
+            &.is-destroying {
+              .slide-item-box {
+                color: $red;
+                border: 1px solid $red;
+              }
+            }
+            .slide-item-box {
+              border: 1px solid $gray;
+              color: $dark;
+              $color-opacity: 0.6;
+              &.slide-item-1 {
+                background-color: rgba($item-1, $color-opacity);
+                color: mix($item-1, $darkest);
+                border-color: mix($item-1, $dark);
+              }
+              &.slide-item-2 {
+                background-color: rgba($item-2, $color-opacity);
+                color: mix($item-2, $darkest);
+                border-color: mix($item-2, $dark);
+              }
+              &.slide-item-3 {
+                background-color: rgba($item-3, $color-opacity);
+                color: mix($item-3, $darkest);
+                border-color: mix($item-3, $dark);
+              }
+              &.slide-item-4 {
+                background-color: rgba($item-4, $color-opacity);
+                color: mix($item-4, $darkest);
+                border-color: mix($item-4, $dark);
+              }
+              &.slide-item-5 {
+                background-color: rgba($item-5, $color-opacity);
+                color: mix($item-5, $darkest);
+                border-color: mix($item-5, $dark);
+              }
+              &.slide-item-6 {
+                background-color: rgba($item-6, $color-opacity);
+                color: mix($item-6, $darkest);
+                border-color: mix($item-6, $dark);
+              }
+              &.slide-item-7 {
+                background-color: rgba($item-7, $color-opacity);
+                color: mix($item-7, $darkest);
+                border-color: mix($item-7, $dark);
+              }
+              &.slide-item-8 {
+                background-color: rgba($item-8, $color-opacity);
+                color: mix($item-8, $darkest);
+                border-color: mix($item-8, $dark);
+              }
+              &.slide-item-9 {
+                background-color: rgba($item-9, $color-opacity);
+                color: mix($item-9, $darkest);
+                border-color: mix($item-9, $dark);
+              }
+            }
+          }
+          .mask-item {
+            background: $light;
+          }
+        }
+      }
+      .border-content {
+        border: 2px solid $grayest;
       }
     }
   }

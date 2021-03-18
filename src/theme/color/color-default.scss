@@ -14,6 +14,15 @@
   $gray: #999999;
   $grayer: #b8b8b8;
   $grayest: #cccccc;
+  $item-1: #9BF6FF;
+  $item-2: #FDFFB6;
+  $item-3: #CAFFBF;
+  $item-4: #ffd3d3;
+  $item-5: #A0C4FF;
+  $item-6: #BDB2FF;
+  $item-7: #FFD6A5;
+  $item-8: #FFC6FF;
+  $item-9: #dddddd;
 
   @include theme($light,
     $lighter,
@@ -28,5 +37,14 @@
     $gray,
     $grayer,
     $grayest,
+    $item-1,
+    $item-2,
+    $item-3,
+    $item-4,
+    $item-5,
+    $item-6,
+    $item-7,
+    $item-8,
+    $item-9,
   )
 }

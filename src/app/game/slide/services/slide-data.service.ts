@@ -7,7 +7,7 @@ import { CelShowTime } from 'src/units/get-time'
 import { StorageService } from 'src/app/common/services/storage.service'
 import { AllService } from 'src/app/common/services/all.service'
 import { SlidePageEnum } from '../enum/slide-page.enum'
-import { randInArr } from 'src/units/base'
+import { deepCopy, randInArr } from 'src/units/base'
 import { DirectiveEnum } from 'src/app/common/enum/directive.enum'
 
 @Injectable({
@@ -32,6 +32,15 @@ export class SlideDataService {
     items: [],
     nowMode: 0,
   }
+  levelNumbers = [
+    [1, 2, 3, 4],
+    [1, 2, 3, 4],
+    [1, 2, 3, 4, 5],
+    [1, 2, 3, 4, 5, 6],
+    [1, 2, 3, 4, 5, 6, 7],
+    [1, 2, 3, 4, 5, 6, 7, 8],
+    [1, 2, 3, 4, 5, 6, 7, 8, 9],
+  ]
 
   isSwiping = false
   needRMItemIds: number[] = []
@@ -109,7 +118,7 @@ export class SlideDataService {
     this.slideData.items = []
     for (let x = 1; x <= 14; x++) {
       for (let y = 1; y <= 14; y++) {
-        const nowNumbers = [1, 2, 3, 4]
+        const nowNumbers = deepCopy(this.levelNumbers[this.slideData.lv])
         const num = randInArr(nowNumbers)
         const thisItem: SlideItem = {
           id: this.slideData.nextId,
@@ -163,10 +172,6 @@ export class SlideDataService {
 
   checkSameItems() {
     this.slideData.slideTimes--
-    if (this.slideData.slideTimes <= 0) {
-      this.slideData.slideTimes = 0
-      this.gameWin()
-    }
     this.slideData.items.forEach(item => {
       item.isInContent = this.isInContent(item.pos)
     })
@@ -199,9 +204,19 @@ export class SlideDataService {
       }
     }
     this.needRMItemIds = []
+    // times and score
     sameItemIds.forEach(s => {
       if (s.length > 2) {
         this.needRMItemIds = this.needRMItemIds.concat(s)
+      }
+      if (s.length > 2) {
+        this.slideData.slideTimes += s.length - 2
+        this.slideData.slideScore += s.length * s.length * 10
+        console.log(this.slideData.lv)
+        const newLv = Math.floor(this.slideData.slideScore / (2000 + 1000 * this.slideData.lv - 1)) + 1
+        if (this.slideData.lv < newLv) {
+          this.slideData.lv = newLv
+        }
       }
     })
     this.needRMItemIds.sort((a, b) => b - a)
@@ -262,7 +277,7 @@ export class SlideDataService {
       // create new items
       for (let x = 1; x <= 14; x++) {
         for (let y = 1; y <= 14; y++) {
-          const nowNumbers = [1, 2, 3, 4]
+          const nowNumbers = deepCopy(this.levelNumbers[this.slideData.lv])
           const num = randInArr(nowNumbers)
           const isInItem = this.slideData.items.find(i => i.pos.x === x && i.pos.y === y)
           if (!isInItem) {
@@ -283,11 +298,16 @@ export class SlideDataService {
       })
 
       this.isSwiping = false
+
+      if (this.slideData.slideTimes <= 0) {
+        this.slideData.slideTimes = 0
+        this.gameWin()
+      }
     }, 800)
   }
 
   fillEmptyPoses(emptyPoses: SlidePos[], plusPos: SlidePos) {
-    console.log(emptyPoses)
+    // console.log(emptyPoses)
     const newEmptyPoses: SlidePos[] = []
     emptyPoses.forEach(ePos => {
       const nextItemId = this.getNextItem(ePos, plusPos)
