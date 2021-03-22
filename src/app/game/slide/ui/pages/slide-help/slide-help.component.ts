@@ -9,14 +9,9 @@ import { SlideDataService } from '../../../services/slide-data.service'
 export class SlideHelpComponent implements OnInit {
 
   constructor(
-    private d: SlideDataService,
+    public d: SlideDataService,
   ) { }
 
   ngOnInit() { }
-
-  gotoPage(pageName: string) {
-    this.d.slideShowData.page = pageName
-  }
-
 
 }
