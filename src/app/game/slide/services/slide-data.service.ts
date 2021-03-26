@@ -25,7 +25,7 @@ export class SlideDataService {
     star: 0,
     lv: 1,
     nextId: 1,
-    slideTimes: 10,
+    slideTimes: 5,
     slideScore: 0,
     time: 0,
     inPoses: [],
@@ -78,23 +78,16 @@ export class SlideDataService {
 
   gameWin() {
     this.pauseShowTime()
-    const addStar = this.slideData.star
+    let addStar = this.slideData.lv - 2
+    if (addStar < 0) { addStar = 0 }
     this.slideShowData.gameOverText = `
-    <p class="mb-2">Win! Win!</p>
-    <p class="d-flex align-items-center justify-content-center">Got<span class="color-red pl-1"> <i class="nwicon nwi-star-full color-red"></i> x ${addStar}</span></p>
+    <p class="mb-2">Game Over!</p>
+    <p class="d-flex align-items-center justify-content-center">You Got<span class="color-red pl-1"> <i class="nwicon nwi-star-full color-red"></i> x ${addStar}</span></p>
     `
-    // const nowAllStar = this.slideData.allStars.find(a => a.mode === this.slideData.nowMode)
-    // nowAllStar.starNum += addStar
-    // nowAllStar.totalTime += this.slideData.time
     this.all.starData.star += addStar
+    this.all.starData.allGetStar += addStar
     this.all.save()
     this.saveData()
-    this.slideShowData.pop.gameover = true
-    this.slideData.continue = false
-  }
-  gameFail() {
-    this.pauseShowTime()
-    this.slideShowData.gameOverText = `<div>Game Over!</div>`
     this.slideShowData.pop.gameover = true
     this.slideData.continue = false
   }
@@ -205,20 +198,24 @@ export class SlideDataService {
     }
     this.needRMItemIds = []
     // times and score
+    let addTimes = 0
     sameItemIds.forEach(s => {
       if (s.length > 2) {
         this.needRMItemIds = this.needRMItemIds.concat(s)
       }
       if (s.length > 2) {
-        this.slideData.slideTimes += s.length - 2
+        addTimes += s.length - 2
         this.slideData.slideScore += s.length * s.length * 10
-        console.log(this.slideData.lv)
+        // console.log(this.slideData.lv)
         const newLv = Math.floor(this.slideData.slideScore / (2000 + 1000 * this.slideData.lv - 1)) + 1
-        if (this.slideData.lv < newLv) {
+        if (this.slideData.lv < newLv && newLv < this.levelNumbers.length) {
           this.slideData.lv = newLv
         }
       }
     })
+    if (addTimes > 4) { addTimes = 3 }
+    else if (addTimes > 2) { addTimes = 2 }
+    this.slideData.slideTimes += addTimes
     this.needRMItemIds.sort((a, b) => b - a)
     // console.log(this.needRMItemIds)
     this.slideData.items.forEach(item => {
@@ -338,8 +335,14 @@ export class SlideDataService {
     }
   }
 
+  canSwipe() {
+    return !this.slideShowData.pop.pause
+      && !this.slideShowData.pop.gameover
+      && !this.isSwiping
+  }
+
   swipeLeft() {
-    if (this.isSwiping) { return false }
+    if (!this.canSwipe()) { return false }
     this.isSwiping = true
     this.slideData.items.forEach(item => {
       item.pos.x--
@@ -348,7 +351,7 @@ export class SlideDataService {
     this.removeAndCreateItems(DirectiveEnum.Left)
   }
   swipeRight() {
-    if (this.isSwiping) { return false }
+    if (!this.canSwipe()) { return false }
     this.isSwiping = true
     this.slideData.items.forEach(item => {
       item.pos.x++
@@ -357,7 +360,7 @@ export class SlideDataService {
     this.removeAndCreateItems(DirectiveEnum.Right)
   }
   swipeUp() {
-    if (this.isSwiping) { return false }
+    if (!this.canSwipe()) { return false }
     this.isSwiping = true
     this.slideData.items.forEach(item => {
       item.pos.y--
@@ -366,7 +369,7 @@ export class SlideDataService {
     this.removeAndCreateItems(DirectiveEnum.Up)
   }
   swipeDown() {
-    if (this.isSwiping) { return false }
+    if (!this.canSwipe()) { return false }
     this.isSwiping = true
     this.slideData.items.forEach(item => {
       item.pos.y++

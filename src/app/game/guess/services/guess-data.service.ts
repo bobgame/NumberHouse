@@ -93,6 +93,7 @@ export class GuessDataService {
     nowAllStar.starNum += addStar
     nowAllStar.totalTime += this.guessData.time
     this.all.starData.star += addStar
+    this.all.starData.allGetStar += addStar
     this.all.save()
     this.saveData()
     this.guessShowData.pop.gameover = true
