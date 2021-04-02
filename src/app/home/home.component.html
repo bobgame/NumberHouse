@@ -2,7 +2,12 @@
   <h3 class="pt-10 pb-10">
     {{'common.title' | translate}}
   </h3>
-  <p class="pb-5">
+  <div class="game-item mb-2" [routerLink]="gameItem.routerLink" *ngFor="let gameItem of AllGames">
+    <div class="bg"
+         [style.background-image]="'url(' + gameItem.image + ')'"></div>
+    <div class="game-name flex-center">{{gameItem.textKey | translate}}</div>
+  </div>
+  <!-- <p class="pb-5">
     <nw-ui-btn routerLink="/sudo"
                [btnText]="'sudoku.name' | translate"></nw-ui-btn>
   </p>
@@ -13,7 +18,7 @@
   <p class="pb-5">
     <nw-ui-btn routerLink="/slide"
                [btnText]="'slide.name' | translate"></nw-ui-btn>
-  </p>
+  </p> -->
   <!-- <p class="pb-5">
     <nw-ui-btn
                [btnText]="'common.stars' | translate"></nw-ui-btn>
