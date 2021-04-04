@@ -18,6 +18,12 @@ export class HomeComponent implements OnInit {
 
   AllGames: AllGameItem[] = [
     {
+      textKey: 'slide.name',
+      routerLink: '/slide',
+      image: 'assets/images/img-sudoku.png',
+      color: '',
+    },
+    {
       textKey: 'sudoku.name',
       routerLink: '/sudo',
       image: 'assets/images/img-sudoku.png',
@@ -26,12 +32,6 @@ export class HomeComponent implements OnInit {
     {
       textKey: 'guess.name',
       routerLink: '/guess',
-      image: 'assets/images/img-sudoku.png',
-      color: '',
-    },
-    {
-      textKey: 'slide.name',
-      routerLink: '/slide',
       image: 'assets/images/img-sudoku.png',
       color: '',
     },
