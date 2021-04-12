@@ -21,7 +21,7 @@
     <div class="shift-content">
       <div class="num-content">
         <div class="item-content d-flex flex-wrap">
-          <div class="slide-item s-x-{{item.pos.x}} s-y-{{item.pos.y}}"
+          <div class="slide-item s-{{item.pos.x}}-{{item.pos.y}}"
                [class.in-not-content]="!item.isInContent"
                [class.is-destroying]="item.isDestroying"
                *ngFor="let item of slideData.items">
@@ -39,7 +39,12 @@
            (swipeleft)="swipeLeft()"
            (swiperight)="swipeRight()"
            (swipeup)="swipeUp()"
-           (swipedown)="swipeDown()"></div>
+           (swipedown)="swipeDown()">
+        <div class="border-content-mask mask-top"></div>
+        <div class="border-content-mask mask-middle-left"></div>
+        <div class="border-content-mask mask-middle-right"></div>
+        <div class="border-content-mask mask-bottom"></div>
+      </div>
     </div>
 
   </div>
