@@ -8,6 +8,8 @@ import { TranslationModule } from 'src/app/modules/translation.module'
 import { UiBtnComponent } from '../common/ui/ui-btn/ui-btn.component'
 import { ConPopComponent } from '../common/container/con-pop/con-pop.component'
 import { UiGameHeaderComponent } from '../common/ui/ui-game-header/ui-game-header.component'
+import { ConMenuComponent } from '../common/container/con-menu/con-menu.component'
+import { UiMenuItemComponent } from '../common/ui/ui-menu-item/ui-menu-item.component'
 
 @NgModule({
   imports: [
@@ -16,13 +18,17 @@ import { UiGameHeaderComponent } from '../common/ui/ui-game-header/ui-game-heade
   ],
   declarations: [
     UiBtnComponent,
+    UiMenuItemComponent,
     UiGameHeaderComponent,
     ConPopComponent,
+    ConMenuComponent,
   ],
   exports: [
     UiBtnComponent,
+    UiMenuItemComponent,
     UiGameHeaderComponent,
     ConPopComponent,
+    ConMenuComponent,
   ]
 })
 export class CommonUiModule { }

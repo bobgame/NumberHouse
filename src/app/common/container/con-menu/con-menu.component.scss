@@ -1,0 +1,13 @@
+.menu-container {
+  .menu {
+    width: 80vw;
+    height: 40vh;
+    margin-left: 10vw;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    gap: 2px;
+    border-radius: 1vh;
+    overflow: hidden;
+  }
+}

@@ -8,25 +8,30 @@
     width: 60vw;
     height: 16vh;
     position: relative;
+    border: 1px solid #999;
+    border-radius: 1vh;
+    overflow: hidden;
+    box-shadow: 0 0.3vh 1vh rgba(0, 0, 0, 0.2);
     .bg {
-      width: 80%;
+      width: 100%;
       height: 100%;
-      margin-left: 10%;
-      border: 1px solid #999;
-      background-size: 110%;
+      background-size: 120%;
       background-position: center center;
-      opacity: 0.4;
     }
-    .game-name {
+    .text {
       position: absolute;
-      bottom: 0;
+      top: 0;
       left: 0;
       width: 100%;
-      height: 6vh;
-      font-size: 2.4vh;
-      font-weight: bold;
-      background-color: rgba($color: #000000, $alpha: .05);
-      border-bottom: 1px solid #999;
+      height: 100%;
+      background-color: rgba(255, 255, 255, .8);
+      .game-name {
+        font-size: 2.8vh;
+        font-weight: bold;
+      }
+      .game-desc {
+        font-size: 1.6vh;
+      }
     }
   }
 }

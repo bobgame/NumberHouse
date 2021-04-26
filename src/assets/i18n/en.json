@@ -4,14 +4,18 @@
     "ok": "Ok",
     "back": "Back",
     "home": "Home",
-    "play": "Play",
+    "play": "New Game",
     "menu": "Menu",
     "continue": "Continue",
+    "pause": "Pause",
     "settings": "Settings",
     "stars": "Stars",
     "help": "Help",
     "gameMenu": "Game menu",
-    "hardChoose": "Hard choose"
+    "hardChoose": "Hard choose",
+    "score": "Score",
+    "times": "Times",
+    "continueOrMenu": "Continue or back to menu?"
   },
   "sudoku": {
     "name": "Sudoku"
@@ -20,6 +24,7 @@
     "name": "Guess Number"
   },
   "slide": {
-    "name": "Slide"
+    "name": "Slide",
+    "helpText1": "You can use a finger swipe to look for more than three pieces of digital color that are connected together and erase it."
   }
 }

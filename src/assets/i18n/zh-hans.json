@@ -1,14 +1,30 @@
 {
   "common": {
     "title": "数字之家",
-    "ok": "Ok",
-    "back": "Back",
-    "home": "Home",
-    "play": "Play",
-    "settings": "Settings",
-    "help": "Help"
+    "ok": "确认",
+    "back": "返回",
+    "home": "首页",
+    "play": "新游戏",
+    "menu": "菜单",
+    "continue": "继续",
+    "pause": "暂停",
+    "settings": "设置",
+    "stars": "星",
+    "help": "帮助",
+    "gameMenu": "游戏菜单",
+    "hardChoose": "难度选择",
+    "score": "分数",
+    "times": "次数",
+    "continueOrMenu": "继续游戏 或 返回菜单？"
+  },
+  "sudoku": {
+    "name": "数独"
   },
   "guess": {
-
+    "name": "猜数字"
+  },
+  "slide": {
+    "name": "滑动数字",
+    "helpText1": "您可以用手指滑动来寻找三个以上连接在一起的彩色数字，将它们消除掉可以获得分数。"
   }
 }

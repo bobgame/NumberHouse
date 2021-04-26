@@ -1,0 +1,22 @@
+body {
+  @for $startLine from 1 through 10 {
+    @for $endLine from 1 through 10 {
+      [grid-col-#{$startLine}-#{$endLine}] {
+        grid-column-start: $startLine;
+        grid-column-end: $endLine;
+      }
+      [grid-row-#{$startLine}-#{$endLine}] {
+        grid-row-start: $startLine;
+        grid-row-end: $endLine;
+      }
+      .grid-col-#{$startLine}-#{$endLine} {
+        grid-column-start: $startLine;
+        grid-column-end: $endLine;
+      }
+      .grid-row-#{$startLine}-#{$endLine} {
+        grid-row-start: $startLine;
+        grid-row-end: $endLine;
+      }
+    }
+  }
+}

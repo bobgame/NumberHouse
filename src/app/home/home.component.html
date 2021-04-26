@@ -1,26 +1,13 @@
 <div class="home-container text-center">
-  <h3 class="pt-10 pb-10">
+  <h2 class="pt-10 pb-10">
     {{'common.title' | translate}}
-  </h3>
+  </h2>
   <div class="game-item mb-2" [routerLink]="gameItem.routerLink" *ngFor="let gameItem of AllGames">
     <div class="bg"
          [style.background-image]="'url(' + gameItem.image + ')'"></div>
-    <div class="game-name flex-center">{{gameItem.textKey | translate}}</div>
+    <div class="text flex-center flex-wrap py-4">
+      <div class="game-name w-100 flex-center">{{gameItem.textKey | translate}}</div>
+      <div class="game-desc w-100 flex-center"><i class="nwicon nwi-star-full star-item color-red"></i>x5</div>
+    </div>
   </div>
-  <!-- <p class="pb-5">
-    <nw-ui-btn routerLink="/sudo"
-               [btnText]="'sudoku.name' | translate"></nw-ui-btn>
-  </p>
-  <p class="pb-5">
-    <nw-ui-btn routerLink="/guess"
-               [btnText]="'guess.name' | translate"></nw-ui-btn>
-  </p>
-  <p class="pb-5">
-    <nw-ui-btn routerLink="/slide"
-               [btnText]="'slide.name' | translate"></nw-ui-btn>
-  </p> -->
-  <!-- <p class="pb-5">
-    <nw-ui-btn
-               [btnText]="'common.stars' | translate"></nw-ui-btn>
-  </p> -->
 </div>
