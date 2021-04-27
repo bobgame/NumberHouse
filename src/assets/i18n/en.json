@@ -21,7 +21,14 @@
     "name": "Sudoku"
   },
   "guess": {
-    "name": "Guess Number"
+    "name": "Guess Number",
+    "helpText1": "You need to guess 4 different numbers. ",
+    "helpText2": "Game will random 4 numbers. ",
+    "helpText3": "For example 5678.",
+    "helpText4": "If you guess 0128, you can get 1A0B",
+    "helpText5": "If you guess 5627, you can get 2A1B",
+    "helpText6": "Every game has 8 times to guess.",
+    "helpText7": "Less times guessed right, more stars got."
   },
   "slide": {
     "name": "Slide",

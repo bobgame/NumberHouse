@@ -1,19 +1,14 @@
-<div class="text-center w-100">
-  <nw-ui-game-header [headerTitle]="'slide.name' | translate"></nw-ui-game-header>
-  <nw-ui-btn class="mt-10 mb-5"
-             [btnText]="'common.play' | translate"
-             (btnClick)="gotoPage(SlidePageEnum.Play, true)"></nw-ui-btn>
-  <nw-ui-btn class="mb-5"
-             *ngIf="slideData.continue"
-             [btnText]="'common.continue' | translate"
-             (btnClick)="gotoPage(SlidePageEnum.Play)"></nw-ui-btn>
-  <!-- <nw-ui-btn class="mb-5"
-             [btnText]="'common.settings' | translate"
-             (btnClick)="gotoPage(SlidePageEnum.SETTINGS)"></nw-ui-btn> -->
-  <nw-ui-btn class="mb-15"
-             [btnText]="'common.help' | translate"
-             (btnClick)="gotoPage(SlidePageEnum.Help)"></nw-ui-btn>
-  <nw-ui-btn class=""
-             btnText="< {{'common.gameMenu' | translate}}"
-             (btnClick)="backGameMenu()"></nw-ui-btn>
-</div>
+<nw-con-menu [gameName]="'slide.name' | translate">
+  <nw-ui-menu-item class="{{slideData.continue ? 'grid-col-2' : 'grid-col-5'}}"
+    [btnText]="'common.play' | translate"
+    (click)="gotoPage(SlidePageEnum.Play)"></nw-ui-menu-item>
+  <nw-ui-menu-item grid-col-3
+    *ngIf="slideData.continue"
+    [btnText]="'common.continue' | translate"
+    (click)="gotoPage(SlidePageEnum.Play)"></nw-ui-menu-item>
+  <nw-ui-menu-item grid-col-3
+    [btnText]="'common.settings' | translate"
+    (click)="gotoPage(SlidePageEnum.Settings)"></nw-ui-menu-item>
+  <nw-ui-menu-item [btnText]="'common.help' | translate"
+    (click)="gotoPage(SlidePageEnum.Help)"></nw-ui-menu-item>
+</nw-con-menu>

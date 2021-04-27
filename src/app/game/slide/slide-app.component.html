@@ -1,5 +1,5 @@
 <div class="pt-5 game-content"
-     [ngSwitch]="slideShowData.page">
+  [ngSwitch]="slideShowData.page">
   <nw-slide-home *ngSwitchCase="SlidePageEnum.Home"></nw-slide-home>
   <nw-slide-play *ngSwitchCase="SlidePageEnum.Play"></nw-slide-play>
   <nw-slide-help *ngSwitchCase="SlidePageEnum.Help"></nw-slide-help>

@@ -6,7 +6,7 @@
   "newline_between_rules": false,
   "selector_separator_newline": false,
   "unformatted": ["span", "i"],
-  "wrap_attributes": "preserve-aligned",
+  "wrap_attributes": "force",
   "css": {
     "indent_size": 2
   },

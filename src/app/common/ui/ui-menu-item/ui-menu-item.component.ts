@@ -9,10 +9,4 @@ export class UiMenuItemComponent {
 
   @Input() btnText = ''
 
-  @Output() btnClick = new EventEmitter<any>()
-
-  clickBtn(event: any) {
-    this.btnClick.emit(event)
-  }
-
 }
