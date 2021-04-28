@@ -24,7 +24,7 @@ export class SlidePopGameoverComponent implements OnInit {
     this.d.slideShowData.pop.gameover = false
   }
 
-  play() {
+  newGame() {
     this.d.slideData.continue = true
     this.d.saveData()
     this.hidePop()

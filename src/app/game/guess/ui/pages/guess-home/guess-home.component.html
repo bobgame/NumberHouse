@@ -1,6 +1,6 @@
 <nw-con-menu [gameName]="'guess.name' | translate">
   <nw-ui-menu-item class="{{guessData.continue ? 'grid-col-2' : 'grid-col-5'}}"
-    [btnText]="'common.play' | translate"
+    [btnText]="'common.newGame' | translate"
     (click)="gotoPage(GuessPageEnum.Play)"></nw-ui-menu-item>
   <nw-ui-menu-item grid-col-3
     *ngIf="guessData.continue"

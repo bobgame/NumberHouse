@@ -1,7 +1,7 @@
 <nw-con-menu [gameName]="'slide.name' | translate">
   <nw-ui-menu-item class="{{slideData.continue ? 'grid-col-2' : 'grid-col-5'}}"
-    [btnText]="'common.play' | translate"
-    (click)="gotoPage(SlidePageEnum.Play)"></nw-ui-menu-item>
+    [btnText]="'common.newGame' | translate"
+    (click)="gotoPage(SlidePageEnum.Play, true)"></nw-ui-menu-item>
   <nw-ui-menu-item grid-col-3
     *ngIf="slideData.continue"
     [btnText]="'common.continue' | translate"

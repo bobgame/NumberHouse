@@ -24,7 +24,7 @@ export class GuessPopGameoverComponent implements OnInit {
     this.d.guessShowData.pop.gameover = false
   }
 
-  play() {
+  newGame() {
     this.d.resetResult()
     this.d.resetValue(this.d.guessData.len)
     this.d.createNumber(this.d.guessData.len, this.d.guessData.allNumbers)

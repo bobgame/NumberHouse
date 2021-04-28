@@ -25,14 +25,14 @@ export class SudokuPopGameoverComponent implements OnInit {
     this.d.sudokuShowData.pop.gameover = false
   }
 
-  clickOk() {
+  newGame() {
     this.d.sudokuShowData.isHomeToPlay = true
     this.d.sudokuShowData.page = SudoPageEnum.Play
     // this.d.resetValue(this.d.guessData.len)
     // this.d.createNumber(this.d.guessData.len, this.d.guessData.allNumbers)
     this.hidePop()
   }
-  clickClose() {
+  menu() {
     this.d.sudokuShowData.page = SudoPageEnum.Home
     // this.d.resetValue(this.d.guessData.len)
     // this.d.createNumber(this.d.guessData.len, this.d.guessData.allNumbers)

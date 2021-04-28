@@ -4,7 +4,8 @@
     "ok": "Ok",
     "back": "Back",
     "home": "Home",
-    "play": "New Game",
+    "play": "Play",
+    "newGame": "New game",
     "menu": "Menu",
     "continue": "Continue",
     "pause": "Pause",
@@ -15,6 +16,7 @@
     "hardChoose": "Hard choose",
     "score": "Score",
     "times": "Times",
+    "gameOver": "Game over",
     "continueOrMenu": "Continue or back to menu?"
   },
   "sudoku": {
