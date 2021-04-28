@@ -1,18 +1,18 @@
 <div class="w-100">
   <nw-ui-game-header [isBackShow]="true"
-                     (clickBack)="gotoPage(SudoPageEnum.Home)"
-                     [preTitle]="'sudoku.name' | translate"
-                     [headerTitle]="'common.help' | translate"></nw-ui-game-header>
+    (clickBack)="gotoPage(SudoPageEnum.Home)"
+    [preTitle]="'sudoku.name' | translate"
+    [headerTitle]="'common.help' | translate"></nw-ui-game-header>
   <div class="help-con px-4">
-    <h4>Goal</h4>
-    <p>Fill in a 9×9 grid with digits so that each column, row, and 3×3 section contain the numbers between 1 to 9.</p>
-    <h4>Play</h4>
-    <p>In a new game start, the 9×9 grid will have some of the squares filled in. You can use logic to fill in the missing digits and complete the grid.</p>
-    <p>Don’t forget, error if bellow:</p>
+    <h4>{{'sudoku.helpGoalTitle' | translate}}</h4>
+    <p>{{'sudoku.helpGoalText' | translate}}</p>
+    <h4>{{'sudoku.helpPlayTitle' | translate}}</h4>
+    <p>{{'sudoku.helpPlayText' | translate}}</p>
+    <p>{{'sudoku.helpLiTitle' | translate}}</p>
     <ol class="pl-6">
-      <li>Any row contains more than one of the same number</li>
-      <li>Any column contains more than one of the same number</li>
-      <li>Any 3×3 grid contains more than one of the same number</li>
+      <li>{{'sudoku.helpLi1' | translate}}</li>
+      <li>{{'sudoku.helpLi2' | translate}}</li>
+      <li>{{'sudoku.helpLi3' | translate}}</li>
     </ol>
   </div>
 </div>
