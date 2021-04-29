@@ -2,12 +2,17 @@
   <h2 class="pt-10 pb-10">
     {{'common.title' | translate}}
   </h2>
-  <div class="game-item mb-2" [routerLink]="gameItem.routerLink" *ngFor="let gameItem of AllGames">
-    <div class="bg"
-         [style.background-image]="'url(' + gameItem.image + ')'"></div>
-    <div class="text flex-center flex-wrap py-4">
-      <div class="game-name w-100 flex-center">{{gameItem.textKey | translate}}</div>
-      <div class="game-desc w-100 flex-center"><i class="nwicon nwi-star-full star-item color-red"></i>x5</div>
+  <div class="game-item-con">
+    <div class="game-item mb-2 is-{{gameItem.size}}"
+      *ngFor="let gameItem of AllGames"
+      [routerLink]="gameItem.routerLink">
+      <div class="icon"
+        [style.background-image]="'url(' + gameItem.image + ')'"></div>
+      <div class="text flex-center">
+        <div class="game-name w-100 flex-center">{{gameItem.textKey | translate}}</div>
+      </div>
+      <div class="star"
+        *ngIf="gameItem.star > 0"><i class="nwicon nwi-star-full star-item color-red"></i><span>{{gameItem.star}}</span></div>
     </div>
   </div>
 </div>

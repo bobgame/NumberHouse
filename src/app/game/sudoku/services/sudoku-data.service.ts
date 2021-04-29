@@ -7,6 +7,8 @@ import { StorageService } from 'src/app/common/services/storage.service'
 import { SUDOKU_SAVE } from '../enum/sudoku-save.enum'
 import { AllService, StarData } from 'src/app/common/services/all.service'
 import { SudoPageEnum } from '../enum/sudoku-page.enum'
+import { GameId } from 'src/app/common/enum/game.enum'
+import { TranslateService } from '@ngx-translate/core'
 
 @Injectable({
   providedIn: 'root'
@@ -15,15 +17,15 @@ export class SudokuDataService {
 
   constructor(
     private storage: StorageService,
-    private all: AllService
+    private all: AllService,
+    private translate: TranslateService,
   ) { }
 
   sudokuShowData: SudokuShowData = objCopy(SUDOKU_SHOW_DATA)
 
   numArr = [1, 2, 3, 4, 5, 6, 7, 8, 9]
   starArr = [1, 2, 3, 4, 5]
-  sudoName = 'Simple Sudoku'
-  hardModeName = ['Starter', 'Normal', 'Master']
+  hardModeName = ['common.starter', 'common.normal', 'common.master']
   editBoardTemplate = [false, false, false, false, false, false, false, false, false, false]
   STAR_MAX = this.starArr.length
   sudokuData: SudokuData = {
@@ -102,9 +104,9 @@ export class SudokuDataService {
     if (this.hardModeName) {
       const thisModeName = this.hardModeName[index]
       const thisModeLevel = this.sudokuData.mode[index]
-      return `${thisModeName} Lv${thisModeLevel}`
+      return [`${thisModeName}`, `Lv${thisModeLevel}`]
     }
-    return ''
+    return ['', '']
   }
 
   // 生成数独
@@ -230,7 +232,7 @@ export class SudokuDataService {
 
   creatThird(i: number, j: number, sudoArr: Array<number>) {
     // 为对角线上的三个三宫格随机生成。
-    const sortedNumArr = this.numArr.slice().sort(function () {
+    const sortedNumArr = this.numArr.slice().sort(() => {
       return Math.random() > 0.5 ? -1 : 1
     })
     const centerNum = i * 10 + j
@@ -298,9 +300,9 @@ export class SudokuDataService {
   // 两个简单数组的并集
   getConnect(arr1: Array<number>, arr2: Array<number>) {
     const resArr = arr2.slice()
-    for (let i = 0; i < arr1.length; i++) {
-      if (arr2.indexOf(arr1[i]) < 0) {
-        resArr.push(arr1[i])
+    for (const arr1Num of arr1) {
+      if (arr2.indexOf(arr1Num) < 0) {
+        resArr.push(arr1Num)
       }
     }
     return resArr
@@ -308,9 +310,9 @@ export class SudokuDataService {
   // 两个简单数组差集，arr1为大数组
   arrMinus(arr1: Array<number>, arr2: Array<number>) {
     const resArr: Array<number> = []
-    for (let i = 0; i < arr1.length; i++) {
-      if (arr2.indexOf(arr1[i]) < 0) {
-        resArr.push(arr1[i])
+    for (const arr1Num of arr1) {
+      if (arr2.indexOf(arr1Num) < 0) {
+        resArr.push(arr1Num)
       }
     }
     return resArr
@@ -432,8 +434,8 @@ export class SudokuDataService {
   checkResult() {
     if (this.sudokuData.errorArr.length === 0) {
       const message = `
-      <p class="mb-2">Win! Win!</p>
-      <p class="d-flex align-items-center justify-content-center">Got<span class="color-red pl-1"> <i class="nwicon nwi-star-full color-red"></i> x ${this.sudokuData.star}</span></p>
+      <p class="mb-2">${this.translate.instant('gameOver.winWin')}</p>
+      <p class="d-flex align-items-center justify-content-center">${this.translate.instant('common.got')}<span class="color-red pl-1"> <i class="nwicon nwi-star-full color-red"></i> x ${this.sudokuData.star}</span></p>
       `
       this.gameOverReset()
       this.saveData()
@@ -458,6 +460,7 @@ export class SudokuDataService {
         this.all.starData.star += addStar
         this.all.starData.allGetStar += addStar
         thisSudoLevel.starNum = winStar
+        this.all.starData.gameStars.find(g => g.id === GameId.sudoku).getStar += addStar
       }
     } else {
       thisSudoStar.levelStars.push({
@@ -466,6 +469,7 @@ export class SudokuDataService {
       })
       this.all.starData.star += winStar
       this.all.starData.allGetStar += winStar
+      this.all.starData.gameStars.find(g => g.id === GameId.sudoku).getStar += winStar
       this.sudokuData.mode[this.sudokuData.nowMode] += 1
     }
     thisSudoStar.totalTime += this.sudokuData.time
@@ -503,7 +507,7 @@ export class SudokuDataService {
     this.pauseShowTime()
     this.sudokuData.nowMode = hardMode
     const nowLv = lv ? lv : this.sudokuData.mode[hardMode]
-    this.sudokuData.nowHardModeName = this.hardModeName[hardMode] + ' Lv' + nowLv
+    this.sudokuData.nowHardModeName = this.hardModeName[hardMode]
     this.sudokuData.time = 0
     this.sudokuShowData.nowGameWin = false
     this.sudokuData.errorArr = []
@@ -530,11 +534,11 @@ export class SudokuDataService {
         const backupNum = this.sudokuData.sudoArr[index]
         const thisSudo: SudoItem = {
           id: index,
-          isBlank: isBlank,
+          isBlank,
           isTip: false,
           isEdit: false,
           editBoard: objCopy(this.editBoardTemplate),
-          backupNum: backupNum,
+          backupNum,
           playNum: !isBlank ? backupNum : null,
           isError: false
         }

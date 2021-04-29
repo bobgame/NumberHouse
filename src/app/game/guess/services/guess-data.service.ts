@@ -7,6 +7,8 @@ import { CelShowTime } from 'src/units/get-time'
 import { StorageService } from 'src/app/common/services/storage.service'
 import { AllService } from 'src/app/common/services/all.service'
 import { GuessPageEnum } from '../enum/guess-page.enum'
+import { GameId } from 'src/app/common/enum/game.enum'
+import { TranslateService } from '@ngx-translate/core'
 
 @Injectable({
   providedIn: 'root'
@@ -54,6 +56,7 @@ export class GuessDataService {
   constructor(
     private storage: StorageService,
     private all: AllService,
+    private translate: TranslateService,
   ) { }
 
   startShowTime() {
@@ -86,14 +89,16 @@ export class GuessDataService {
     this.pauseShowTime()
     const addStar = this.guessData.star
     this.guessShowData.gameOverText = `
-    <p class="mb-2">Win! Win!</p>
-    <p class="d-flex align-items-center justify-content-center">Got<span class="color-red pl-1"> <i class="nwicon nwi-star-full color-red"></i> x ${addStar}</span></p>
+    <p class="mb-2">${this.translate.instant('gameOver.winWin')}</p>
+    <p class="d-flex align-items-center justify-content-center">${this.translate.instant('gameOver.timesOver')}<span class="color-red pl-1"> <i class="nwicon nwi-star-full color-red"></i> x ${addStar}</span></p>
     `
     const nowAllStar = this.guessData.allStars.find(a => a.mode === this.guessData.nowMode)
     nowAllStar.starNum += addStar
     nowAllStar.totalTime += this.guessData.time
     this.all.starData.star += addStar
     this.all.starData.allGetStar += addStar
+    this.all.starData.allGetStar += addStar
+    this.all.starData.gameStars.find(g => g.id === GameId.guess).getStar += addStar
     this.all.save()
     this.saveData()
     this.guessShowData.pop.gameover = true
@@ -101,7 +106,7 @@ export class GuessDataService {
   }
   gameFail() {
     this.pauseShowTime()
-    this.guessShowData.gameOverText = `<div>Game Over!</div>`
+    this.guessShowData.gameOverText = `<div>${this.translate.instant('gameOver.gameOver')}</div>`
     this.guessShowData.pop.gameover = true
     this.guessData.continue = false
   }
@@ -117,7 +122,7 @@ export class GuessDataService {
         if (tempNums.length >= len) { break }
       }
     }
-    console.log(tempNums)
+    // console.log(tempNums)
     this.guessData.number = tempNums
     this.startShowTime()
   }

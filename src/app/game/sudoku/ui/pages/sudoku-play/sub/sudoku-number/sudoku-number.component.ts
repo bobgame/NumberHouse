@@ -31,7 +31,7 @@ export class SudokuNumberComponent implements OnInit {
   }
 
   setShowPlayNumber(index: number): void {
-    console.log(this.d.sudokuData.sudoArr[index])
+    // console.log(this.d.sudokuData.sudoArr[index])
     this.d.setShowPlayNumber(index)
   }
 

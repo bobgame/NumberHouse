@@ -9,6 +9,8 @@ import { AllService } from 'src/app/common/services/all.service'
 import { SlidePageEnum } from '../enum/slide-page.enum'
 import { deepCopy, randInArr } from 'src/units/base'
 import { DirectiveEnum } from 'src/app/common/enum/directive.enum'
+import { GameId } from 'src/app/common/enum/game.enum'
+import { TranslateService } from '@ngx-translate/core'
 
 @Injectable({
   providedIn: 'root'
@@ -40,6 +42,7 @@ export class SlideDataService {
   constructor(
     private storage: StorageService,
     private all: AllService,
+    private translate: TranslateService,
   ) { }
 
   startShowTime() {
@@ -73,11 +76,12 @@ export class SlideDataService {
     let addStar = this.slideData.lv - 2
     if (addStar < 0) { addStar = 0 }
     this.slideShowData.gameOverText = `
-    <p class="mb-2">Game Over!</p>
-    <p class="d-flex align-items-center justify-content-center">You Got<span class="color-red pl-1"> <i class="nwicon nwi-star-full color-red"></i> x ${addStar}</span></p>
+    <p class="mb-2">${this.translate.instant('gameOver.timesOver')}</p>
+    <p class="d-flex align-items-center justify-content-center">${this.translate.instant('common.got')}<span class="color-red pl-1"> <i class="nwicon nwi-star-full color-red"></i> x ${addStar}</span></p>
     `
     this.all.starData.star += addStar
     this.all.starData.allGetStar += addStar
+    this.all.starData.gameStars.find(g => g.id === GameId.slide).getStar += addStar
     this.all.save()
     this.saveData()
     this.slideShowData.pop.gameover = true

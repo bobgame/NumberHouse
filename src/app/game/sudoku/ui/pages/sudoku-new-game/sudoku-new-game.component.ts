@@ -25,14 +25,17 @@ export class SudokuNewGameComponent implements OnInit {
     {
       hardMode: HARDMODE.STARTER,
       hardName: '',
+      lvText: '',
     },
     {
       hardMode: HARDMODE.NORMAL,
       hardName: '',
+      lvText: '',
     },
     {
       hardMode: HARDMODE.MASTER,
       hardName: '',
+      lvText: '',
     },
   ]
 
@@ -49,7 +52,9 @@ export class SudokuNewGameComponent implements OnInit {
       this.d.pauseShowTime()
     }
     this.hardChooseShow.forEach(h => {
-      h.hardName = this.d.getModeNameWithIndex(h.hardMode)
+      const [name, lvText] = this.d.getModeNameWithIndex(h.hardMode)
+      h.hardName = name
+      h.lvText = lvText
     })
   }
 

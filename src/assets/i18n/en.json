@@ -17,7 +17,16 @@
     "score": "Score",
     "times": "Times",
     "gameOver": "Game over",
-    "continueOrMenu": "Continue or back to menu?"
+    "continueOrMenu": "Continue or back to menu?",
+    "got": "Got",
+    "starter": "Starter",
+    "normal": "Normal",
+    "master": "Master"
+  },
+  "gameOver": {
+    "gameOver": "Game over!",
+    "timesOver": "There are no more moves!",
+    "winWin": "Congratulations! Win!"
   },
   "sudoku": {
     "name": "Sudoku",

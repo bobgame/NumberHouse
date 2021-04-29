@@ -31,8 +31,10 @@ export class SudokuPopPauseComponent implements OnInit {
   init() {
     this.hardAndStars = []
     this.d.sudokuData.allStars.forEach((as, index) => {
+      const [name, lvText] = this.d.getModeNameWithIndex(index)
       const hardStar: HardAndStar = {
-        modeName: this.d.getModeNameWithIndex(index),
+        modeName: name,
+        lvText,
         starNum: as.starNum,
         totalTime: this.d.celTime(as.totalTime),
       }

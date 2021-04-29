@@ -17,7 +17,16 @@
     "score": "分数",
     "times": "次数",
     "gameOver": "游戏结束",
-    "continueOrMenu": "继续游戏 或 返回菜单？"
+    "continueOrMenu": "继续游戏 或 返回菜单？",
+    "got": "获得",
+    "starter": "新手",
+    "normal": "普通",
+    "master": "大师"
+  },
+  "gameOver": {
+    "gameOver": "游戏结束！",
+    "timesOver": "移动次数已用完！",
+    "winWin": "恭喜！赢了！"
   },
   "sudoku": {
     "name": "数独",
@@ -39,7 +48,7 @@
     "helpText5": "用越少次数猜对将获得越高的星星。"
   },
   "slide": {
-    "name": "滑动数字",
+    "name": "滑动吧数字",
     "helpText1": "您可以用手指滑动来寻找三个以上连接在一起的彩色数字，将它们消除掉可以获得分数。"
   }
 }

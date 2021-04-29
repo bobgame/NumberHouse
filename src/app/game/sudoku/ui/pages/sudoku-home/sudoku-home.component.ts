@@ -26,7 +26,6 @@ export class SudokuHomeComponent implements OnInit {
   }
 
   gotoPage(pageName: string, chooseMode?: boolean) {
-    console.log(pageName)
     if (chooseMode) {
       this.d.sudokuShowData.isHomeToPlay = true
       this.d.sudokuShowData.page = SudoPageEnum.Play

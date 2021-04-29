@@ -3,6 +3,7 @@ import { GuessPageEnum } from 'src/app/game/guess/enum/guess-page.enum'
 import { GuessShowData, GuessData } from '../../../data/guess-type'
 import { GuessDataService } from '../../../services/guess-data.service'
 import { HardAndStar } from 'src/app/game/sudoku/data/sudoku-type'
+import { TranslateService } from '@ngx-translate/core'
 
 @Component({
   selector: 'nw-guess-pop-pause',
@@ -18,6 +19,7 @@ export class GuessPopPauseComponent implements OnInit {
 
   constructor(
     private d: GuessDataService,
+    private translate: TranslateService,
   ) {
   }
 
@@ -30,7 +32,8 @@ export class GuessPopPauseComponent implements OnInit {
   init() {
     const thisStar = this.guessData.allStars[0]
     this.hardStar = {
-      modeName: 'Classics',
+      modeName: this.translate.instant('common.normal'),
+      lvText: '',
       starNum: thisStar.starNum,
       totalTime: this.d.celTime(thisStar.totalTime),
     }

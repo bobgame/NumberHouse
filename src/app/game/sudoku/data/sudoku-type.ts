@@ -63,6 +63,7 @@ export class LevelStar {
 }
 export class HardAndStar {
   modeName: string
+  lvText: string
   starNum: number
   totalTime: string
 }

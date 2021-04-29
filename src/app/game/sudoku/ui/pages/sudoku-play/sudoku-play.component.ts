@@ -59,9 +59,9 @@ export class SudokuPlayComponent implements OnInit, OnDestroy {
     this.cellArr = []
     for (let i = 1; i <= 9; i++) {
       for (let j = 1; j <= 9; j++) {
-        const number = i * 10 + j
+        const num = i * 10 + j
         const cell: SudoCell = {
-          number: number,
+          number: num,
           bottomSmall: i % 3 !== 0,
           bottomMiddle: i % 3 === 0 && i !== 9,
           rightSmall: j % 3 !== 0,

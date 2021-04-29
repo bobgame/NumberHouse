@@ -42,11 +42,11 @@ export class GuessPlayComponent implements OnInit, OnDestroy {
     this.d.pauseShowTime()
   }
 
-  clickNumber(number: string) {
+  clickNumber(num: string) {
     const emptyIndex = this.d.guessData.value.indexOf('-')
-    const isHave = this.d.guessData.value.includes(number)
+    const isHave = this.d.guessData.value.includes(num)
     if (emptyIndex > -1 && !isHave) {
-      this.d.guessData.value[emptyIndex] = number
+      this.d.guessData.value[emptyIndex] = num
     }
   }
 

@@ -3,35 +3,71 @@
   background-size: cover;
   width: 100%;
   height: 100%;
+  .game-item-con {
+    width: 80vw;
+    margin-left: 10vw;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    max-height: 60vh;
+    overflow-y: auto;
+  }
   .game-item {
-    margin-left: 20vw;
-    width: 60vw;
-    height: 16vh;
     position: relative;
     border: 1px solid #999;
     border-radius: 1vh;
     overflow: hidden;
     box-shadow: 0 0.3vh 1vh rgba(0, 0, 0, 0.2);
-    .bg {
-      width: 100%;
+    display: flex;
+    align-items: center;
+    padding-right: 1vw;
+    .icon {
+      width: 12vw;
       height: 100%;
-      background-size: 120%;
+      flex-shrink: 0;
+      background-size: cover;
       background-position: center center;
     }
     .text {
-      position: absolute;
-      top: 0;
-      left: 0;
       width: 100%;
       height: 100%;
       background-color: rgba(255, 255, 255, .8);
       .game-name {
-        font-size: 2.8vh;
+        font-size: 4vw;
         font-weight: bold;
       }
-      .game-desc {
-        font-size: 1.6vh;
+    }
+    .star {
+      position: absolute;
+      right: 0;
+      top: 0;
+      // background: red;
+      color: #ec5a2d;
+      font-size: 1.4vh;
+      padding: 1px 2vw;
+      display: flex;
+      align-items: center;
+      i {
+        color: #ec5a2d;
+        font-size: 1vh;
+        margin-right: 2px;
       }
+    }
+    &.is-large {
+      width: 100%;
+      height: 16vh;
+    }
+    &.is-big {
+      width: 100%;
+      height: 10vh;
+    }
+    &.is-normal {
+      width: 47%;
+      height: 10vh;
+    }
+    &.is-small {
+      width: 21.5%;
+      height: 10vh;
     }
   }
 }
