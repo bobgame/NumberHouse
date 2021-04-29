@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core'
 import { SlideShowData, SlideData, SlideItem, SlidePos } from '../data/slide-type'
-import { SLIDE_SHOW_DATA } from '../data/slide-data'
+import { SlideDataDefault, SlideShowDataDefault } from '../data/slide-data'
 import { SLIDE_SAVE } from '../enum/slide-save.enum'
 import { objCopy } from 'src/units/ObjCopy'
 import { CelShowTime } from 'src/units/get-time'
@@ -15,23 +15,12 @@ import { DirectiveEnum } from 'src/app/common/enum/directive.enum'
 })
 export class SlideDataService {
 
-  slideShowData: SlideShowData = objCopy(SLIDE_SHOW_DATA)
+  slideShowData: SlideShowData = objCopy(SlideShowDataDefault)
 
   starArr = [1, 2]
   STAR_MAX = this.starArr.length
   slideShowTimeInterval: any
-  slideData: SlideData = {
-    continue: false,
-    star: 0,
-    lv: 1,
-    nextId: 1,
-    slideTimes: 5,
-    slideScore: 0,
-    time: 0,
-    inPoses: [],
-    items: [],
-    nowMode: 0,
-  }
+  slideData: SlideData = objCopy(SlideDataDefault)
   levelNumbers = [
     [1, 2, 3, 4],
     [1, 2, 3, 4],
@@ -96,6 +85,11 @@ export class SlideDataService {
   }
 
   initSlideGame() {
+    const tempSlideDataDefault = objCopy(SlideDataDefault)
+    for (const i in tempSlideDataDefault) {
+      if (this.slideData && this.slideData.lv) { this.slideData[i] = tempSlideDataDefault[i] }
+      else { this.slideData = tempSlideDataDefault; break }
+    }
     this.initPoses()
     this.initSlideItems()
   }
@@ -109,12 +103,23 @@ export class SlideDataService {
     }
   }
 
+  getLevelNumbers(lv: number) {
+    const baseMaxNum = 5
+    const lvNumArr: number[] = []
+    for (let i = 1; i < lv + baseMaxNum; i++) {
+      if (i <= 18) {
+        lvNumArr.push(i)
+      }
+    }
+    return lvNumArr
+  }
+
   initSlideItems() {
     this.slideData.slideScore = 0
     this.slideData.items = []
     for (let x = 1; x <= 14; x++) {
       for (let y = 1; y <= 14; y++) {
-        const nowNumbers = deepCopy(this.levelNumbers[this.slideData.lv])
+        const nowNumbers = this.getLevelNumbers(this.slideData.lv)
         const num = randInArr(nowNumbers)
         const thisItem: SlideItem = {
           id: this.slideData.nextId,
@@ -125,7 +130,6 @@ export class SlideDataService {
         }
         this.slideData.items.push(thisItem)
         this.slideData.nextId++
-
       }
     }
   }

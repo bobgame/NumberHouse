@@ -18,11 +18,20 @@
   $item-2: #FDFFB6;
   $item-3: #CAFFBF;
   $item-4: #ffd3d3;
-  $item-5: #A0C4FF;
-  $item-6: #BDB2FF;
+  $item-5: #aecdff;
+  $item-6: #c3b8ff;
   $item-7: #FFD6A5;
   $item-8: #FFC6FF;
   $item-9: #dddddd;
+  $item-10: #ccfbff;
+  $item-11: #feffdd;
+  $item-12: #e2ffdc;
+  $item-13: #ffe7e7;
+  $item-14: #d6e6ff;
+  $item-15: #e2ddff;
+  $item-16: #ffecd5;
+  $item-17: #ffe0ff;
+  $item-18: #f0f0f0;
 
   @include theme($light,
     $lighter,
@@ -46,5 +55,14 @@
     $item-7,
     $item-8,
     $item-9,
+    $item-10,
+    $item-11,
+    $item-12,
+    $item-13,
+    $item-14,
+    $item-15,
+    $item-16,
+    $item-17,
+    $item-18,
   )
 }
