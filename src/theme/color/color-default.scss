@@ -32,6 +32,15 @@
   $item-16: #ffecd5;
   $item-17: #ffe0ff;
   $item-18: #f0f0f0;
+  $menu-item-0: #999999;
+  $menu-item-1: #0e96cc;
+  $menu-item-2: #8bc307;
+  $menu-item-3: #0abe40;
+  $menu-item-4: #d411d4;
+  $menu-item-5: #135ed6;
+  $menu-item-6: #3113da;
+  $menu-item-7: #db7f0e;
+  $menu-item-8: #cc1111;
 
   @include theme($light,
     $lighter,
@@ -64,5 +73,14 @@
     $item-16,
     $item-17,
     $item-18,
+    $menu-item-0,
+    $menu-item-1,
+    $menu-item-2,
+    $menu-item-3,
+    $menu-item-4,
+    $menu-item-5,
+    $menu-item-6,
+    $menu-item-7,
+    $menu-item-8,
   )
 }

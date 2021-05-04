@@ -1,3 +1,6 @@
-<div class="w-100 h-100 flex-center"
-  [innerHTML]="btnText">
+<div class="w-100 h-100 flex-center flex-wrap ui-menu-item bg-menu-item-{{color}}"
+  [class.small]="isSmallFZ">
+  <div class="w-100">{{btnText}}</div>
+  <div class="psa menu-star fz-smallest"
+    *ngIf="star > 0"><i class="nwicon nwi-star-full star-item color-white"></i><span> {{star}}</span></div>
 </div>

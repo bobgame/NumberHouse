@@ -1,21 +1,18 @@
 import { Component, OnInit } from '@angular/core'
+import { TranslateService } from '@ngx-translate/core'
 import { GameId } from '../common/enum/game.enum'
 import { AllService } from '../common/services/all.service'
 
-enum GameItemSize {
-  large = 'large',
-  big = 'big',
-  normal = 'normal',
-  small = 'small',
-}
 interface AllGameItem {
   id: GameId
   textKey: string
   routerLink: string
   image: string
-  color: string
-  size: GameItemSize
+  color: number
   star: number
+  row: number
+  col: number
+  isSmallFZ?: boolean
 }
 
 @Component({
@@ -25,7 +22,6 @@ interface AllGameItem {
 })
 
 export class HomeComponent implements OnInit {
-  GameItemSize = GameItemSize
 
   AllGames: AllGameItem[] = [
     {
@@ -33,37 +29,74 @@ export class HomeComponent implements OnInit {
       textKey: 'slide.name',
       routerLink: '/slide',
       image: 'assets/images/img-sudoku.png',
-      color: '',
-      size: GameItemSize.big,
-      star: 0,
+      color: 1,
+      star: 10,
+      row: 2,
+      col: 8,
     },
     {
       id: GameId.sudoku,
       textKey: 'sudoku.name',
       routerLink: '/sudo',
       image: 'assets/images/img-sudoku.png',
-      color: '',
-      size: GameItemSize.normal,
-      star: 0,
+      color: 2,
+      star: 10,
+      row: 2,
+      col: 4,
     },
     {
       id: GameId.guess,
       textKey: 'guess.name',
       routerLink: '/guess',
       image: 'assets/images/img-sudoku.png',
-      color: '',
-      size: GameItemSize.normal,
+      color: 3,
+      star: 10,
+      row: 2,
+      col: 4,
+    },
+    {
+      id: GameId.stars,
+      textKey: 'stars.name',
+      routerLink: '/guess',
+      image: 'assets/images/img-sudoku.png',
+      color: 0,
       star: 0,
+      row: 2,
+      col: 3,
+      isSmallFZ: true,
+    },
+    {
+      id: GameId.settings,
+      textKey: 'settings.name',
+      routerLink: '/guess',
+      image: 'assets/images/img-sudoku.png',
+      color: 0,
+      star: 0,
+      row: 2,
+      col: 3,
+      isSmallFZ: true,
+    },
+    {
+      id: GameId.more,
+      textKey: 'more.name',
+      routerLink: '/guess',
+      image: 'assets/images/img-sudoku.png',
+      color: 0,
+      star: 0,
+      row: 2,
+      col: 2,
+      isSmallFZ: true,
     },
   ]
 
   constructor(
-    private all: AllService
+    private all: AllService,
+    public translateService: TranslateService,
   ) { }
 
   ngOnInit() {
     this.all.load()
-    this.getStars()
+    // this.getStars()
   }
 
   getStars() {

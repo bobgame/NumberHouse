@@ -2,12 +2,28 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background: rgb(14, 160, 204);
+  // background: rgb(14, 160, 204);
   color: #fff;
   font-size: 6vw;
   grid-column: span 2;
+  grid-row: span 1;
 }
-div {
+.ui-menu-item {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  // background: rgb(14, 160, 204);
+  color: #fff;
+  font-size: 6vw;
   padding: 2vw;
   text-align: center;
+  position: relative;
+  &.small {
+    font-size: 5vw;
+  }
+  .menu-star {
+    right: 1vw;
+    top: 1vw;
+    opacity: .8;
+  }
 }

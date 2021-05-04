@@ -13,6 +13,7 @@ export class SudokuHomeComponent implements OnInit {
 
   SudoPageEnum = SudoPageEnum
   sudokuData: SudokuData
+  menuColor = 2
 
   constructor(
     private d: SudokuDataService,

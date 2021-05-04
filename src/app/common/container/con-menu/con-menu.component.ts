@@ -9,6 +9,7 @@ import { Router } from '@angular/router'
 export class ConMenuComponent implements OnInit {
 
   @Input() gameName = ''
+  @Input() color = 0
 
   constructor(private router: Router) { }
 

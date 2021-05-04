@@ -1,14 +1,19 @@
-<nw-con-menu [gameName]="'sudoku.name' | translate">
+<nw-con-menu [gameName]="'sudoku.name' | translate"
+  [color]="menuColor">
   <nw-ui-menu-item class="{{sudokuData.continue ? 'grid-col-2' : 'grid-col-5'}}"
     [btnText]="'common.newGame' | translate"
+    [color]="menuColor"
     (click)="gotoPage(SudoPageEnum.NewGame)"></nw-ui-menu-item>
   <nw-ui-menu-item grid-col-3
     *ngIf="sudokuData.continue"
     [btnText]="'common.continue' | translate"
+    [color]="menuColor"
     (click)="gotoPage(SudoPageEnum.Play)"></nw-ui-menu-item>
   <nw-ui-menu-item grid-col-3
     [btnText]="'common.settings' | translate"
+    [color]="menuColor"
     (click)="gotoPage(SudoPageEnum.Settings)"></nw-ui-menu-item>
   <nw-ui-menu-item [btnText]="'common.help' | translate"
+    [color]="menuColor"
     (click)="gotoPage(SudoPageEnum.Help)"></nw-ui-menu-item>
 </nw-con-menu>

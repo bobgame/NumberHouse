@@ -40,7 +40,7 @@
     "helpLi3": "Any 3×3 grid contains more than one of the same number."
   },
   "guess": {
-    "name": "Guess Number",
+    "name": "Guess",
     "helpText1": "You need to guess 4 different numbers.",
     "helpText2": "Game will random 4 numbers.",
     "helpText3": "For example 5678. If you guess 0128, you can get 1A0B. If you guess 5627, you can get 2A1B",
@@ -50,5 +50,14 @@
   "slide": {
     "name": "Slide",
     "helpText1": "You can use a finger swipe to look for more than three pieces of digital color that are connected together and erase it."
+  },
+  "stars": {
+    "name": "Stars"
+  },
+  "settings": {
+    "name": "Settings"
+  },
+  "more": {
+    "name": "More"
   }
 }

@@ -1,14 +1,19 @@
-<nw-con-menu [gameName]="'slide.name' | translate">
+<nw-con-menu [gameName]="'slide.name' | translate"
+  [color]="menuColor">
   <nw-ui-menu-item class="{{slideData.continue ? 'grid-col-2' : 'grid-col-5'}}"
     [btnText]="'common.newGame' | translate"
+    [color]="menuColor"
     (click)="gotoPage(SlidePageEnum.Play, true)"></nw-ui-menu-item>
   <nw-ui-menu-item grid-col-3
     *ngIf="slideData.continue"
     [btnText]="'common.continue' | translate"
+    [color]="menuColor"
     (click)="gotoPage(SlidePageEnum.Play)"></nw-ui-menu-item>
   <nw-ui-menu-item grid-col-3
     [btnText]="'common.settings' | translate"
+    [color]="menuColor"
     (click)="gotoPage(SlidePageEnum.Settings)"></nw-ui-menu-item>
   <nw-ui-menu-item [btnText]="'common.help' | translate"
+    [color]="menuColor"
     (click)="gotoPage(SlidePageEnum.Help)"></nw-ui-menu-item>
 </nw-con-menu>

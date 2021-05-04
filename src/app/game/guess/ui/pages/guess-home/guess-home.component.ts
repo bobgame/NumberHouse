@@ -13,6 +13,7 @@ export class GuessHomeComponent implements OnInit {
 
   GuessPageEnum = GuessPageEnum
   guessData: GuessData
+  menuColor = 3
 
   constructor(
     private d: GuessDataService,

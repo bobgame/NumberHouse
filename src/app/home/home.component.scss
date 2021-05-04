@@ -12,6 +12,73 @@
     max-height: 60vh;
     overflow-y: auto;
   }
+  &.is-zh-hans {
+    h2 {
+      svg {
+        height: 13vw;
+      }
+      svg text {
+        font-size: 12vw;
+      }
+    }
+  }
+  h2 {
+    // font-size: 2em;
+    font-weight: bold;
+    svg {
+      width: 80vw;
+      height: 8vw;
+      margin: auto;
+    }
+
+    svg text {
+      text-transform: uppercase;
+      animation: stroke 5s infinite alternate;
+      letter-spacing: 2px;
+      font-size: 7vw;
+      text-anchor: middle;
+    }
+    @keyframes stroke {
+      0% {
+        fill: rgba(72, 138, 20, 0);
+        stroke: rgb(23, 100, 223);
+        stroke-dashoffset: 25%;
+        stroke-dasharray: 0 50%;
+        stroke-width: 0.8;
+      }
+      50% {
+        fill: rgba(72, 138, 20, 0);
+        stroke: rgb(13, 201, 154);
+        stroke-width: 1.2;
+      }
+      70% {
+        fill: rgba(72, 138, 20, 0);
+        stroke: rgb(7, 177, 15);
+        stroke-width: 1.5;
+      }
+      100% {
+        fill: rgb(49, 92, 233);
+        stroke: rgba(54, 95, 160, 0);
+        stroke-dashoffset: -25%;
+        stroke-dasharray: 50% 0;
+        stroke-width: 0;
+      }
+    }
+
+  }
+  .game-home-menu {
+    width: 80vw;
+    margin-left: 10vw;
+    height: 50vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
+    gap: 2px;
+    border-radius: 1vh;
+    overflow: hidden;
+    // transform: rotateY(20deg);
+    // animation: 7s linear 0s infinite smallMove;
+  }
   .game-item {
     position: relative;
     border: 1px solid #999;

@@ -8,5 +8,8 @@ import { Component, Input, Output, EventEmitter } from '@angular/core'
 export class UiMenuItemComponent {
 
   @Input() btnText = ''
+  @Input() star = 0
+  @Input() color = 0
+  @Input() isSmallFZ = false
 
 }

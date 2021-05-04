@@ -13,6 +13,7 @@ export class SlideHomeComponent implements OnInit {
 
   SlidePageEnum = SlidePageEnum
   slideData: SlideData
+  menuColor = 1
 
   constructor(
     private d: SlideDataService,

@@ -4,7 +4,72 @@
   height: 90vh;
   justify-content: center;
   align-items: center;
+  position: relative;
+  .menu-bg {
+    position: absolute;
+    z-index: 1;
+    width: 100vw;
+    height: 90vh;
+    left: 0;
+    top: 0;
+    transform: rotate(-15deg);
+    opacity: .4;
+    .menu-bg-line {
+      position: absolute;
+      left: 0;
+      top: 10vh;
+      width: 40vw;
+      height: 1px;
+      &.line-0 {
+        top: 0vh;
+        left: 0vw;
+      }
+      &.line-1 {
+        top: 10vh;
+        left: 80vw;
+        width: 50vw;
+        opacity: .5;
+      }
+      &.line-2 {
+        top: 20vh;
+        left: 10vw;
+      }
+      &.line-3 {
+        top: 30vh;
+        left: 60vw;
+        opacity: .5;
+      }
+      &.line-4 {
+        top: 40vh;
+        left: 5vw;
+      }
+      &.line-5 {
+        top: 50vh;
+        left: 60vw;
+      }
+      &.line-6 {
+        top: 60vh;
+        left: -10vw;
+        opacity: .5;
+      }
+      &.line-7 {
+        top: 70vh;
+        left: 50vw;
+      }
+      &.line-8 {
+        top: 80vh;
+        left: -15vw;
+        opacity: .5;
+      }
+      &.line-9 {
+        top: 90vh;
+        left: 60vw;
+      }
+    }
+  }
   .menu-content {
+    position: relative;
+    z-index: 2;
     transform-style: preserve-3d;
     perspective: 1000px;
   }
@@ -23,7 +88,7 @@
   }
   .header {
     position: relative;
-    background: #fff;
+    background: rgba(255, 255, 255, 0.705);
     border-radius: 1vh;
     width: 52vw;
     left: 50%;

@@ -1,9 +1,21 @@
-<div class="home-container text-center">
-  <h2 class="pt-10 pb-10">
-    {{'common.title' | translate}}
+<div class="home-container text-center"
+  [class.is-zh-hans]="translateService.currentLang === 'zh-hans'">
+  <h2 class="pt-8 pb-8 text-center">
+    <svg>
+      <text x="50%"
+        y="50%"
+        dominant-baseline="middle"> {{'common.title' | translate}} </text>
+    </svg>
   </h2>
-  <div class="game-item-con">
-    <div class="game-item mb-2 is-{{gameItem.size}}"
+  <div class="game-home-menu">
+    <nw-ui-menu-item *ngFor="let gameItem of AllGames"
+      class="grid-col-{{gameItem.col}} grid-row-{{gameItem.row}}"
+      [btnText]="gameItem.textKey | translate"
+      [star]="gameItem.star"
+      [color]="gameItem.color"
+      [isSmallFZ]="gameItem.isSmallFZ"
+      [routerLink]="gameItem.routerLink"></nw-ui-menu-item>
+    <!-- <div class="game-item mb-2 is-{{gameItem.size}}"
       *ngFor="let gameItem of AllGames"
       [routerLink]="gameItem.routerLink">
       <div class="icon"
@@ -13,6 +25,6 @@
       </div>
       <div class="star"
         *ngIf="gameItem.star > 0"><i class="nwicon nwi-star-full star-item color-red"></i><span>{{gameItem.star}}</span></div>
-    </div>
+    </div> -->
   </div>
 </div>
