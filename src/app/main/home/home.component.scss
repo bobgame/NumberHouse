@@ -15,7 +15,7 @@
   &.is-zh-hans {
     h2 {
       svg {
-        height: 13vw;
+        height: 12vw;
       }
       svg text {
         font-size: 12vw;
@@ -27,20 +27,20 @@
     font-weight: bold;
     svg {
       width: 80vw;
-      height: 8vw;
+      height: 9vw;
       margin: auto;
     }
 
     svg text {
       text-transform: uppercase;
       animation: stroke 5s infinite alternate;
-      letter-spacing: 2px;
-      font-size: 7vw;
+      letter-spacing: 0;
+      font-size: 9vw;
       text-anchor: middle;
     }
     @keyframes stroke {
       0% {
-        fill: rgba(72, 138, 20, 0);
+        fill: rgba(71, 138, 20, 0.2);
         stroke: rgb(23, 100, 223);
         stroke-dashoffset: 25%;
         stroke-dasharray: 0 50%;
@@ -57,7 +57,7 @@
         stroke-width: 1.5;
       }
       100% {
-        fill: rgb(49, 92, 233);
+        fill: rgb(49, 135, 233);
         stroke: rgba(54, 95, 160, 0);
         stroke-dashoffset: -25%;
         stroke-dasharray: 50% 0;

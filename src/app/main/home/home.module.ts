@@ -5,8 +5,8 @@ import { FormsModule } from '@angular/forms'
 import { RouterModule } from '@angular/router'
 
 import { HomeComponent } from './home.component'
-import { CommonUiModule } from '../modules/common-ui-module'
-import { TranslationModule } from '../modules/translation.module'
+import { CommonUiModule } from '../../modules/common-ui-module'
+import { TranslationModule } from '../../modules/translation.module'
 
 @NgModule({
   imports: [

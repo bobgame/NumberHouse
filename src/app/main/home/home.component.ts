@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core'
 import { TranslateService } from '@ngx-translate/core'
-import { GameId } from '../common/enum/game.enum'
-import { AllService } from '../common/services/all.service'
+import { GameId } from '../../common/enum/game.enum'
+import { AllService } from '../../common/services/all.service'
 
 interface AllGameItem {
   id: GameId
@@ -57,7 +57,7 @@ export class HomeComponent implements OnInit {
     {
       id: GameId.stars,
       textKey: 'stars.name',
-      routerLink: '/guess',
+      routerLink: '/stars',
       image: 'assets/images/img-sudoku.png',
       color: 0,
       star: 0,
@@ -68,7 +68,7 @@ export class HomeComponent implements OnInit {
     {
       id: GameId.settings,
       textKey: 'settings.name',
-      routerLink: '/guess',
+      routerLink: '/settings',
       image: 'assets/images/img-sudoku.png',
       color: 0,
       star: 0,
