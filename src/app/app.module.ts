@@ -8,10 +8,10 @@ import { SplashScreen } from '@ionic-native/splash-screen/ngx'
 import { StatusBar } from '@ionic-native/status-bar/ngx'
 
 
-import * as Hammer from 'hammerjs';
+import * as Hammer from 'hammerjs'
 import {
   HammerModule, HammerGestureConfig, HAMMER_GESTURE_CONFIG
-} from '@angular/platform-browser';
+} from '@angular/platform-browser'
 
 import { AppComponent } from './app.component'
 import { AppRoutingModule } from './app-routing.module'

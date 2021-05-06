@@ -472,6 +472,7 @@ export class SudokuDataService {
       this.all.starData.gameStars.find(g => g.id === GameId.sudoku).getStar += winStar
       this.sudokuData.mode[this.sudokuData.nowMode] += 1
     }
+    this.all.save()
     thisSudoStar.totalTime += this.sudokuData.time
     // console.log(this.sudokuData.mode[this.sudokuData.nowMode])
     this.pauseShowTime()

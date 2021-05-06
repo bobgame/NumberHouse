@@ -99,8 +99,8 @@ export class GuessDataService {
     this.all.starData.allGetStar += addStar
     this.all.starData.allGetStar += addStar
     this.all.starData.gameStars.find(g => g.id === GameId.guess).getStar += addStar
-    this.all.save()
     this.saveData()
+    this.all.save()
     this.guessShowData.pop.gameover = true
     this.guessData.continue = false
   }

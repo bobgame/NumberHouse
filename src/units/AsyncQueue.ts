@@ -8,7 +8,7 @@
  * 目的：用于处理一组串联式的异步任务队列。
  */
 
-export type AsyncCallback = (next: Function, params: any, args: any) => void
+export type AsyncCallback = (next: any, params: any, args: any) => void
 
 interface AsyncTask {
     /**
@@ -16,14 +16,14 @@ interface AsyncTask {
      */
     uuid: number
     /**
-      * 任务开始执行的回调
-      * params: push时传入的参数
-      * args: 上个任务传来的参数
-      */
+     * 任务开始执行的回调
+     * params: push时传入的参数
+     * args: 上个任务传来的参数
+     */
     callbacks: Array<AsyncCallback>
     /**
-      * 任务参数
-      */
+     * 任务参数
+     */
     params: any
 }
 export class AsyncQueue {
@@ -31,16 +31,16 @@ export class AsyncQueue {
      * 是否开启可用
      */
     public get enable() {
-        return this._enable
+        return this.innerEnable
     }
     /**
      * 是否开启可用
      */
     public set enable(val: boolean) {
-        if (this._enable === val) {
+        if (this.innerEnable === val) {
             return
         }
-        this._enable = val
+        this.innerEnable = val
         if (val && this.size > 0) {
             this.play()
         }
@@ -49,19 +49,19 @@ export class AsyncQueue {
      * 队列长度
      */
     public get size(): number {
-        return this._queues.length
+        return this.innerQueues.length
     }
     /**
      * 是否有正在处理的任务
      */
     public get isProcessing(): boolean {
-        return this._isProcessingTaskUUID > 0
+        return this.innerIsProcessingTaskUUID > 0
     }
     /**
      * 队列是否已停止
      */
     public get isStop(): boolean {
-        if (this._queues.length > 0) {
+        if (this.innerQueues.length > 0) {
             return false
         }
         if (this.isProcessing) {
@@ -71,36 +71,36 @@ export class AsyncQueue {
     }
     /** 正在执行的任务参数 */
     public get runningParams() {
-        if (this._runningAsyncTask) {
-            return this._runningAsyncTask.params
+        if (this.innerRunningAsyncTask) {
+            return this.innerRunningAsyncTask.params
         }
         return null
     }
 
     // 任务task的唯一标识
-    private static _$uuid_count = 1
+    private static staticUuidCount = 1
     // 正在运行的任务
-    private _runningAsyncTask: AsyncTask = null
+    private innerRunningAsyncTask: AsyncTask = null
 
-    private _queues: Array<AsyncTask> = []
+    private innerQueues: Array<AsyncTask> = []
 
     // 正在执行的异步任务标识
-    private _isProcessingTaskUUID = 0
+    private innerIsProcessingTaskUUID = 0
 
-    private _enable = true
+    private innerEnable = true
 
     /**
      * 任务队列完成回调
      */
-    public complete: Function = null
+    public complete: any = null
 
     /**
      * 返回一个执行函数，执行函数调用count次后，next将触发
      * @param count Number
-     * @param next Function
+     * @param next any
      * @return 返回一个匿名函数
      */
-    public static excuteTimes(count: number, next: Function = null): Function {
+    public static excuteTimes(count: number, next: any = null): any {
         let fnum: number = count
         const tempCall = () => {
             --fnum
@@ -117,11 +117,11 @@ export class AsyncQueue {
      * 返回任务uuid
      */
     public push(callback: AsyncCallback, params: any = null): number {
-        const uuid = AsyncQueue._$uuid_count++
-        this._queues.push({
-            uuid: uuid,
+        const uuid = AsyncQueue.staticUuidCount++
+        this.innerQueues.push({
+            uuid,
             callbacks: [callback],
-            params: params
+            params
         })
         return uuid
     }
@@ -131,24 +131,24 @@ export class AsyncQueue {
      * 返回任务uuid
      */
     public pushMulti(params: any, ...callbacks: AsyncCallback[]): number {
-        const uuid = AsyncQueue._$uuid_count++
-        this._queues.push({
-            uuid: uuid,
-            callbacks: callbacks,
-            params: params
+        const uuid = AsyncQueue.staticUuidCount++
+        this.innerQueues.push({
+            uuid,
+            callbacks,
+            params
         })
         return uuid
     }
 
     /** 移除一个还未执行的异步任务 */
     public remove(uuid: number) {
-        if (this._runningAsyncTask.uuid === uuid) {
+        if (this.innerRunningAsyncTask.uuid === uuid) {
             console.warn('正在执行的任务不可以移除')
             return
         }
-        for (let i = 0, len = this._queues.length; i < len; i++) {
-            if (this._queues[i].uuid === uuid) {
-                this._queues.splice(i, 1)
+        for (let i = 0, len = this.innerQueues.length; i < len; i++) {
+            if (this.innerQueues[i].uuid === uuid) {
+                this.innerQueues.splice(i, 1)
                 break
             }
         }
@@ -158,21 +158,21 @@ export class AsyncQueue {
      * 清空队列
      */
     public clear() {
-        this._queues = []
-        this._isProcessingTaskUUID = 0
-        this._runningAsyncTask = null
+        this.innerQueues = []
+        this.innerIsProcessingTaskUUID = 0
+        this.innerRunningAsyncTask = null
     }
 
     protected next(taskUUID: number, args: any = null) {
         // console.log("完成一个任务")
-        if (this._isProcessingTaskUUID === taskUUID) {
-            this._isProcessingTaskUUID = 0
-            this._runningAsyncTask = null
+        if (this.innerIsProcessingTaskUUID === taskUUID) {
+            this.innerIsProcessingTaskUUID = 0
+            this.innerRunningAsyncTask = null
             this.play(args)
         } else {
-            console.warn('[AsyncQueue] 错误警告：正在执行的任务和完成的任务标识不一致，有可能是next重复执行！ProcessingTaskUUID：' + this._isProcessingTaskUUID + ' nextUUID:' + taskUUID)
-            if (this._runningAsyncTask) {
-                // console.log(this._runningAsyncTask)
+            console.warn('[AsyncQueue] 错误警告：正在执行的任务和完成的任务标识不一致，有可能是next重复执行！ProcessingTaskUUID：' + this.innerIsProcessingTaskUUID + ' nextUUID:' + taskUUID)
+            if (this.innerRunningAsyncTask) {
+                // console.log(this.innerRunningAsyncTask)
             }
         }
     }
@@ -181,7 +181,7 @@ export class AsyncQueue {
      */
     public step() {
         if (this.isProcessing) {
-            this.next(this._isProcessingTaskUUID)
+            this.next(this.innerIsProcessingTaskUUID)
         }
     }
     /**
@@ -191,14 +191,14 @@ export class AsyncQueue {
         if (this.isProcessing) {
             return
         }
-        if (!this._enable) {
+        if (!this.innerEnable) {
             return
         }
-        const actionData: AsyncTask = this._queues.shift()
+        const actionData: AsyncTask = this.innerQueues.shift()
         if (actionData) {
-            this._runningAsyncTask = actionData
+            this.innerRunningAsyncTask = actionData
             const taskUUID: number = actionData.uuid
-            this._isProcessingTaskUUID = taskUUID
+            this.innerIsProcessingTaskUUID = taskUUID
             const callbacks: Array<AsyncCallback> = actionData.callbacks
 
             if (callbacks.length === 1) {
@@ -210,7 +210,7 @@ export class AsyncQueue {
                 // 多个任务函数同时执行
                 let fnum: number = callbacks.length
                 const nextArgsArr = []
-                const nextFunc: Function = (nextArgs: any = null) => {
+                const nextFunc: any = (nextArgs: any = null) => {
                     --fnum
                     nextArgsArr.push(nextArgs || null)
                     if (fnum === 0) {
@@ -223,8 +223,8 @@ export class AsyncQueue {
                 }
             }
         } else {
-            this._isProcessingTaskUUID = 0
-            this._runningAsyncTask = null
+            this.innerIsProcessingTaskUUID = 0
+            this.innerRunningAsyncTask = null
             // console.log("任务完成")
             if (this.complete) {
                 this.complete(args)
@@ -237,10 +237,10 @@ export class AsyncQueue {
      * @param time 毫秒时间
      * @param callback （可选参数）时间到了之后回调
      */
-    public yieldTime(time: number, callback: Function = null) {
-        const task = function (next: Function, params: any, args: any) {
-            const _t = setTimeout(() => {
-                clearTimeout(_t)
+    public yieldTime(time: number, callback: any = null) {
+        const task = (next: any, params: any, args: any) => {
+            const tempT = setTimeout(() => {
+                clearTimeout(tempT)
                 if (callback) {
                     callback()
                 }

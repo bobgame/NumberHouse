@@ -39,12 +39,12 @@ export const deepCopyJson = <T>(obj: T): T => JSON.parse(JSON.stringify(obj))
 
 export const deepCopy = <T>(obj: T, parent: any = null): T => {
   let result
-  let _parent = parent
-  while (_parent) {
-    if (_parent.originalParent === obj) {
-      return _parent.currentParent
+  let innerParent = parent
+  while (innerParent) {
+    if (innerParent.originalParent === obj) {
+      return innerParent.currentParent
     }
-    _parent = _parent.parent
+    innerParent = innerParent.parent
   }
   if (obj && typeof obj === 'object') {
     if (obj instanceof RegExp) {
@@ -63,7 +63,7 @@ export const deepCopy = <T>(obj: T, parent: any = null): T => {
           result[i] = deepCopy(obj[i], {
             originalParent: obj,
             currentParent: result,
-            parent: parent,
+            parent,
           })
         } else {
           result[i] = obj[i]
