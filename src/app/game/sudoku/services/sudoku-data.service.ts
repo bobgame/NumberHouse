@@ -457,19 +457,19 @@ export class SudokuDataService {
       const thisSudoLevel = thisSudoStar.levelStars.find(ls => ls.lv === this.sudokuData.nowLv)
       if (thisSudoLevel && thisSudoLevel.starNum < winStar) {
         const addStar = winStar - thisSudoLevel.starNum
-        this.all.starData.star += addStar
-        this.all.starData.allGetStar += addStar
+        this.all.allData.star += addStar
+        this.all.allData.allGetStar += addStar
         thisSudoLevel.starNum = winStar
-        this.all.starData.gameStars.find(g => g.id === GameId.sudoku).getStar += addStar
+        this.all.allData.gameStars.find(g => g.id === GameId.sudoku).getStar += addStar
       }
     } else {
       thisSudoStar.levelStars.push({
         lv: nowLv,
         starNum: winStar
       })
-      this.all.starData.star += winStar
-      this.all.starData.allGetStar += winStar
-      this.all.starData.gameStars.find(g => g.id === GameId.sudoku).getStar += winStar
+      this.all.allData.star += winStar
+      this.all.allData.allGetStar += winStar
+      this.all.allData.gameStars.find(g => g.id === GameId.sudoku).getStar += winStar
       this.sudokuData.mode[this.sudokuData.nowMode] += 1
     }
     this.all.save()

@@ -7,6 +7,7 @@ const routes: Routes = [
   { path: 'home', loadChildren: () => import('./main/home/home.module').then(m => m.HomeComponentModule) },
   { path: 'stars', loadChildren: () => import('./main/stars/stars.module').then(m => m.StarsComponentModule) },
   { path: 'settings', loadChildren: () => import('./main/settings/settings.module').then(m => m.SettingsComponentModule) },
+  { path: 'more', loadChildren: () => import('./main/more/more.module').then(m => m.MoreComponentModule) },
   { path: 'sudo', loadChildren: () => import('./game/sudoku/sd-app.module').then(m => m.SdAppComponentModule) },
   { path: 'guess', loadChildren: () => import('./game/guess/gs-app.module').then(m => m.GsAppComponentModule) },
   { path: 'slide', loadChildren: () => import('./game/slide/slide-app.module').then(m => m.SlideAppComponentModule) },

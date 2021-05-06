@@ -1,0 +1,32 @@
+.widgets-stars-container {
+  width: 100vw;
+  padding: 0 5vw;
+  max-height: 88vh;
+  overflow-y: auto;
+  .star-con {
+    border: 1px solid #bbb;
+    background: rgba(255, 255, 255, 0.5);
+    border-radius: 1vh;
+    padding: 0 4vw;
+    margin-bottom: 4vh;
+    .top {
+      padding: 1.5vh;
+      border-bottom: 1px solid #ccc;
+      font-weight: bold;
+    }
+    .mid {
+      padding: 0 2vw;
+      .mid-item {
+        height: 6vh;
+        font-size: 2.4vh;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border-top: 1px dashed #ccc;
+        &:first-child {
+          border-top: none;
+        }
+      }
+    }
+  }
+}

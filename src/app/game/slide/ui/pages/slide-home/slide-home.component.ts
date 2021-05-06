@@ -3,6 +3,8 @@ import { SlideDataService } from '../../../services/slide-data.service'
 import { Router } from '@angular/router'
 import { SlidePageEnum } from '../../../enum/slide-page.enum'
 import { SlideData } from '../../../data/slide-type'
+import { GameId } from 'src/app/common/enum/game.enum'
+import { AllService } from 'src/app/common/services/all.service'
 
 @Component({
   selector: 'nw-slide-home',
@@ -13,14 +15,17 @@ export class SlideHomeComponent implements OnInit {
 
   SlidePageEnum = SlidePageEnum
   slideData: SlideData
-  menuColor = 1
+  menuColor = 0
+  nowGameId = GameId.slide
 
   constructor(
     private d: SlideDataService,
     private router: Router,
+    private all: AllService,
   ) { }
 
   ngOnInit() {
+    this.menuColor = this.all.getMenuColor(this.nowGameId)
     // this.gotoPage('Play') // for test
     this.init()
   }

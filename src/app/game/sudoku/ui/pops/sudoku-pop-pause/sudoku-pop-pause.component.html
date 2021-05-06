@@ -5,7 +5,7 @@
   <div class="text-center">
     <div class="hard-star pt-4 d-flex justify-content-between align-items-center"
       *ngFor="let hardStar of hardAndStars">
-      <div class="name">{{hardStar.modeName}} {{hardStar.lvText}}</div>
+      <div class="name">{{hardStar.modeName | translate}} {{hardStar.lvText}}</div>
       <div class="time">{{hardStar.totalTime}}</div>
       <div class="star color-red">
         <i class="nwicon nwi-star-full"></i>

@@ -14,6 +14,7 @@ import { TranslationModule } from 'src/app/modules/translation.module'
 import { CommonUiModule } from 'src/app/modules/common-ui-module'
 import { GuessPopGameoverComponent } from './ui/pops/guess-pop-gameover/guess-pop-gameover.component'
 import { GuessPopPauseComponent } from './ui/pops/guess-pop-pause/guess-pop-pause.component'
+import { GuessStarsComponent } from './ui/pages/guess-stars/guess-stars.component'
 
 @NgModule({
   imports: [
@@ -37,6 +38,7 @@ import { GuessPopPauseComponent } from './ui/pops/guess-pop-pause/guess-pop-paus
     GuessSettingsComponent,
     GuessPopGameoverComponent,
     GuessPopPauseComponent,
+    GuessStarsComponent,
   ],
   exports: [
     GsAppComponent,

@@ -17,6 +17,7 @@ import { AppComponent } from './app.component'
 import { AppRoutingModule } from './app-routing.module'
 import { HttpLoaderFactory } from './modules/translation.module'
 import { HttpClient, HttpClientModule } from '@angular/common/http'
+import { CommonUiModule } from './modules/common-ui-module'
 
 @Injectable()
 export class MyHammerConfig extends HammerGestureConfig {
@@ -32,6 +33,7 @@ export class MyHammerConfig extends HammerGestureConfig {
     BrowserModule,
     HttpClientModule,
     HammerModule,
+    CommonUiModule,
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,

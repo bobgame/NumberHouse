@@ -1,9 +1,10 @@
 <div class="pt-5 game-content"
-     [ngSwitch]="sudokuShowData.page">
+  [ngSwitch]="sudokuShowData.page">
   <nw-sudoku-home *ngSwitchCase="SudoPageEnum.Home"></nw-sudoku-home>
   <nw-sudoku-new-game *ngSwitchCase="SudoPageEnum.NewGame"></nw-sudoku-new-game>
   <nw-sudoku-play *ngSwitchCase="SudoPageEnum.Play"></nw-sudoku-play>
   <nw-sudoku-help *ngSwitchCase="SudoPageEnum.Help"></nw-sudoku-help>
+  <nw-sudoku-stars *ngSwitchCase="SudoPageEnum.Stars"></nw-sudoku-stars>
   <nw-sudoku-settings *ngSwitchCase="SudoPageEnum.Settings"></nw-sudoku-settings>
 </div>
 <nw-sudoku-pop-gameover *ngIf="sudokuShowData.pop.gameover"></nw-sudoku-pop-gameover>

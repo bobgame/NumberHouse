@@ -3,6 +3,8 @@ import { GuessDataService } from '../../../services/guess-data.service'
 import { Router } from '@angular/router'
 import { GuessPageEnum } from '../../../enum/guess-page.enum'
 import { GuessData } from '../../../data/guess-type'
+import { AllService } from 'src/app/common/services/all.service'
+import { GameId } from 'src/app/common/enum/game.enum'
 
 @Component({
   selector: 'nw-guess-home',
@@ -13,14 +15,17 @@ export class GuessHomeComponent implements OnInit {
 
   GuessPageEnum = GuessPageEnum
   guessData: GuessData
-  menuColor = 3
+  menuColor = 0
+  nowGameId = GameId.guess
 
   constructor(
     private d: GuessDataService,
     private router: Router,
+    private all: AllService,
   ) { }
 
   ngOnInit() {
+    this.menuColor = this.all.getMenuColor(this.nowGameId)
     // this.gotoPage('Play') // for test
     this.init()
   }

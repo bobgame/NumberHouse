@@ -10,9 +10,13 @@
     [color]="menuColor"
     (click)="gotoPage(GuessPageEnum.Play)"></nw-ui-menu-item>
   <nw-ui-menu-item grid-col-3
+    [btnText]="'common.stars' | translate"
+    [color]="menuColor"
+    (click)="gotoPage(GuessPageEnum.Stars)"></nw-ui-menu-item>
+  <!-- <nw-ui-menu-item grid-col-3
     [btnText]="'common.settings' | translate"
     [color]="menuColor"
-    (click)="gotoPage(GuessPageEnum.Settings)"></nw-ui-menu-item>
+    (click)="gotoPage(GuessPageEnum.Settings)"></nw-ui-menu-item> -->
   <nw-ui-menu-item [btnText]="'common.help' | translate"
     [color]="menuColor"
     (click)="gotoPage(GuessPageEnum.Help)"></nw-ui-menu-item>

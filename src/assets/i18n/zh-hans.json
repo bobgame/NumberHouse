@@ -10,7 +10,7 @@
     "continue": "继续",
     "pause": "暂停",
     "settings": "设置",
-    "stars": "星",
+    "stars": "星星",
     "help": "帮助",
     "gameMenu": "游戏菜单",
     "hardChoose": "难度选择",
@@ -52,12 +52,20 @@
     "helpText1": "您可以用手指滑动来寻找三个以上连接在一起的彩色数字，将它们消除掉可以获得分数。"
   },
   "stars": {
-    "name": "星星"
+    "name": "星星",
+    "allGet": "共获得",
+    "quantityAvailableStar": "可用星星"
   },
   "settings": {
     "name": "设置"
   },
   "more": {
-    "name": "更多"
+    "name": "更多",
+    "about": {
+      "title": "关于游戏",
+      "version": "版本号：",
+      "author": "作者: Bob Liu (Bob Game)",
+      "desc1": "这个是我自己练习写代码的作品，全免费，无付费内容，希望玩家喜欢玩。"
+    }
   }
 }

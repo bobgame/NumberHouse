@@ -1,8 +1,9 @@
 <div class="pt-5 game-content"
-     [ngSwitch]="guessShowData.page">
+  [ngSwitch]="guessShowData.page">
   <nw-guess-home *ngSwitchCase="GuessPageEnum.Home"></nw-guess-home>
   <nw-guess-play *ngSwitchCase="GuessPageEnum.Play"></nw-guess-play>
   <nw-guess-help *ngSwitchCase="GuessPageEnum.Help"></nw-guess-help>
+  <nw-guess-stars *ngSwitchCase="GuessPageEnum.Stars"></nw-guess-stars>
   <nw-guess-settings *ngSwitchCase="GuessPageEnum.Settings"></nw-guess-settings>
 </div>
 <nw-guess-pop-gameover *ngIf="guessShowData.pop.gameover"></nw-guess-pop-gameover>

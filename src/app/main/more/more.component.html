@@ -1,0 +1,15 @@
+<div class="pt-5 game-content">
+  <div class="text-center w-100">
+    <nw-ui-game-header [isBackShow]="true"
+      (clickBack)="backToHome()"
+      [headerTitle]="'more.name' | translate"></nw-ui-game-header>
+    <div class="px-5">
+      <div class="text-left">
+        <h3 class="mb-1">{{'more.about.title' | translate}}</h3>
+        <p class="mb-1">{{'more.about.version' | translate}}{{version}}</p>
+        <p class="mb-1">{{'more.about.author' | translate}}</p>
+        <p class="mb-1">{{'more.about.desc1' | translate}}</p>
+      </div>
+    </div>
+  </div>
+</div>

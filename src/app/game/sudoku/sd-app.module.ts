@@ -18,6 +18,7 @@ import { SudokuSettingsComponent } from './ui/pages/sudoku-settings/sudoku-setti
 import { SudokuPopGameoverComponent } from './ui/pops/sudoku-pop-gameover/sudoku-pop-gameover.component'
 import { SudokuPopPauseComponent } from './ui/pops/sudoku-pop-pause/sudoku-pop-pause.component'
 import { SudokuNewGameComponent } from './ui/pages/sudoku-new-game/sudoku-new-game.component'
+import { SudokuStarsComponent } from './ui/pages/sudoku-stars/sudoku-stars.component'
 
 @NgModule({
   imports: [
@@ -43,6 +44,7 @@ import { SudokuNewGameComponent } from './ui/pages/sudoku-new-game/sudoku-new-ga
     SudokuSettingsComponent,
     SudokuPopGameoverComponent,
     SudokuPopPauseComponent,
+    SudokuStarsComponent,
   ],
   exports: [SdAppComponent]
 })

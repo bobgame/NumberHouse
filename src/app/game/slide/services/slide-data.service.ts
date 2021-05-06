@@ -79,9 +79,9 @@ export class SlideDataService {
     <p class="mb-2">${this.translate.instant('gameOver.timesOver')}</p>
     <p class="d-flex align-items-center justify-content-center">${this.translate.instant('common.got')}<span class="color-red pl-1"> <i class="nwicon nwi-star-full color-red"></i> x ${addStar}</span></p>
     `
-    this.all.starData.star += addStar
-    this.all.starData.allGetStar += addStar
-    this.all.starData.gameStars.find(g => g.id === GameId.slide).getStar += addStar
+    this.all.allData.star += addStar
+    this.all.allData.allGetStar += addStar
+    this.all.allData.gameStars.find(g => g.id === GameId.slide).getStar += addStar
     this.all.save()
     this.saveData()
     this.slideShowData.pop.gameover = true

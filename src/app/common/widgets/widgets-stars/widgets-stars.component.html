@@ -1,0 +1,72 @@
+<div class="widgets-stars-container">
+
+  <div class="star-con all">
+    <div class="top">
+      <div class="name">{{'stars.quantityAvailableStar' | translate}}</div>
+    </div>
+    <div class="mid">
+      <div class="mid-item text-center">
+        <div class="w-100 star">
+          <span><span class="color-red">{{canUseStar}}</span> / <span class="small">{{allStar}}</span></span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="star-con slide"
+    *ngIf="slideStarData.isShow">
+    <div class="top">
+      <div class="name">{{'slide.name' | translate}}</div>
+    </div>
+    <div class="mid">
+      <div class="mid-item">
+        <div class="title">{{'stars.allGet' | translate}}</div>
+        <div class="star color-red">
+          <span>{{slideStarData.getStar}} </span>
+          <i class="nwicon nwi-star-full star-item"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="star-con sudoku"
+    *ngIf="sudokuStarData.isShow">
+    <div class="top">
+      <div class="name">{{'sudoku.name' | translate}}</div>
+    </div>
+    <div class="mid">
+      <div class="mid-item">
+        <div class="title">{{'stars.allGet' | translate}}</div>
+        <div class="star color-red">
+          <span>{{sudokuStarData.getStar}} </span>
+          <i class="nwicon nwi-star-full star-item"></i>
+        </div>
+      </div>
+      <div class="mid-item"
+        *ngFor="let sdItem of sudokuStarData.allStars">
+        <div class="title small">{{sdItem.name | translate}}</div>
+        <div class="star color-red">
+          <span class="small">{{sdItem.starNum}} </span>
+          <i class="nwicon nwi-star-full star-item small"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="star-con guess"
+    *ngIf="guessStarData.isShow">
+    <div class="top">
+      <div class="name">{{'guess.name' | translate}}</div>
+    </div>
+    <div class="mid">
+      <div class="mid-item">
+        <div class="title">{{'stars.allGet' | translate}}</div>
+        <div class="star color-red">
+          <span>{{guessStarData.getStar}} </span>
+          <i class="nwicon nwi-star-full star-item"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>

@@ -52,12 +52,20 @@
     "helpText1": "You can use a finger swipe to look for more than three pieces of digital color that are connected together and erase it."
   },
   "stars": {
-    "name": "Stars"
+    "name": "Stars",
+    "allGet": "Total",
+    "quantityAvailableStar": "Quantity available stars"
   },
   "settings": {
     "name": "Settings"
   },
   "more": {
-    "name": "More"
+    "name": "More",
+    "about": {
+      "title": "About",
+      "version": "Version: ",
+      "author": "Author: Bob Liu (Bob Game)",
+      "desc1": "This is my own practice coding work, all free, no paid content, I hope players like to play."
+    }
   }
 }

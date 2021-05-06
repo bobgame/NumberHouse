@@ -1,6 +1,26 @@
 <ion-app [class.color-con]="true"
-         [class.color-default]="themeColor === THEME_COLOR.DEFAULT">
-  <div class="nw-con bg-lighter color-darker" *ngIf="'common.ok' | translate">
+  [class.color-default]="themeColor === THEME_COLOR.DEFAULT">
+  <div class="nw-con bg-lighter color-darker"
+    *ngIf="'common.ok' | translate">
     <router-outlet></router-outlet>
   </div>
 </ion-app>
+<div class="psf flex-center flex-wrap lang-choose-content"
+  *ngIf="!isLoading && isShowLangChoose">
+  <div class="flex-center flex-wrap">
+    <nw-ui-btn *ngFor="let lan of allLangs"
+      class="my-3"
+      (click)="chooseLang(lan)"
+      [btnText]="lan.text"></nw-ui-btn>
+  </div>
+</div>
+<div class="psf flex-center flex-wrap loading-content"
+  *ngIf="isLoading">
+  <div class="flex-center flex-wrap loading">
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>

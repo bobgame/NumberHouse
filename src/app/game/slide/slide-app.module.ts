@@ -14,6 +14,7 @@ import { SlidePlayComponent } from './ui/pages/slide-play/slide-play.component'
 import { SlideSettingsComponent } from './ui/pages/slide-settings/slide-settings.component'
 import { SlidePopGameoverComponent } from './ui/pops/slide-pop-gameover/slide-pop-gameover.component'
 import { SlidePopPauseComponent } from './ui/pops/slide-pop-pause/slide-pop-pause.component'
+import { SlideStarsComponent } from './ui/pages/slide-stars/slide-stars.component'
 
 @NgModule({
   imports: [
@@ -37,6 +38,7 @@ import { SlidePopPauseComponent } from './ui/pops/slide-pop-pause/slide-pop-paus
     SlideSettingsComponent,
     SlidePopGameoverComponent,
     SlidePopPauseComponent,
+    SlideStarsComponent,
   ],
   exports: [
     SlideAppComponent,

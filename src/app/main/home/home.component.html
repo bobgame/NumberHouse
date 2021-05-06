@@ -8,7 +8,7 @@
     </svg>
   </h2>
   <div class="game-home-menu">
-    <nw-ui-menu-item *ngFor="let gameItem of AllGames"
+    <nw-ui-menu-item *ngFor="let gameItem of all.allGames"
       class="grid-col-{{gameItem.col}} grid-row-{{gameItem.row}}"
       [btnText]="gameItem.textKey | translate"
       [star]="gameItem.star"
@@ -16,7 +16,7 @@
       [isSmallFZ]="gameItem.isSmallFZ"
       [routerLink]="gameItem.routerLink"></nw-ui-menu-item>
     <!-- <div class="game-item mb-2 is-{{gameItem.size}}"
-      *ngFor="let gameItem of AllGames"
+      *ngFor="let gameItem of allGames"
       [routerLink]="gameItem.routerLink">
       <div class="icon"
         [style.background-image]="'url(' + gameItem.image + ')'"></div>

@@ -1,6 +1,7 @@
 <div class="text-center w-100">
   <nw-ui-game-header [isBackShow]="true"
-    (clickBack)="d.gotoGuessHome()"
-    [preTitle]="'guess.name' | translate"
+    (clickBack)="gotoPage(SudoPageEnum.Home)"
+    [preTitle]="'sudoku.name' | translate"
     [headerTitle]="'common.settings' | translate"></nw-ui-game-header>
+  <nw-widgets-stars [games]="games"></nw-widgets-stars>
 </div>

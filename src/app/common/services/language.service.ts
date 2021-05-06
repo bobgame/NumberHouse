@@ -7,8 +7,10 @@ import { TranslateService } from '@ngx-translate/core'
 export class LanguageService {
   public isLanguageLoaded = false
   private readonly defaultLanguage = 'en'
-  private readonly supportedLanguages: Array<string> = ['en'
-    // , 'zh-hans', 'zh-hant'
+  private readonly supportedLanguages: Array<string> = [
+    'en',
+    'zh-hans',
+    'zh-hant',
   ]
 
   constructor(
@@ -24,6 +26,7 @@ export class LanguageService {
     this.translate.setDefaultLang(this.defaultLanguage)
     this.isLanguageLoaded = true
     let lan = lang.toLowerCase()
+    console.log(lan)
     const isLanSupported = this.isLanSupported(lan)
     lan = isLanSupported ? lan : this.defaultLanguage
     this.translate.use(lan)

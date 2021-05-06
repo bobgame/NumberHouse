@@ -1,0 +1,71 @@
+{
+  "common": {
+    "title": "數字之家",
+    "ok": "確認",
+    "back": "返回",
+    "home": "首頁",
+    "play": "開始遊戲",
+    "newGame": "新遊戲",
+    "menu": "菜單",
+    "continue": "繼續",
+    "pause": "暫停",
+    "settings": "設置",
+    "stars": "星星",
+    "help": "幫助",
+    "gameMenu": "遊戲菜單",
+    "hardChoose": "難度選擇",
+    "score": "分數",
+    "times": "次數",
+    "gameOver": "遊戲結束",
+    "continueOrMenu": "繼續遊戲 或 返回菜單？",
+    "got": "獲得",
+    "starter": "新手",
+    "normal": "普通",
+    "master": "大師"
+  },
+  "gameOver": {
+    "gameOver": "遊戲結束！",
+    "timesOver": "移動次數已用完！",
+    "winWin": "恭喜！贏了！"
+  },
+  "sudoku": {
+    "name": "數獨",
+    "helpGoalTitle": "目標",
+    "helpGoalText": "用數字填充9×9網格，使每行、每列和每個3×3窗格部分包含1到9之間的數字。",
+    "helpPlayTitle": "遊戲方式",
+    "helpPlayText": "新的遊戲開始的時候，9×9網格中將有一些方格默認填充了數字。您可以利用這些數字之間的邏輯來填充缺失的數字並完成遊戲。",
+    "helpLiTitle": "註意，以下都會出錯:",
+    "helpLi1": "任意一行包含多個相同的數字。",
+    "helpLi2": "任何一列包含多個相同的數字。",
+    "helpLi3": "任何3×3窗格部分包含多個相同的數字。"
+  },
+  "guess": {
+    "name": "猜數字",
+    "helpText1": "以4字難度為例，你需要猜出4個數字。",
+    "helpText2": "遊戲將會隨機生成4個數字。",
+    "helpText3": "比如 5678，如果猜 0128，遊戲將會提示 1A0B，如果猜 5627，遊戲將會提示 2A1B。",
+    "helpText4": "每次遊戲有8次機會。",
+    "helpText5": "用越少次數猜對將獲得越高的星星。"
+  },
+  "slide": {
+    "name": "滑動吧數字",
+    "helpText1": "您可以用手指滑動來尋找三個以上連接在一起的彩色數字，將它們消除掉可以獲得分數。"
+  },
+  "stars": {
+    "name": "星星",
+    "allGet": "共獲得",
+    "quantityAvailableStar": "可用星星"
+  },
+  "settings": {
+    "name": "設置"
+  },
+  "more": {
+    "name": "更多",
+    "about": {
+      "title": "關於遊戲",
+      "version": "版本號：",
+      "author": "作者: Bob Liu (Bob Game)",
+      "desc1": "這個是我自己練習寫代碼的作品，全免費，無付費內容，希望玩家喜歡玩。"
+    }
+  }
+}

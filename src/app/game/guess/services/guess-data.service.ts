@@ -95,10 +95,10 @@ export class GuessDataService {
     const nowAllStar = this.guessData.allStars.find(a => a.mode === this.guessData.nowMode)
     nowAllStar.starNum += addStar
     nowAllStar.totalTime += this.guessData.time
-    this.all.starData.star += addStar
-    this.all.starData.allGetStar += addStar
-    this.all.starData.allGetStar += addStar
-    this.all.starData.gameStars.find(g => g.id === GameId.guess).getStar += addStar
+    this.all.allData.star += addStar
+    this.all.allData.allGetStar += addStar
+    this.all.allData.allGetStar += addStar
+    this.all.allData.gameStars.find(g => g.id === GameId.guess).getStar += addStar
     this.saveData()
     this.all.save()
     this.guessShowData.pop.gameover = true

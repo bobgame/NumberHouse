@@ -11,6 +11,7 @@ export class UiBtnComponent implements OnInit {
   @Input() btnSize = 'md' // sm md lg full
   @Input() isRightIcon = false
   @Input() rightIconName = ''
+  @Input() isHighlight = false
 
   @Output() btnClick = new EventEmitter<any>()
   @Output() iconClick = new EventEmitter<any>()
