@@ -7,7 +7,7 @@ import { LanguageService } from './common/services/language.service'
 import { TranslateService } from '@ngx-translate/core'
 import { THEME_COLOR } from 'src/app/common/enum/theme.enum'
 import { AllService } from './common/services/all.service'
-
+import { AdMob } from '@admob-plus/ionic/ngx';
 @Component({
   selector: 'nw-root',
   templateUrl: 'app.component.html',
@@ -32,12 +32,13 @@ export class AppComponent {
     private languageService: LanguageService,
     private translate: TranslateService,
     private all: AllService,
+    private admob: AdMob
   ) {
     this.initializeApp()
   }
 
   initializeApp() {
-    this.platform.ready().then(() => {
+    this.platform.ready().then(async () => {
       this.statusBar.styleDefault()
       this.splashScreen.hide()
       // this.languageService.useLanguage()
@@ -59,6 +60,28 @@ export class AppComponent {
         }
         this.isLoading = false
       }, 1500);
+      await this.admob.start();
+      const banner = new this.admob.BannerAd({
+        adUnitId: 'ca-app-pub-3422659975829631/5322510993',
+        position: 'top',
+      });
+      // alert('new this.admob.BannerAd end')
+      await banner.show().then(() => {
+        // alert('await banner.show()')
+      });
+
+      // this.admob.on('admob.banner.impression').subscribe(async () => {
+      //   await banner.hide();
+      // });
+
+
+      // const interstitial = new this.admob.InterstitialAd({
+      //   adUnitId: 'ca-app-pub-3422659975829631/9307123505',
+      // })
+
+      // await interstitial.load()
+      // await interstitial.show()
+
       // this.translate.use('zh-hans')
       // this.translate.use('en')
     })

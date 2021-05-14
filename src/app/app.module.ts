@@ -6,7 +6,7 @@ import { TranslateModule, TranslateLoader } from '@ngx-translate/core'
 import { IonicModule, IonicRouteStrategy } from '@ionic/angular'
 import { SplashScreen } from '@ionic-native/splash-screen/ngx'
 import { StatusBar } from '@ionic-native/status-bar/ngx'
-
+import { AdMob } from '@admob-plus/ionic/ngx';
 
 import * as Hammer from 'hammerjs'
 import {
@@ -47,6 +47,7 @@ export class MyHammerConfig extends HammerGestureConfig {
   providers: [
     StatusBar,
     SplashScreen,
+    AdMob,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
     {
       provide: HAMMER_GESTURE_CONFIG,

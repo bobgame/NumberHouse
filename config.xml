@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="com.llbnew.simplenumhousell" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+<widget android-versionCode="10" id="com.llbnew.simplenumhousell" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <name>Number House</name>
     <description>Number games in one house</description>
     <author email="bobgame@vip.qq.com" href="http://game.llbnew.com/">Bob Game</author>
@@ -22,6 +22,7 @@
         <edit-config file="app/src/main/AndroidManifest.xml" mode="merge" target="/manifest/application" xmlns:android="http://schemas.android.com/apk/res/android">
             <application android:networkSecurityConfig="@xml/network_security_config" />
         </edit-config>
+        <preference name="AndroidXEnabled" value="true" />
         <resource-file src="resources/android/xml/network_security_config.xml" target="app/src/main/res/xml/network_security_config.xml" />
         <resource-file src="resources/android/values-zh-rCN/strings.xml" target="app/src/main/res/values-zh-rCN/strings.xml" />
         <resource-file src="resources/android/values-zh-rTW/strings.xml" target="app/src/main/res/values-zh-rTW/strings.xml" />
@@ -100,7 +101,6 @@
     <plugin name="cordova-plugin-statusbar" spec="2.4.2" />
     <plugin name="cordova-plugin-device" spec="2.0.2" />
     <plugin name="cordova-plugin-splashscreen" spec="5.0.2" />
-    <plugin name="cordova-plugin-ionic-webview" spec="^4.0.0" />
     <plugin name="cordova-plugin-ionic-keyboard" spec="^2.0.5" />
     <engine name="ios" spec="~4.5.5" />
 </widget>
