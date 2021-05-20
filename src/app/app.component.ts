@@ -60,27 +60,31 @@ export class AppComponent {
         }
         this.isLoading = false
       }, 1500);
-      await this.admob.start();
-      const banner = new this.admob.BannerAd({
-        adUnitId: 'ca-app-pub-3422659975829631/5322510993',
-        position: 'top',
-      });
-      // alert('new this.admob.BannerAd end')
-      await banner.show().then(() => {
-        // alert('await banner.show()')
-      });
+      try {
+        await this.admob.start();
+        const banner = new this.admob.BannerAd({
+          adUnitId: 'ca-app-pub-3422659975829631/5322510993',
+          position: 'top',
+        });
+        // alert('new this.admob.BannerAd end')
+        await banner.show().then(() => {
+          // alert('await banner.show()')
+        });
 
-      // this.admob.on('admob.banner.impression').subscribe(async () => {
-      //   await banner.hide();
-      // });
+        // this.admob.on('admob.banner.impression').subscribe(async () => {
+        //   await banner.hide();
+        // });
 
 
-      // const interstitial = new this.admob.InterstitialAd({
-      //   adUnitId: 'ca-app-pub-3422659975829631/9307123505',
-      // })
+        // const interstitial = new this.admob.InterstitialAd({
+        //   adUnitId: 'ca-app-pub-3422659975829631/9307123505',
+        // })
 
-      // await interstitial.load()
-      // await interstitial.show()
+        // await interstitial.load()
+        // await interstitial.show()
+      } catch (error) {
+
+      }
 
       // this.translate.use('zh-hans')
       // this.translate.use('en')

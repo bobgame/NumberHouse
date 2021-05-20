@@ -34,6 +34,16 @@
     height: $shiftWidth;
     border-radius: 2vw;
     overflow: hidden;
+    .canvas-content {
+      width: 100%;
+      height: 100%;
+      canvas {
+        width: 231.9587628865979%;
+        height: 231.9587628865979%;
+        margin-left: -65.97938144329897%;
+        margin-top: -65.97938144329897%;
+      }
+    }
     .num-content {
       position: absolute;
       left: calc((#{$shiftWidth} - #{$itemWidth} * 4) / 2);
@@ -174,35 +184,10 @@
       border-radius: 1vw;
       // overflow: hidden;
       user-select: none;
-      $maskWidth: calc((#{$shiftWidth} - #{$itemWidth} * 4) / 2);
-      .border-content-mask {
-        position: absolute;
-        background-color: rgba($color: #000000, $alpha: .2);
-        &.mask-top {
-          left: 0;
-          top: 0;
-          width: 100%;
-          height: $maskWidth;
-        }
-        &.mask-middle-left {
-          left: 0;
-          top: $maskWidth;
-          width: $maskWidth;
-          height: calc(100% - #{$maskWidth} * 2 + 2px);
-        }
-        &.mask-middle-right {
-          right: -2px;
-          top: $maskWidth;
-          width: $maskWidth;
-          height: calc(100% - #{$maskWidth} * 2 + 2px);
-        }
-        &.mask-bottom {
-          left: 0;
-          bottom: -2px;
-          width: 100%;
-          height: $maskWidth;
-        }
-      }
+      background-color: rgba($color: #000000, $alpha: 0.01);
+      background-image: url('/assets/images/slide/slide-mask.png');
+      background-size: 100% 100%;
+      opacity: .3;
     }
   }
 }

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core'
-import { SlideShowData, SlideData, SlideItem, SlidePos } from '../data/slide-type'
+import { SlideShowData, SlideData, SlideItem, SlidePos, SlideNumItem } from '../data/slide-type'
 import { SlideDataDefault, SlideShowDataDefault } from '../data/slide-data'
 import { SLIDE_SAVE } from '../enum/slide-save.enum'
 import { objCopy } from 'src/units/ObjCopy'
@@ -35,6 +35,8 @@ export class SlideDataService {
     [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11],
     [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
   ]
+  numItems: SlideNumItem[] = []
+  itemWidth = 160
 
   isSwiping = false
   needRMItemIds: number[] = []
@@ -55,6 +57,24 @@ export class SlideDataService {
       this.slideShowData.pauseTime = false
       this.saveData()
     }, 1000)
+  }
+
+  testItems() {
+    this.numItems = []
+    for (let i = 0; i < 14; i++) {
+      for (let j = 0; j < 14; j++) {
+        const item = {
+          num: randInArr(this.levelNumbers[4]),
+          x: i,
+          y: j,
+          posX: i * this.itemWidth,
+          posY: j * this.itemWidth,
+          goX: i * this.itemWidth,
+          goY: j * this.itemWidth,
+        }
+        this.numItems.push(item)
+      }
+    }
   }
 
   gotoSlideHome() {
@@ -121,16 +141,19 @@ export class SlideDataService {
   initSlideItems() {
     this.slideData.slideScore = 0
     this.slideData.items = []
-    for (let x = 1; x <= 14; x++) {
-      for (let y = 1; y <= 14; y++) {
+    for (let x = 0; x < 14; x++) {
+      for (let y = 0; y < 14; y++) {
         const nowNumbers = this.getLevelNumbers(this.slideData.lv)
         const num = randInArr(nowNumbers)
         const thisItem: SlideItem = {
           id: this.slideData.nextId,
-          number: num,
-          name: num.toString(),
+          num,
           isInContent: this.isInContent({ x, y }),
           pos: { x, y },
+          posX: x * this.itemWidth,
+          posY: y * this.itemWidth,
+          goX: x * this.itemWidth,
+          goY: y * this.itemWidth,
         }
         this.slideData.items.push(thisItem)
         this.slideData.nextId++
@@ -140,7 +163,7 @@ export class SlideDataService {
 
   isInContent(pos: SlidePos) {
     const { x, y } = pos
-    if (x >= 6 && x <= 9 && y >= 6 && y <= 9) {
+    if (x >= 5 && x <= 8 && y >= 5 && y <= 8) {
       return true
     }
     return false
@@ -180,14 +203,14 @@ export class SlideDataService {
       item.isInContent = this.isInContent(item.pos)
     })
     const sameItemIds: number[][] = []
-    for (let x = 6; x <= 9; x++) {
-      for (let y = 6; y <= 9; y++) {
+    for (let x = 5; x <= 8; x++) {
+      for (let y = 5; y <= 8; y++) {
         const p = { x, y }
         const thisItem = this.getItemByPos(p)
         if (thisItem) {
           const nearItems = this.getNearInItems(p)
           nearItems.forEach(nearItem => {
-            if (thisItem.number === nearItem.number) {
+            if (thisItem.num === nearItem.num) {
               let inSame = false
               sameItemIds.forEach(s => {
                 if (s.includes(nearItem.id) || s.includes(thisItem.id)) {
@@ -291,10 +314,13 @@ export class SlideDataService {
           if (!isInItem) {
             const thisItem: SlideItem = {
               id: this.slideData.nextId,
-              number: num,
-              name: num.toString(),
+              num,
               isInContent: this.isInContent({ x, y }),
               pos: { x, y },
+              posX: x * this.itemWidth,
+              posY: y * this.itemWidth,
+              goX: x * this.itemWidth,
+              goY: y * this.itemWidth,
             }
             this.slideData.items.push(thisItem)
             this.slideData.nextId++
@@ -327,6 +353,8 @@ export class SlideDataService {
         }
         nextItem.pos.x = ePos.x
         nextItem.pos.y = ePos.y
+        nextItem.goX = ePos.x * this.itemWidth
+        nextItem.goY = ePos.y * this.itemWidth
       }
     })
     if (newEmptyPoses.length > 0) {
@@ -356,6 +384,7 @@ export class SlideDataService {
     if (!this.canSwipe()) { return false }
     this.isSwiping = true
     this.slideData.items.forEach(item => {
+      item.goX -= this.itemWidth
       item.pos.x--
     })
     this.checkSameItems()
@@ -365,6 +394,7 @@ export class SlideDataService {
     if (!this.canSwipe()) { return false }
     this.isSwiping = true
     this.slideData.items.forEach(item => {
+      item.goX += this.itemWidth
       item.pos.x++
     })
     this.checkSameItems()
@@ -374,6 +404,7 @@ export class SlideDataService {
     if (!this.canSwipe()) { return false }
     this.isSwiping = true
     this.slideData.items.forEach(item => {
+      item.goY -= this.itemWidth
       item.pos.y--
     })
     this.checkSameItems()
@@ -383,6 +414,7 @@ export class SlideDataService {
     if (!this.canSwipe()) { return false }
     this.isSwiping = true
     this.slideData.items.forEach(item => {
+      item.goY += this.itemWidth
       item.pos.y++
     })
     this.checkSameItems()

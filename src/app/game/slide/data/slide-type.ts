@@ -16,11 +16,14 @@ export class SlidePos {
 }
 export class SlideItem {
   id: number
-  number: number
-  name: string
+  num: number
   isInContent: boolean
   isDestroying?: boolean
   pos: SlidePos
+  posX: number
+  posY: number
+  goX: number
+  goY: number
 }
 export class SlideData {
   continue: boolean
@@ -33,6 +36,16 @@ export class SlideData {
   inPoses: SlidePos[]
   items: SlideItem[]
   nowMode: number
+}
+
+export class SlideNumItem {
+  num: number
+  x: number
+  y: number
+  posX: number
+  posY: number
+  goX: number
+  goY: number
 }
 
 export class SlideStar {
