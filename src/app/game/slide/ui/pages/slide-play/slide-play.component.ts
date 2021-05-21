@@ -38,14 +38,9 @@ export class SlidePlayComponent implements OnInit, OnDestroy {
     this.d.startShowTime()
     this.listenKeyboard()
 
-    this.d.testItems()
     setTimeout(() => {
       this.initCanvas()
     }, 0);
-    // setTimeout(() => {
-    //   this.items.splice(this.items.length - 1, 1)
-    //   console.log(this.items)
-    // }, 4000);
   }
 
 

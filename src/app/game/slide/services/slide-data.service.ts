@@ -23,21 +23,8 @@ export class SlideDataService {
   STAR_MAX = this.starArr.length
   slideShowTimeInterval: any
   slideData: SlideData = objCopy(SlideDataDefault)
-  levelNumbers = [
-    [1, 2, 3, 4],
-    [1, 2, 3, 4],
-    [1, 2, 3, 4, 5],
-    [1, 2, 3, 4, 5, 6],
-    [1, 2, 3, 4, 5, 6, 7],
-    [1, 2, 3, 4, 5, 6, 7, 8],
-    [1, 2, 3, 4, 5, 6, 7, 8, 9],
-    [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
-    [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11],
-    [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
-  ]
-  numItems: SlideNumItem[] = []
-  itemWidth = 160
 
+  itemWidth = 160
   isSwiping = false
   needRMItemIds: number[] = []
 
@@ -57,24 +44,6 @@ export class SlideDataService {
       this.slideShowData.pauseTime = false
       this.saveData()
     }, 1000)
-  }
-
-  testItems() {
-    this.numItems = []
-    for (let i = 0; i < 14; i++) {
-      for (let j = 0; j < 14; j++) {
-        const item = {
-          num: randInArr(this.levelNumbers[4]),
-          x: i,
-          y: j,
-          posX: i * this.itemWidth,
-          posY: j * this.itemWidth,
-          goX: i * this.itemWidth,
-          goY: j * this.itemWidth,
-        }
-        this.numItems.push(item)
-      }
-    }
   }
 
   gotoSlideHome() {
@@ -120,15 +89,15 @@ export class SlideDataService {
 
   initPoses() {
     this.slideData.inPoses = []
-    for (let x = 6; x <= 9; x++) {
-      for (let y = 6; y <= 9; y++) {
+    for (let x = 5; x <= 8; x++) {
+      for (let y = 5; y <= 8; y++) {
         this.slideData.inPoses.push({ x, y })
       }
     }
   }
 
   getLevelNumbers(lv: number) {
-    const baseMaxNum = 5
+    const baseMaxNum = 2
     const lvNumArr: number[] = []
     for (let i = 1; i < lv + baseMaxNum; i++) {
       if (i <= 18) {
@@ -149,6 +118,7 @@ export class SlideDataService {
           id: this.slideData.nextId,
           num,
           isInContent: this.isInContent({ x, y }),
+          destroyNum: 0,
           pos: { x, y },
           posX: x * this.itemWidth,
           posY: y * this.itemWidth,
@@ -242,7 +212,7 @@ export class SlideDataService {
         this.slideData.slideScore += s.length * s.length * 10
         // console.log(this.slideData.lv)
         const newLv = Math.floor(this.slideData.slideScore / (2000 + 1000 * this.slideData.lv - 1)) + 1
-        if (this.slideData.lv < newLv && newLv < this.levelNumbers.length) {
+        if (this.slideData.lv < newLv) {
           this.slideData.lv = newLv
         }
       }
@@ -308,7 +278,7 @@ export class SlideDataService {
       // create new items
       for (let x = 1; x <= 14; x++) {
         for (let y = 1; y <= 14; y++) {
-          const nowNumbers = deepCopy(this.levelNumbers[this.slideData.lv])
+          const nowNumbers = this.getLevelNumbers(this.slideData.lv)
           const num = randInArr(nowNumbers)
           const isInItem = this.slideData.items.find(i => i.pos.x === x && i.pos.y === y)
           if (!isInItem) {
@@ -316,6 +286,7 @@ export class SlideDataService {
               id: this.slideData.nextId,
               num,
               isInContent: this.isInContent({ x, y }),
+              destroyNum: 0,
               pos: { x, y },
               posX: x * this.itemWidth,
               posY: y * this.itemWidth,

@@ -19,6 +19,7 @@ export class SlideItem {
   num: number
   isInContent: boolean
   isDestroying?: boolean
+  destroyNum: number
   pos: SlidePos
   posX: number
   posY: number
