@@ -24,7 +24,9 @@ export class SlideDataService {
   slideShowTimeInterval: any
   slideData: SlideData = objCopy(SlideDataDefault)
 
-  itemWidth = 160
+  moveTimes = 16
+  itemWidth = 96
+  // itemWidth = 160
   isSwiping = false
   needRMItemIds: number[] = []
 
@@ -124,6 +126,7 @@ export class SlideDataService {
           posY: y * this.itemWidth,
           goX: x * this.itemWidth,
           goY: y * this.itemWidth,
+          goStep: 0,
         }
         this.slideData.items.push(thisItem)
         this.slideData.nextId++
@@ -292,6 +295,7 @@ export class SlideDataService {
               posY: y * this.itemWidth,
               goX: x * this.itemWidth,
               goY: y * this.itemWidth,
+              goStep: 0,
             }
             this.slideData.items.push(thisItem)
             this.slideData.nextId++
@@ -326,6 +330,11 @@ export class SlideDataService {
         nextItem.pos.y = ePos.y
         nextItem.goX = ePos.x * this.itemWidth
         nextItem.goY = ePos.y * this.itemWidth
+        if (nextItem.goX !== nextItem.posX) {
+          nextItem.goStep = Math.abs(nextItem.goX - nextItem.posX) / this.moveTimes
+        } else if (nextItem.goY !== nextItem.posY) {
+          nextItem.goStep = Math.abs(nextItem.goY - nextItem.posY) / this.moveTimes
+        }
       }
     })
     if (newEmptyPoses.length > 0) {
@@ -356,6 +365,7 @@ export class SlideDataService {
     this.isSwiping = true
     this.slideData.items.forEach(item => {
       item.goX -= this.itemWidth
+      item.goStep = Math.abs(item.goX - item.posX) / this.moveTimes * 2
       item.pos.x--
     })
     this.checkSameItems()
@@ -366,6 +376,7 @@ export class SlideDataService {
     this.isSwiping = true
     this.slideData.items.forEach(item => {
       item.goX += this.itemWidth
+      item.goStep = Math.abs(item.goX - item.posX) / this.moveTimes * 2
       item.pos.x++
     })
     this.checkSameItems()
@@ -376,6 +387,7 @@ export class SlideDataService {
     this.isSwiping = true
     this.slideData.items.forEach(item => {
       item.goY -= this.itemWidth
+      item.goStep = Math.abs(item.goY - item.posY) / this.moveTimes * 2
       item.pos.y--
     })
     this.checkSameItems()
@@ -386,6 +398,7 @@ export class SlideDataService {
     this.isSwiping = true
     this.slideData.items.forEach(item => {
       item.goY += this.itemWidth
+      item.goStep = Math.abs(item.goY - item.posY) / this.moveTimes * 2
       item.pos.y++
     })
     this.checkSameItems()

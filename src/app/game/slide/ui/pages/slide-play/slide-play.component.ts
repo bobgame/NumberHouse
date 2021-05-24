@@ -56,11 +56,19 @@ export class SlidePlayComponent implements OnInit, OnDestroy {
   rectY = 0
   timePassed = 0;
   oldTimeStamp: any = 0;
+  // context: WebGLRenderingContext
   context: CanvasRenderingContext2D
   movingSpeed = 800
+  // itemWidth = 160
+  itemWidth = 96
+  // itemPXY = 5
+  itemPXY = 3
+  // canvasWidth = 2250
+  canvasWidth = 1350
 
   initCanvas() {
     this.context = this.slideShiftContentCanvas.nativeElement.getContext('2d');
+    // this.context = this.slideShiftContentCanvas.nativeElement.getContext('webgl');
     this.gameLoop(0)
   }
 
@@ -88,18 +96,12 @@ export class SlidePlayComponent implements OnInit, OnDestroy {
     this.d.slideData.items.forEach(item => {
       this.drawNum(item.num, item.posX, item.posY)
     })
-    // for (let i = 0; i < 18; i++) {
-    //   const x = i % 6
-    //   const y = Math.floor(i / 6)
-
-    //   this.context.drawImage(this.numbersImage, x * 160, y * 160, 160, 160, x * 160 + 5, y * 160 + 5, 160, 160);
-    // }
   }
 
   drawNum(num, posX, posY) {
     const x = num % 6
     const y = Math.floor(num / 6)
-    this.context.drawImage(this.numbersImage, x * 160, y * 160, 160, 160, posX + 5, posY + 5, 160, 160);
+    this.context.drawImage(this.numbersImage, x * 160, y * 160, 160, 160, posX + this.itemPXY, posY + this.itemPXY, this.itemWidth, this.itemWidth);
   }
 
   update(secondsPassed) {
@@ -113,7 +115,8 @@ export class SlidePlayComponent implements OnInit, OnDestroy {
     this.d.slideData.items.forEach(item => {
       if (item.goX != item.posX) {
         const compareX = item.goX - item.posX
-        const addX = move < Math.abs(compareX) ? move : Math.abs(compareX)
+        const addX = item.goStep < Math.abs(compareX) ? item.goStep : Math.abs(compareX)
+        // const addX = move < Math.abs(compareX) ? move : Math.abs(compareX)
         if (compareX > 0) {
           item.posX += addX
         } else {
@@ -122,7 +125,7 @@ export class SlidePlayComponent implements OnInit, OnDestroy {
       }
       if (item.goY != item.posY) {
         const compareY = item.goY - item.posY
-        const addY = move < Math.abs(compareY) ? move : Math.abs(compareY)
+        const addY = item.goStep < Math.abs(compareY) ? item.goStep : Math.abs(compareY)
         if (compareY > 0) {
           item.posY += addY
         } else {

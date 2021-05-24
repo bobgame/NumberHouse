@@ -8,6 +8,8 @@ import { TranslateService } from '@ngx-translate/core'
 import { THEME_COLOR } from 'src/app/common/enum/theme.enum'
 import { AllService } from './common/services/all.service'
 import { AdMob } from '@admob-plus/ionic/ngx';
+
+declare var window
 @Component({
   selector: 'nw-root',
   templateUrl: 'app.component.html',
@@ -39,6 +41,16 @@ export class AppComponent {
 
   initializeApp() {
     this.platform.ready().then(async () => {
+      window.requestAnimationFrame = (function () {
+        return window.requestAnimationFrame ||
+          window.webkitRequestAnimationFrame ||
+          window.mozRequestAnimationFrame ||
+          window.oRequestAnimationFrame ||
+          window.msRequestAnimationFrame ||
+          function (cb) {
+            window.setTimeout(cb, 1000 / 60)
+          }
+      })()
       this.statusBar.styleDefault()
       this.splashScreen.hide()
       // this.languageService.useLanguage()

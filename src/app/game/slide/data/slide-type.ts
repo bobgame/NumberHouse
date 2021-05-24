@@ -25,6 +25,7 @@ export class SlideItem {
   posY: number
   goX: number
   goY: number
+  goStep: number
 }
 export class SlideData {
   continue: boolean

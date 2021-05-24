@@ -23,8 +23,12 @@
       <div class="canvas-content">
         <canvas id="slide-shift-content-canvas"
           #slideShiftContentCanvas
+          [width]="canvasWidth"
+          [height]="canvasWidth"></canvas>
+        <!-- <canvas id="slide-shift-content-canvas"
+          #slideShiftContentCanvas
           width="2250"
-          height="2250"></canvas>
+          height="2250"></canvas> -->
       </div>
       <div class="border-content"
         (swipeleft)="swipeLeft()"
