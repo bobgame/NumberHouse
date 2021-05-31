@@ -2,6 +2,7 @@ import { SlideData, SlideShowData } from './slide-type'
 import { SlidePageEnum } from '../enum/slide-page.enum'
 
 export const SlideShowDataDefault: SlideShowData = {
+  // page: SlidePageEnum.Play,
   page: SlidePageEnum.Home,
   gameOverText: '',
   pauseTime: true,

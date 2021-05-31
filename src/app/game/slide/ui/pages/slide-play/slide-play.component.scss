@@ -37,6 +37,21 @@
     .canvas-content {
       width: 100%;
       height: 100%;
+      .slide-shift-content {
+        width: 100%;
+        height: 100%;
+        ::ng-deep {
+          canvas {
+            // width: 100%;
+            // height: 100%;
+            width: 231.9587628865979%;
+            height: 231.9587628865979%;
+            margin-left: -65.97938144329897%;
+            margin-top: -65.97938144329897%;
+          }
+
+        }
+      }
       canvas {
         width: 231.9587628865979%;
         height: 231.9587628865979%;

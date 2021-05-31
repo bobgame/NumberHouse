@@ -1,9 +1,9 @@
-import { Component, OnInit, OnDestroy, HostListener, ViewChild, ElementRef } from '@angular/core'
-import { EventManager } from '@angular/platform-browser'
+import { Component, OnInit, OnDestroy, ViewChild, ElementRef } from '@angular/core'
 import { SlideDataService } from '../../../services/slide-data.service'
 import { SlideData, SlideShowData } from '../../../data/slide-type'
 import { fromEvent, Subscription } from 'rxjs'
-import { randInArr } from 'src/units/base'
+import * as PIXI from 'pixi.js'
+import { Sprite } from 'pixi.js'
 
 @Component({
   selector: 'nw-slide-play',
@@ -14,7 +14,6 @@ export class SlidePlayComponent implements OnInit, OnDestroy {
 
   constructor(
     public d: SlideDataService,
-    private eventManager: EventManager,
   ) { }
 
   slideData: SlideData
@@ -26,11 +25,36 @@ export class SlidePlayComponent implements OnInit, OnDestroy {
   numbersImage: HTMLImageElement
 
   @ViewChild('slideShiftContentCanvas')
-  slideShiftContentCanvas: ElementRef<HTMLCanvasElement>;
+  slideShiftContentCanvas: ElementRef<HTMLCanvasElement>
+  @ViewChild('slideContentCanvas')
+  slideContentCanvas: ElementRef<HTMLCanvasElement>
+
+  shiftApp: PIXI.Application
+  Application = PIXI.Application
+  loader = new PIXI.Loader()
+  resources = PIXI.Resource
+  Container = PIXI.Container
+  TextureCache = PIXI.utils.TextureCache
+  Sprite = PIXI.Sprite
+  Rectangle = PIXI.Rectangle
+
+  rectX = 0
+  rectY = 0
+  timePassed = 0
+  oldTimeStamp: any = 0
+  movingSpeed = 800
+  itemWidth = 160
+  // itemWidth = 96
+  itemPXY = 5
+  // itemPXY = 3
+  canvasWidth = 2250
+  id: {
+    [name: string]: PIXI.Texture<PIXI.Resource>;
+  }
 
   ngOnInit() {
-    this.numbersImage = new Image();
-    this.numbersImage.src = "assets/images/slide/numbers.png";
+    this.itemWidth = this.d.itemWidth
+    // this.d.initSlideGame() // for test
     this.slideData = this.d.slideData
     this.starArr = this.d.starArr
     this.slideShowData = this.d.slideShowData
@@ -39,11 +63,9 @@ export class SlidePlayComponent implements OnInit, OnDestroy {
     this.listenKeyboard()
 
     setTimeout(() => {
-      this.initCanvas()
-    }, 0);
+      this.initPIXI()
+    }, 0)
   }
-
-
 
   ngOnDestroy() {
     this.d.pauseShowTime()
@@ -52,68 +74,67 @@ export class SlidePlayComponent implements OnInit, OnDestroy {
     }
   }
 
-  rectX = 0
-  rectY = 0
-  timePassed = 0;
-  oldTimeStamp: any = 0;
-  // context: WebGLRenderingContext
-  context: CanvasRenderingContext2D
-  movingSpeed = 800
-  // itemWidth = 160
-  itemWidth = 96
-  // itemPXY = 5
-  itemPXY = 3
-  // canvasWidth = 2250
-  canvasWidth = 1350
+  initPIXI() {
+    this.shiftApp = new PIXI.Application({
+      width: this.canvasWidth,
+      height: this.canvasWidth,
+      clearBeforeRender: true,
+      backgroundColor: 0xcccccc,
+    })
+    this.slideContentCanvas.nativeElement.appendChild(this.shiftApp.view)
+    this.shiftApp.loader
+      .add('/assets/images/slide/numbers.json')
+      .load(this.setup.bind(this))
+  }
 
-  initCanvas() {
-    this.context = this.slideShiftContentCanvas.nativeElement.getContext('2d');
-    // this.context = this.slideShiftContentCanvas.nativeElement.getContext('webgl');
-    this.gameLoop(0)
+  setup() {
+    this.id = this.shiftApp.loader.resources['/assets/images/slide/numbers.json'].textures
+    this.shiftApp.renderer.render(this.shiftApp.stage)
+    // this.gameLoop(0)
+    this.shiftApp.ticker.add(delta => this.gameLoop(delta));
   }
 
   gameLoop = (timeStamp) => {
-    // const timeStamp: any = new Date()
-    // Calculate how much time has passed
-    // if (timeStamp) {
-    let secondsPassed: any = (timeStamp - this.oldTimeStamp) / 1000;
-    secondsPassed = Math.min(secondsPassed, 0.1);
-    this.oldTimeStamp = timeStamp;
-    // }
-
-    // console.log(secondsPassed)
+    let secondsPassed: any = (timeStamp - this.oldTimeStamp) / 1000
+    secondsPassed = Math.min(secondsPassed, 0.1)
+    this.oldTimeStamp = timeStamp
     // Pass the time to the update
-    this.update(secondsPassed);
-    this.draw();
+    this.update(secondsPassed)
+    this.shiftApp.stage.removeChildren()
+    this.draw()
 
-    window.requestAnimationFrame(this.gameLoop);
+    // window.requestAnimationFrame(this.gameLoop)
+    // setTimeout(() => {
+    //   this.gameLoop(0)
+    // }, 1000 / 60)
+    // window.requestAnimationFrame(this.gameLoop)
   }
 
   draw() {
-    // Clear the entire slideShiftContentCanvas
-    this.context.clearRect(0, 0, this.slideShiftContentCanvas.nativeElement.width, this.slideShiftContentCanvas.nativeElement.height);
-
     this.d.slideData.items.forEach(item => {
       this.drawNum(item.num, item.posX, item.posY)
     })
   }
 
   drawNum(num, posX, posY) {
-    const x = num % 6
-    const y = Math.floor(num / 6)
-    this.context.drawImage(this.numbersImage, x * 160, y * 160, 160, 160, posX + this.itemPXY, posY + this.itemPXY, this.itemWidth, this.itemWidth);
+    if (
+      posX > this.itemWidth * 3 &&
+      posX < this.itemWidth * 10 &&
+      posY > this.itemWidth * 3 &&
+      posY < this.itemWidth * 10
+    ) {
+      const item = new Sprite(this.id[num + '.png'])
+      item.x = posX + this.itemPXY
+      item.y = posY + this.itemPXY
+      item.width = this.itemWidth
+      item.height = this.itemWidth
+      this.shiftApp.stage.addChild(item)
+    }
   }
 
   update(secondsPassed) {
-    // this.timePassed = 0;
-    this.timePassed += secondsPassed
-    const move = this.movingSpeed * secondsPassed
-
-    // Use different easing functions for different effects.
-    // this.rectX = (move);
-    // this.rectY = (move);
     this.d.slideData.items.forEach(item => {
-      if (item.goX != item.posX) {
+      if (item.goX !== item.posX) {
         const compareX = item.goX - item.posX
         const addX = item.goStep < Math.abs(compareX) ? item.goStep : Math.abs(compareX)
         // const addX = move < Math.abs(compareX) ? move : Math.abs(compareX)
@@ -123,7 +144,7 @@ export class SlidePlayComponent implements OnInit, OnDestroy {
           item.posX -= addX
         }
       }
-      if (item.goY != item.posY) {
+      if (item.goY !== item.posY) {
         const compareY = item.goY - item.posY
         const addY = item.goStep < Math.abs(compareY) ? item.goStep : Math.abs(compareY)
         if (compareY > 0) {
@@ -133,20 +154,16 @@ export class SlidePlayComponent implements OnInit, OnDestroy {
         }
       }
     })
-    // this.movingSpeed += 50
-
-    // this.rectX = this.easeInOutQuint(this.timePassed, 50, 500, 1.5);
-    // this.rectY = this.easeLinear(this.timePassed, 50, 250, 1.5);
   }
   // Example easing functions
-  easeInOutQuint(t, b, c, d) {
-    if ((t /= d / 2) < 1) return c / 2 * t * t * t * t * t + b;
-    return c / 2 * ((t -= 2) * t * t * t * t + 2) + b;
-  }
+  // easeInOutQuint(t, b, c, d) {
+  //   if ((t /= d / 2) < 1) { return c / 2 * t * t * t * t * t + b }
+  //   return c / 2 * ((t -= 2) * t * t * t * t + 2) + b
+  // }
 
-  easeLinear(t, b, c, d) {
-    return c * t / d + b;
-  }
+  // easeLinear(t, b, c, d) {
+  //   return c * t / d + b
+  // }
 
   private listenKeyboard() {
     if (this.keyboardSubscription) {

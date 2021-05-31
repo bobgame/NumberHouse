@@ -25,8 +25,8 @@ export class SlideDataService {
   slideData: SlideData = objCopy(SlideDataDefault)
 
   moveTimes = 16
-  itemWidth = 96
-  // itemWidth = 160
+  // itemWidth = 96
+  itemWidth = 160
   isSwiping = false
   needRMItemIds: number[] = []
 
@@ -99,7 +99,7 @@ export class SlideDataService {
   }
 
   getLevelNumbers(lv: number) {
-    const baseMaxNum = 2
+    const baseMaxNum = 4
     const lvNumArr: number[] = []
     for (let i = 1; i < lv + baseMaxNum; i++) {
       if (i <= 18) {

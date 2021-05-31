@@ -73,15 +73,15 @@ export class AppComponent {
         this.isLoading = false
       }, 1500);
       try {
-        await this.admob.start();
-        const banner = new this.admob.BannerAd({
-          adUnitId: 'ca-app-pub-3422659975829631/5322510993',
-          position: 'top',
-        });
-        // alert('new this.admob.BannerAd end')
-        await banner.show().then(() => {
-          // alert('await banner.show()')
-        });
+        // await this.admob.start();
+        // const banner = new this.admob.BannerAd({
+        //   adUnitId: 'ca-app-pub-3422659975829631/5322510993',
+        //   position: 'top',
+        // });
+        // // alert('new this.admob.BannerAd end')
+        // await banner.show().then(() => {
+        //   // alert('await banner.show()')
+        // });
 
         // this.admob.on('admob.banner.impression').subscribe(async () => {
         //   await banner.hide();
