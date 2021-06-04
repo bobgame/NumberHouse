@@ -47,7 +47,7 @@ export class SlidePlayComponent implements OnInit, OnDestroy {
   // itemWidth = 96
   itemPXY = 5
   // itemPXY = 3
-  canvasWidth = 2250
+  canvasWidth = 970
   id: {
     [name: string]: PIXI.Texture<PIXI.Resource>;
   }
@@ -117,11 +117,12 @@ export class SlidePlayComponent implements OnInit, OnDestroy {
   }
 
   drawNum(num, posX, posY) {
+    const maskNum = 2
     if (
-      posX > this.itemWidth * 3 &&
-      posX < this.itemWidth * 10 &&
-      posY > this.itemWidth * 3 &&
-      posY < this.itemWidth * 10
+      posX > this.itemWidth * (this.d.showStartPos - maskNum) &&
+      posX < this.itemWidth * (this.d.showEndPos + maskNum) &&
+      posY > this.itemWidth * (this.d.showStartPos - maskNum) &&
+      posY < this.itemWidth * (this.d.showEndPos + maskNum)
     ) {
       const item = new Sprite(this.id[num + '.png'])
       item.x = posX + this.itemPXY

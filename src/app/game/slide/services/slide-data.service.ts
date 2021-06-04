@@ -25,10 +25,18 @@ export class SlideDataService {
   slideData: SlideData = objCopy(SlideDataDefault)
 
   moveTimes = 16
-  // itemWidth = 96
   itemWidth = 160
   isSwiping = false
   needRMItemIds: number[] = []
+
+  startPos = -4
+  endPos = 9
+  showStartPos = 1
+  showEndPos = 4
+  // startPos = 0
+  // endPos = 13
+  // showStartPos = 5
+  // showEndPos = 8
 
   constructor(
     private storage: StorageService,
@@ -91,8 +99,8 @@ export class SlideDataService {
 
   initPoses() {
     this.slideData.inPoses = []
-    for (let x = 5; x <= 8; x++) {
-      for (let y = 5; y <= 8; y++) {
+    for (let x = this.showStartPos; x <= this.showEndPos; x++) {
+      for (let y = this.showStartPos; y <= this.showEndPos; y++) {
         this.slideData.inPoses.push({ x, y })
       }
     }
@@ -112,8 +120,8 @@ export class SlideDataService {
   initSlideItems() {
     this.slideData.slideScore = 0
     this.slideData.items = []
-    for (let x = 0; x < 14; x++) {
-      for (let y = 0; y < 14; y++) {
+    for (let x = this.startPos; x < this.endPos; x++) {
+      for (let y = this.startPos; y < this.endPos; y++) {
         const nowNumbers = this.getLevelNumbers(this.slideData.lv)
         const num = randInArr(nowNumbers)
         const thisItem: SlideItem = {
@@ -136,7 +144,7 @@ export class SlideDataService {
 
   isInContent(pos: SlidePos) {
     const { x, y } = pos
-    if (x >= 5 && x <= 8 && y >= 5 && y <= 8) {
+    if (x >= this.showStartPos && x <= this.showEndPos && y >= this.showStartPos && y <= this.showEndPos) {
       return true
     }
     return false
@@ -176,8 +184,8 @@ export class SlideDataService {
       item.isInContent = this.isInContent(item.pos)
     })
     const sameItemIds: number[][] = []
-    for (let x = 5; x <= 8; x++) {
-      for (let y = 5; y <= 8; y++) {
+    for (let x = this.showStartPos; x <= this.showEndPos; x++) {
+      for (let y = this.showStartPos; y <= this.showEndPos; y++) {
         const p = { x, y }
         const thisItem = this.getItemByPos(p)
         if (thisItem) {
@@ -267,7 +275,7 @@ export class SlideDataService {
       // Remove other no need items
       const otherNeedRmIds = []
       this.slideData.items.forEach(item => {
-        if (item.pos.x > 14 || item.pos.y > 14 || item.pos.x < 0 || item.pos.y < 0) {
+        if (item.pos.x > this.endPos || item.pos.y > this.endPos || item.pos.x < this.startPos || item.pos.y < this.startPos) {
           otherNeedRmIds.push(item.id)
         }
       })
@@ -279,8 +287,8 @@ export class SlideDataService {
         }
       })
       // create new items
-      for (let x = 1; x <= 14; x++) {
-        for (let y = 1; y <= 14; y++) {
+      for (let x = this.startPos; x <= this.endPos; x++) {
+        for (let y = this.startPos; y <= this.endPos; y++) {
           const nowNumbers = this.getLevelNumbers(this.slideData.lv)
           const num = randInArr(nowNumbers)
           const isInItem = this.slideData.items.find(i => i.pos.x === x && i.pos.y === y)
@@ -343,7 +351,7 @@ export class SlideDataService {
   }
 
   getNextItem(pos: SlidePos, plusPos: SlidePos) {
-    if (pos.x > 14 || pos.y > 14 || pos.x < 0 || pos.y < 0) {
+    if (pos.x > this.endPos || pos.y > this.endPos || pos.x < this.startPos || pos.y < this.startPos) {
       return false
     }
     const nextItem = this.slideData.items.find(i => i.pos.x === pos.x + plusPos.x && i.pos.y === pos.y + plusPos.y)
